@@ -37,7 +37,7 @@ var AppCmp = (function () {
     AppCmp = __decorate([
         angular2_1.Component({
             selector: 'app',
-            template: "\n    <div style=\"margin: 30px;\">\n      <a [router-link]=\"['/Authenticate']\">Authenticate</a>&nbsp;|&nbsp;\n      <a [router-link]=\"['/LoggedIn']\">Logged In</a>&nbsp;|&nbsp;\n      <a [router-link]=\"['/InitialRequest']\">Initial Request</a>&nbsp;|&nbsp;\n      <a (click)=\"logOut()\" style=\"cursor: pointer;\">Log out</a>\n      <br><br>\n      <router-outlet></router-outlet>\n    </div>\n  ",
+            template: "\n    <div style=\"margin: 30px;\">\n      <p style=\"font-weight: bold;\">co-auther demo</p>\n      <a [router-link]=\"['/Authenticate']\">Authenticate</a>&nbsp;|&nbsp;\n      <a [router-link]=\"['/LoggedIn']\">Logged In</a>&nbsp;|&nbsp;\n      <a [router-link]=\"['/InitialRequest']\">Initial Request</a>&nbsp;|&nbsp;\n      <a (click)=\"logOut()\" style=\"cursor: pointer;\">Log out</a>\n      <br><br>\n      <router-outlet></router-outlet>\n    </div>\n  ",
             directives: [router_1.ROUTER_DIRECTIVES]
         }),
         router_1.RouteConfig([
