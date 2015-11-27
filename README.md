@@ -59,8 +59,8 @@ import { activationHelper, getCoAuther } from 'co-auther'
 ...
 @CanActivate(() => activationHelper('authenticate'))
 export class AuthenticateCmp {
-  login (...args) {
-    getCoAuther().loginWrap(args...)
+  login (username, login) {
+    getCoAuther().loginWrap(username, login)
   }
 }
 ```
