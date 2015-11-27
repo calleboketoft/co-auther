@@ -1,0 +1,39 @@
+{
+  "name": "co-auther",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node server",
+    "build": "npm run tsc",
+    "prepublish": "npm run build",
+    "tsc": "tsc -p src",
+    "watch": "tsc -p src -w",
+    "postinstall": "jspm install"
+  },
+  "config": {
+    "ghooks": {
+      "pre-commit": "npm run build"
+    }
+  },
+  "author": "Carl-Ola Boketoft",
+  "license": "ISC",
+  "devDependencies": {
+    "angular2": "^2.0.0-alpha.46",
+    "express": "^4.13.3",
+    "ghooks": "^1.0.1",
+    "jspm": "^0.16.15",
+    "typescript": "^1.6.2"
+  },
+  "jspm": {
+    "configFile": "jspm.config.js",
+    "dependencies": {
+      "angular2": "npm:angular2@^2.0.0-alpha.46",
+      "reflect-metadata": "npm:reflect-metadata@^0.1.2",
+      "zone.js": "npm:zone.js@^0.5.8"
+    },
+    "devDependencies": {
+      "typescript": "npm:typescript@^1.6.2"
+    }
+  }
+}
