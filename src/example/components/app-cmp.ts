@@ -15,6 +15,7 @@ import * as CoAuther from '../../co-auther/co-auther'
   selector: 'app',
   template: `
     <div style="margin: 30px;">
+      <p style="font-weight: bold;">co-auther demo</p>
       <a [router-link]="['/Authenticate']">Authenticate</a>&nbsp;|&nbsp;
       <a [router-link]="['/LoggedIn']">Logged In</a>&nbsp;|&nbsp;
       <a [router-link]="['/InitialRequest']">Initial Request</a>&nbsp;|&nbsp;

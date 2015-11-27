@@ -9,7 +9,11 @@
     "prepublish": "npm run build",
     "tsc": "tsc -p src",
     "watch": "tsc -p src -w",
-    "postinstall": "jspm install"
+    "postinstall": "jspm install && npm run webdriver",
+    "webdriver": "node_modules/protractor/bin/webdriver-manager update",
+    "tsc-e2e": "tsc -p test/e2e",
+    "watch-tsc-e2e": "tsc -p test/e2e -w",
+    "test-e2e": "npm run tsc-e2e && gulp test-e2e"
   },
   "config": {
     "ghooks": {
@@ -22,7 +26,9 @@
     "angular2": "^2.0.0-alpha.46",
     "express": "^4.13.3",
     "ghooks": "^1.0.1",
+    "gulp": "^3.9.0",
     "jspm": "^0.16.15",
+    "protractor": "^3.0.0",
     "typescript": "^1.6.2"
   },
   "jspm": {
