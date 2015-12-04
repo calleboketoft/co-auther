@@ -2,7 +2,7 @@
   "name": "co-auther",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "src/co-auther/co-auther.js",
   "scripts": {
     "start": "node server",
     "build": "npm run tsc",
