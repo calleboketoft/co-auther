@@ -1,3 +1,4 @@
+var dontTouchLocalStorage = false;
 var coAuther;
 var getCoAuther = function () {
     if (!coAuther) {
@@ -43,9 +44,6 @@ function activationHelper(currentPage) {
     return canActivate;
 }
 exports.activationHelper = activationHelper;
-function clearAuthData() {
-    localStorage.removeItem(config.AUTH_DATA);
-}
 // TODO this should be replaced with the "correct" routing strategy
 function routeTo(afterHash) {
     var loc = window.location;
@@ -65,7 +63,7 @@ function CoAuther(apiService) {
         apiService.login.apply(apiService, args)
             .then(function (res) {
             // authData has arrived, go make initial request
-            localStorage.setItem(config.AUTH_DATA, res);
+            setAuthData(res);
             routeTo(config.INITIAL_REQUEST);
         })
             .catch(function (err) {
@@ -100,9 +98,6 @@ function CoAuther(apiService) {
             });
         });
     }
-    function getAuthData() {
-        return localStorage.getItem(config.AUTH_DATA);
-    }
     return {
         makeInitialRequestWrap: makeInitialRequestWrap,
         loginWrap: loginWrap,
@@ -115,6 +110,9 @@ function initialize(apiService, newConfig) {
     coAuther = CoAuther(apiService);
     if (newConfig.authData) {
         config.AUTH_DATA = newConfig.authData;
+    }
+    if (newConfig.dontTouchLocalStorage) {
+        dontTouchLocalStorage = true;
     }
     if (newConfig.routes) {
         if (newConfig.routes.loggedIn) {
@@ -129,4 +127,17 @@ function initialize(apiService, newConfig) {
     }
 }
 exports.initialize = initialize;
+function clearAuthData() {
+    if (!dontTouchLocalStorage) {
+        localStorage.removeItem(config.AUTH_DATA);
+    }
+}
+function getAuthData() {
+    return localStorage.getItem(config.AUTH_DATA);
+}
+function setAuthData(res) {
+    if (!dontTouchLocalStorage) {
+        localStorage.setItem(config.AUTH_DATA, res);
+    }
+}
 //# sourceMappingURL=co-auther.js.map
