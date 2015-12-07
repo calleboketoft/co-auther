@@ -130,12 +130,14 @@ function clearAuthData () {
 }
 
 function getAuthData () {
-  return localStorage.getItem(config.AUTH_DATA)
+  let authDataString = localStorage.getItem(config.AUTH_DATA)
+  let authData = authDataString ? JSON.parse(authDataString) : null
+  return authData
 }
 
 function setAuthData (res) {
   if (!dontTouchLocalStorage) {
-    localStorage.setItem(config.AUTH_DATA, res)
+    localStorage.setItem(config.AUTH_DATA, JSON.stringify(res.json()))
   }
 }
 
