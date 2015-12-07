@@ -1,3 +1,4 @@
+let dontTouchLocalStorage = false
 let coAuther
 let getCoAuther = function () {
   if (!coAuther) {
@@ -41,10 +42,6 @@ function activationHelper (currentPage) {
   return canActivate
 }
 
-function clearAuthData () {
-  localStorage.removeItem(config.AUTH_DATA)
-}
-
 // TODO this should be replaced with the "correct" routing strategy
 function routeTo (afterHash) {
   let loc = window.location
@@ -62,7 +59,7 @@ function CoAuther (apiService) {
     apiService.login.apply(apiService, args)
       .then((res) => {
         // authData has arrived, go make initial request
-        localStorage.setItem(config.AUTH_DATA, res)
+        setAuthData(res)
         routeTo(config.INITIAL_REQUEST)
       })
       .catch((err) => {
@@ -96,10 +93,6 @@ function CoAuther (apiService) {
     })
   }
 
-  function getAuthData () {
-    return localStorage.getItem(config.AUTH_DATA)
-  }
-
   return {
     makeInitialRequestWrap,
     loginWrap,
@@ -114,6 +107,9 @@ function initialize (apiService, newConfig) {
   if (newConfig.authData) {
     config.AUTH_DATA = newConfig.authData
   }
+  if (newConfig.dontTouchLocalStorage) {
+    dontTouchLocalStorage = true
+  }
   if (newConfig.routes) {
     if (newConfig.routes.loggedIn) {
       config.LOGGED_IN = newConfig.routes.loggedIn
@@ -124,6 +120,22 @@ function initialize (apiService, newConfig) {
     if (newConfig.routes.initialRequest) {
       config.INITIAL_REQUEST = newConfig.routes.initialRequest
     }
+  }
+}
+
+function clearAuthData () {
+  if (!dontTouchLocalStorage) {
+    localStorage.removeItem(config.AUTH_DATA)
+  }
+}
+
+function getAuthData () {
+  return localStorage.getItem(config.AUTH_DATA)
+}
+
+function setAuthData (res) {
+  if (!dontTouchLocalStorage) {
+    localStorage.setItem(config.AUTH_DATA, res)
   }
 }
 
