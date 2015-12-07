@@ -76,9 +76,9 @@ function CoAuther(apiService) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
-        clearAuthData();
         apiService.logout.apply(apiService, args)
             .then(function () {
+            clearAuthData();
             // Logged out, reload page
             window.location.reload();
         });
