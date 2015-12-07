@@ -133,11 +133,13 @@ function clearAuthData() {
     }
 }
 function getAuthData() {
-    return localStorage.getItem(config.AUTH_DATA);
+    var authDataString = localStorage.getItem(config.AUTH_DATA);
+    var authData = authDataString ? JSON.parse(authDataString) : null;
+    return authData;
 }
 function setAuthData(res) {
     if (!dontTouchLocalStorage) {
-        localStorage.setItem(config.AUTH_DATA, res);
+        localStorage.setItem(config.AUTH_DATA, JSON.stringify(res.json()));
     }
 }
 //# sourceMappingURL=co-auther.js.map
