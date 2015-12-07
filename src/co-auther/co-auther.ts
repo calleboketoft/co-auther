@@ -69,9 +69,9 @@ function CoAuther (apiService) {
   }
 
   function logoutWrap (...args) {
-    clearAuthData()
     apiService.logout.apply(apiService, args)
       .then(() => {
+        clearAuthData()
         // Logged out, reload page
         window.location.reload()
       })
