@@ -79,8 +79,8 @@ function CoAuther(apiService) {
         apiService.logout.apply(apiService, args)
             .then(function () {
             clearAuthData();
-            // Logged out, reload page
-            window.location.reload();
+            // Logged out, go to authenticate page
+            routeTo(config.AUTHENTICATE);
         });
     }
     function makeInitialRequestWrap() {
