@@ -27,7 +27,7 @@ import * as CoAuther from '../../co-auther/co-auther'
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/', redirectTo: '/LoggedIn' },
+  // { path: '/', redirectTo: '/LoggedIn' },
   { path: '/authenticate', as: 'Authenticate', component: AuthenticateCmp },
   { path: '/loggedIn', as: 'LoggedIn', component: LoggedInCmp },
   { path: '/initialRequest', as: 'InitialRequest', component: InitialRequestCmp }

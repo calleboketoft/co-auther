@@ -19,7 +19,11 @@ function mockRequest (requestType, timeout) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (confirm(requestType + ' success?')) {
-        resolve(requestType + ' successful')
+        resolve({
+          json: () => {
+            return { authData: 'yep' }
+          }
+        })
       } else {
         reject(requestType + ' failed')
       }
