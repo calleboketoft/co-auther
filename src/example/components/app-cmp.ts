@@ -16,9 +16,9 @@ import * as CoAuther from '../../co-auther/co-auther'
   template: `
     <div style="margin: 30px;">
       <p style="font-weight: bold;">co-auther demo</p>
-      <a [router-link]="['/Authenticate']">Authenticate</a>&nbsp;|&nbsp;
-      <a [router-link]="['/LoggedIn']">Logged In</a>&nbsp;|&nbsp;
-      <a [router-link]="['/InitialRequest']">Initial Request</a>&nbsp;|&nbsp;
+      <a [routerLink]="['/Authenticate']">Authenticate</a>&nbsp;|&nbsp;
+      <a [routerLink]="['/LoggedIn']">Logged In</a>&nbsp;|&nbsp;
+      <a [routerLink]="['/InitialRequest']">Initial Request</a>&nbsp;|&nbsp;
       <a (click)="logOut()" style="cursor: pointer;">Log out</a>
       <br><br>
       <router-outlet></router-outlet>

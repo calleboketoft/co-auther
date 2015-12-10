@@ -23,7 +23,7 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "devDependencies": {
-    "angular2": "^2.0.0-alpha.50",
+    "angular2": "^2.0.0-alpha.52",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
     "express": "^4.13.3",
@@ -33,13 +33,13 @@
     "protractor": "^3.0.0",
     "reflect-metadata": "^0.1.2",
     "rxjs": "^5.0.0-alpha.14",
-    "typescript": "^1.6.2",
+    "typescript": "^1.7.3",
     "zone.js": "^0.5.8"
   },
   "jspm": {
     "configFile": "jspm.config.js",
     "dependencies": {
-      "angular2": "npm:angular2@^2.0.0-alpha.50",
+      "angular2": "npm:angular2@^2.0.0-alpha.52",
       "reflect-metadata": "npm:reflect-metadata@^0.1.2",
       "zone.js": "npm:zone.js@^0.5.8"
     },

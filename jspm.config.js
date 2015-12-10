@@ -25,9 +25,9 @@ System.config({
   },
 
   map: {
-    "angular2": "npm:angular2@2.0.0-alpha.50",
+    "angular2": "npm:angular2@2.0.0-alpha.52",
     "reflect-metadata": "npm:reflect-metadata@0.1.2",
-    "typescript": "npm:typescript@1.6.2",
+    "typescript": "npm:typescript@1.7.3",
     "zone.js": "npm:zone.js@0.5.8",
     "github:jspm/nodelibs-assert@0.1.0": {
       "assert": "npm:assert@1.3.0"
@@ -62,7 +62,7 @@ System.config({
     "github:jspm/nodelibs-vm@0.1.0": {
       "vm-browserify": "npm:vm-browserify@0.0.4"
     },
-    "npm:angular2@2.0.0-alpha.50": {
+    "npm:angular2@2.0.0-alpha.52": {
       "crypto": "github:jspm/nodelibs-crypto@0.1.0",
       "es6-promise": "npm:es6-promise@3.0.2",
       "es6-shim": "npm:es6-shim@0.33.13",
