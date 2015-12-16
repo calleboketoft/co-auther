@@ -7,7 +7,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var angular2_1 = require('angular2/angular2');
+var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 var co_auther_1 = require('../../co-auther/co-auther');
 var AuthenticateCmp = (function () {
@@ -17,7 +17,7 @@ var AuthenticateCmp = (function () {
         co_auther_1.getCoAuther().loginWrap(username, password);
     };
     AuthenticateCmp = __decorate([
-        angular2_1.Component({
+        core_1.Component({
             selector: 'authenticate-cmp',
             template: "\n    <label>Username<input #username type=\"text\"></label><br>\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
         }),

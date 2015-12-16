@@ -1,4 +1,4 @@
-import { Component } from 'angular2/angular2'
+import { Component } from 'angular2/core'
 import { CanActivate } from 'angular2/router'
 import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
 

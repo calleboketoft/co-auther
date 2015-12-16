@@ -8,7 +8,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 // Angular
-var angular2_1 = require('angular2/angular2');
+var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
 // Pages
 var authenticate_cmp_1 = require('./authenticate-cmp');
@@ -33,7 +33,7 @@ var AppCmp = (function () {
         CoAuther.getCoAuther().logoutWrap();
     };
     AppCmp = __decorate([
-        angular2_1.Component({
+        core_1.Component({
             selector: 'app',
             template: "\n    <div style=\"margin: 30px;\">\n      <p style=\"font-weight: bold;\">co-auther demo</p>\n      <a [routerLink]=\"['/Authenticate']\">Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/LoggedIn']\">Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/InitialRequest']\">Initial Request</a>&nbsp;|&nbsp;\n      <a (click)=\"logOut()\" style=\"cursor: pointer;\">Log out</a>\n      <br><br>\n      <router-outlet></router-outlet>\n    </div>\n  ",
             directives: [router_1.ROUTER_DIRECTIVES]
