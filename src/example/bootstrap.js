@@ -1,4 +1,3 @@
-require('reflect-metadata');
 var browser_1 = require('angular2/platform/browser');
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
