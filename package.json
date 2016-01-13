@@ -1,6 +1,6 @@
 {
   "name": "co-auther",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "",
   "main": "src/co-auther/co-auther.js",
   "scripts": {
@@ -9,7 +9,7 @@
     "prepublish": "npm run build",
     "tsc": "tsc -p src",
     "watch": "tsc -p src -w",
-    "postinstall": "jspm install && npm run webdriver",
+    "afterinstall": "jspm install && npm run webdriver",
     "webdriver": "node_modules/protractor/bin/webdriver-manager update",
     "tsc-e2e": "tsc -p test/e2e",
     "watch-tsc-e2e": "tsc -p test/e2e -w",
