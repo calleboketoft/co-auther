@@ -18,15 +18,19 @@ var logged_in_cmp_1 = require('./logged-in-cmp');
 var api_service_1 = require('../../example-common/api-service');
 var CoAuther = require('../../co-auther/co-auther');
 var AppCmp = (function () {
-    function AppCmp() {
+    function AppCmp(router) {
+        var _this = this;
+        this.router = router;
         // Initialize auther here, now apiService will be wrapped
         CoAuther.initialize(api_service_1.default, {
             routes: {
-                loggedIn: 'loggedIn',
-                authenticate: 'authenticate',
-                initialRequest: 'initialRequest'
+                loggedIn: 'LoggedIn',
+                authenticate: 'Authenticate',
+                initialRequest: 'InitialRequest'
             },
             authData: 'authData'
+        }, function (routePath) {
+            _this.router.navigate(['/' + routePath]);
         });
     }
     AppCmp.prototype.logOut = function () {
@@ -39,11 +43,11 @@ var AppCmp = (function () {
             directives: [router_1.ROUTER_DIRECTIVES]
         }),
         router_1.RouteConfig([
-            { path: '/authenticate', as: 'Authenticate', component: authenticate_cmp_1.AuthenticateCmp },
+            { path: '/authenticate', as: 'Authenticate', component: authenticate_cmp_1.AuthenticateCmp, useAsDefault: true },
             { path: '/loggedIn', as: 'LoggedIn', component: logged_in_cmp_1.LoggedInCmp },
             { path: '/initialRequest', as: 'InitialRequest', component: initial_request_cmp_1.InitialRequestCmp }
         ]), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], AppCmp);
     return AppCmp;
 })();

@@ -1,5 +1,9 @@
 let dontTouchLocalStorage = false
 let coAuther
+let routeFunction = (afterHash) => {
+  let loc = window.location
+  window.location.href = `${loc.protocol}//${loc.host}${loc.pathname}#/${afterHash}`
+}
 let getCoAuther = function () {
   if (!coAuther) {
     throw 'CoAuther has not been initialized yet'
@@ -16,7 +20,7 @@ let config = {
 }
 
 // Determine if a route canActivate or not
-function activationHelper (currentPage) {
+function activationHelper (currentPage): any {
   let canActivate = false
   let destinationRoute = null
   let authData = getCoAuther().getAuthData()
@@ -33,19 +37,13 @@ function activationHelper (currentPage) {
     canActivate = currentPage === destinationRoute
     getCoAuther().makeInitialRequestWrap().then(() => {
       // initialRequest done, move on to logged in
-      routeTo(config.LOGGED_IN)
+      return routeFunction(config.LOGGED_IN)
     })
   }
   if (!canActivate) {
-    routeTo(destinationRoute)
+    return routeFunction(destinationRoute)
   }
   return canActivate
-}
-
-// TODO this should be replaced with the "correct" routing strategy
-function routeTo (afterHash) {
-  let loc = window.location
-  window.location.href = `${loc.protocol}//${loc.host}${loc.pathname}#/${afterHash}`
 }
 
 function CoAuther (apiService) {
@@ -60,7 +58,7 @@ function CoAuther (apiService) {
       .then((res) => {
         // authData has arrived, go make initial request
         setAuthData(res)
-        routeTo(config.INITIAL_REQUEST)
+        routeFunction(config.INITIAL_REQUEST)
       })
       .catch((err) => {
         // Login failed, handle
@@ -72,8 +70,8 @@ function CoAuther (apiService) {
     apiService.logout.apply(apiService, args)
       .then(() => {
         clearAuthData()
-        // Logged out, go to authenticate page
-        routeTo(config.AUTHENTICATE)
+        // Logged out, reload page
+        window.location.reload()
       })
   }
 
@@ -102,7 +100,7 @@ function CoAuther (apiService) {
   }
 }
 
-function initialize (apiService, newConfig) {
+function initialize (apiService, newConfig, newRouteFunction) {
   coAuther = CoAuther(apiService)
   if (newConfig.authData) {
     config.AUTH_DATA = newConfig.authData
@@ -120,6 +118,9 @@ function initialize (apiService, newConfig) {
     if (newConfig.routes.initialRequest) {
       config.INITIAL_REQUEST = newConfig.routes.initialRequest
     }
+  }
+  if (newRouteFunction) {
+    routeFunction = newRouteFunction
   }
 }
 

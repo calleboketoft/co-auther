@@ -10,7 +10,7 @@ import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
     <button (click)="login(username.value, password.value)">Login</button>
   `
 })
-@CanActivate(() => activationHelper('authenticate'))
+@CanActivate(() => activationHelper('Authenticate'))
 export class AuthenticateCmp {
   login (username, password) {
     getCoAuther().loginWrap(username, password)

@@ -6,5 +6,5 @@ import { activationHelper } from '../../co-auther/co-auther'
   selector: 'logged-in-cmp',
   template: `Logged in!`
 })
-@CanActivate(() => activationHelper('loggedIn'))
+@CanActivate(() => activationHelper('LoggedIn'))
 export class LoggedInCmp { }

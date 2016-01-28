@@ -22,7 +22,7 @@ import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
     </div> <!-- /container -->
   `
 })
-@CanActivate(() => activationHelper('authenticate'))
+@CanActivate(() => activationHelper('Authenticate'))
 export class AuthenticateCmp {
   login (username, password) {
     getCoAuther().loginWrap(username, password)

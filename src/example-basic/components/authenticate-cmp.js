@@ -21,7 +21,7 @@ var AuthenticateCmp = (function () {
             selector: 'authenticate-cmp',
             template: "\n    <label>Username<input #username type=\"text\"></label><br>\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
         }),
-        router_1.CanActivate(function () { return co_auther_1.activationHelper('authenticate'); }), 
+        router_1.CanActivate(function () { return co_auther_1.activationHelper('Authenticate'); }), 
         __metadata('design:paramtypes', [])
     ], AuthenticateCmp);
     return AuthenticateCmp;

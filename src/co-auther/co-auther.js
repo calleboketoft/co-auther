@@ -1,5 +1,9 @@
 var dontTouchLocalStorage = false;
 var coAuther;
+var routeFunction = function (afterHash) {
+    var loc = window.location;
+    window.location.href = loc.protocol + "//" + loc.host + loc.pathname + "#/" + afterHash;
+};
 var getCoAuther = function () {
     if (!coAuther) {
         throw 'CoAuther has not been initialized yet';
@@ -35,20 +39,15 @@ function activationHelper(currentPage) {
         canActivate = currentPage === destinationRoute;
         getCoAuther().makeInitialRequestWrap().then(function () {
             // initialRequest done, move on to logged in
-            routeTo(config.LOGGED_IN);
+            return routeFunction(config.LOGGED_IN);
         });
     }
     if (!canActivate) {
-        routeTo(destinationRoute);
+        return routeFunction(destinationRoute);
     }
     return canActivate;
 }
 exports.activationHelper = activationHelper;
-// TODO this should be replaced with the "correct" routing strategy
-function routeTo(afterHash) {
-    var loc = window.location;
-    window.location.href = loc.protocol + "//" + loc.host + loc.pathname + "#/" + afterHash;
-}
 function CoAuther(apiService) {
     var initialDataLoaded = false;
     function isInitialDataLoaded() {
@@ -64,7 +63,7 @@ function CoAuther(apiService) {
             .then(function (res) {
             // authData has arrived, go make initial request
             setAuthData(res);
-            routeTo(config.INITIAL_REQUEST);
+            routeFunction(config.INITIAL_REQUEST);
         })
             .catch(function (err) {
             // Login failed, handle
@@ -79,8 +78,8 @@ function CoAuther(apiService) {
         apiService.logout.apply(apiService, args)
             .then(function () {
             clearAuthData();
-            // Logged out, go to authenticate page
-            routeTo(config.AUTHENTICATE);
+            // Logged out, reload page
+            window.location.reload();
         });
     }
     function makeInitialRequestWrap() {
@@ -106,7 +105,7 @@ function CoAuther(apiService) {
         isInitialDataLoaded: isInitialDataLoaded
     };
 }
-function initialize(apiService, newConfig) {
+function initialize(apiService, newConfig, newRouteFunction) {
     coAuther = CoAuther(apiService);
     if (newConfig.authData) {
         config.AUTH_DATA = newConfig.authData;
@@ -124,6 +123,9 @@ function initialize(apiService, newConfig) {
         if (newConfig.routes.initialRequest) {
             config.INITIAL_REQUEST = newConfig.routes.initialRequest;
         }
+    }
+    if (newRouteFunction) {
+        routeFunction = newRouteFunction;
     }
 }
 exports.initialize = initialize;

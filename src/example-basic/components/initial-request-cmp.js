@@ -18,7 +18,7 @@ var InitialRequestCmp = (function () {
             selector: 'initial-request-cmp',
             template: "Making initial request..."
         }),
-        router_1.CanActivate(function () { return co_auther_1.activationHelper('initialRequest'); }), 
+        router_1.CanActivate(function () { return co_auther_1.activationHelper('InitialRequest'); }), 
         __metadata('design:paramtypes', [])
     ], InitialRequestCmp);
     return InitialRequestCmp;

@@ -43,7 +43,7 @@ import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
     </div>
   `
 })
-@CanActivate(() => activationHelper('loggedIn'))
+@CanActivate(() => activationHelper('LoggedIn'))
 export class LoggedInCmp {
   logOut ($event) {
     $event.preventDefault()

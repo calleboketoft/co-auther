@@ -18,7 +18,7 @@ var LoggedInCmp = (function () {
             selector: 'logged-in-cmp',
             template: "Logged in!"
         }),
-        router_1.CanActivate(function () { return co_auther_1.activationHelper('loggedIn'); }), 
+        router_1.CanActivate(function () { return co_auther_1.activationHelper('LoggedIn'); }), 
         __metadata('design:paramtypes', [])
     ], LoggedInCmp);
     return LoggedInCmp;
