@@ -20,6 +20,7 @@ let config = {
 }
 
 // Determine if a route canActivate or not
+var initialRequestPending = false
 function activationHelper (currentPage): any {
   let canActivate = false
   let destinationRoute = null
@@ -35,10 +36,14 @@ function activationHelper (currentPage): any {
   } else {
     destinationRoute = config.INITIAL_REQUEST
     canActivate = currentPage === destinationRoute
-    getCoAuther().makeInitialRequestWrap().then(() => {
-      // initialRequest done, move on to logged in
-      return routeFunction(config.LOGGED_IN)
-    })
+    if (!initialRequestPending) {
+      initialRequestPending = true
+        getCoAuther().makeInitialRequestWrap().then(() => {
+          initialRequestPending = false
+        // initialRequest done, move on to logged in
+        return routeFunction(config.LOGGED_IN)
+      })
+    }
   }
   if (!canActivate) {
     return routeFunction(destinationRoute)

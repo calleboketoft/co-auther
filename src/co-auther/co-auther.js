@@ -20,6 +20,7 @@ var config = {
     AUTH_DATA: 'authData'
 };
 // Determine if a route canActivate or not
+var initialRequestPending = false;
 function activationHelper(currentPage) {
     var canActivate = false;
     var destinationRoute = null;
@@ -37,10 +38,14 @@ function activationHelper(currentPage) {
     else {
         destinationRoute = config.INITIAL_REQUEST;
         canActivate = currentPage === destinationRoute;
-        getCoAuther().makeInitialRequestWrap().then(function () {
-            // initialRequest done, move on to logged in
-            return routeFunction(config.LOGGED_IN);
-        });
+        if (!initialRequestPending) {
+            initialRequestPending = true;
+            getCoAuther().makeInitialRequestWrap().then(function () {
+                initialRequestPending = false;
+                // initialRequest done, move on to logged in
+                return routeFunction(config.LOGGED_IN);
+            });
+        }
     }
     if (!canActivate) {
         return routeFunction(destinationRoute);
