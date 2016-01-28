@@ -12,7 +12,7 @@ import { LoggedInCmpPageObject } from './logged-in-cmp.page-object'
 
 describe('MyComponentPageObject' , () => {
   beforeEach(() => {
-    browser.get('/src/example/')
+    browser.get('/src/example-basic/')
   })
 
   let appCmpObj = new AppCmpPageObject()

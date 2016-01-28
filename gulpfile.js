@@ -23,7 +23,6 @@ function getProtractorBinary(binaryName){
 }
 
 // TypeScript
-var gulp = require('gulp')
 var ts = require('gulp-typescript')
 var sourcemaps = require('gulp-sourcemaps')
 var tsProject = ts.createProject('src/tsconfig.json')
@@ -38,4 +37,12 @@ gulp.task('typescript', function () {
 })
 gulp.task('typescript:watch', ['typescript'], function () {
   gulp.watch('src/**/*.ts', ['typescript'])
+})
+
+// SASS (for example-themed)
+var sass = require('gulp-sass')
+gulp.task('sass', function () {
+  gulp.src('./node_modules/bootstrap/scss/bootstrap.scss')
+    .pipe(sass().on('error', sass.logError))
+    .pipe(gulp.dest('./src/example-themed/css'))
 })

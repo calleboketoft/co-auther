@@ -15,7 +15,7 @@ var authenticate_cmp_1 = require('./authenticate-cmp');
 var initial_request_cmp_1 = require('./initial-request-cmp');
 var logged_in_cmp_1 = require('./logged-in-cmp');
 // API and authentication services
-var api_service_1 = require('../services/api-service');
+var api_service_1 = require('../../example-common/api-service');
 var CoAuther = require('../../co-auther/co-auther');
 var AppCmp = (function () {
     function AppCmp() {

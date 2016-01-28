@@ -5,13 +5,14 @@
   "main": "src/co-auther/co-auther.js",
   "scripts": {
     "start": "node server",
-    "build": "npm run gulp-ts",
+    "build": "npm run gulp-ts && npm run tsc-e2e && npm run gulp-sass",
     "prepublish": "npm run build",
     "afterinstall": "npm run webdriver",
     "webdriver": "node_modules/protractor/bin/webdriver-manager update",
-    "test-e2e": "npm run build && npm run tsc-e2e && gulp test-e2e",
+    "test-e2e": "npm run build && gulp test-e2e",
     "gulp-ts": "gulp typescript",
     "gulp-ts:watch": "gulp typescript:watch",
+    "gulp-sass": "gulp sass",
     "tsc-e2e": "tsc -p test/e2e"
   },
   "config": {
@@ -22,20 +23,22 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "devDependencies": {
-    "angular2": "^2.0.0-beta.1",
-    "es6-promise": "^3.0.2",
-    "es6-shim": "^0.33.13",
-    "express": "^4.13.3",
-    "ghooks": "^1.0.1",
-    "gulp": "^3.9.0",
-    "gulp-sourcemaps": "^1.6.0",
-    "gulp-typescript": "^2.10.0",
-    "protractor": "^3.0.0",
-    "reflect-metadata": "^0.1.2",
-    "rxjs": "^5.0.0-beta.0",
-    "systemjs": "^0.19.17",
-    "typescript": "^1.7.3",
-    "zone.js": "^0.5.10"
+    "angular2": "2.0.0-beta.1",
+    "bootstrap": "git+https://git@github.com/twbs/bootstrap.git#v4-dev",
+    "es6-promise": "3.0.2",
+    "es6-shim": "0.33.13",
+    "express": "4.13.3",
+    "ghooks": "1.0.1",
+    "gulp": "3.9.0",
+    "gulp-sass": "^2.1.1",
+    "gulp-sourcemaps": "1.6.0",
+    "gulp-typescript": "2.10.0",
+    "protractor": "3.0.0",
+    "reflect-metadata": "0.1.2",
+    "rxjs": "5.0.0-beta.0",
+    "systemjs": "0.19.17",
+    "typescript": "1.7.3",
+    "zone.js": "0.5.10"
   },
   "dependencies": {}
 }

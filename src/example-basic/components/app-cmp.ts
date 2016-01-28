@@ -8,7 +8,7 @@ import { InitialRequestCmp } from './initial-request-cmp'
 import { LoggedInCmp } from './logged-in-cmp'
 
 // API and authentication services
-import apiService from '../services/api-service'
+import apiService from '../../example-common/api-service'
 import * as CoAuther from '../../co-auther/co-auther'
 
 @Component({
