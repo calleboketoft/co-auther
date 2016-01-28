@@ -4,7 +4,7 @@ import { activationHelper } from '../../co-auther/co-auther'
 
 @Component({
   selector: 'initial-request-cmp',
-  template: `Loading...`
+  template: `Initial request...`
 })
 @CanActivate(() => activationHelper('InitialRequest'))
 export class InitialRequestCmp { }

@@ -16,7 +16,7 @@ var InitialRequestCmp = (function () {
     InitialRequestCmp = __decorate([
         core_1.Component({
             selector: 'initial-request-cmp',
-            template: "Loading..."
+            template: "Initial request..."
         }),
         router_1.CanActivate(function () { return co_auther_1.activationHelper('InitialRequest'); }), 
         __metadata('design:paramtypes', [])
