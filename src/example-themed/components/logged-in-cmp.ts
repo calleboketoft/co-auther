@@ -1,25 +1,10 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
+import { Component } from 'angular2/core'
+import { CanActivate } from 'angular2/router'
+import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
 
-    <title>Dashboard Template for Bootstrap</title>
-
-    <!-- Bootstrap core CSS -->
-    <link href="../css/bootstrap.css" rel="stylesheet">
-
-    <!-- Custom styles for this template -->
-    <link href="dashboard.css" rel="stylesheet">
-  </head>
-
-  <body>
-
+@Component({
+  selector: 'logged-in-cmp',
+  template: `
     <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
       <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
         <span class="sr-only">Toggle navigation</span>
@@ -31,7 +16,7 @@
       <div id="navbar">
         <nav class="nav navbar-nav pull-xs-left">
           <a class="nav-item nav-link" href="#">Dashboard</a>
-          <a class="nav-item nav-link" href="#">Settings</a>
+          <a class="nav-item nav-link" href="#" (click)="logOut($event)">Logout</a>
         </nav>
         <form class="pull-xs-right">
           <input type="text" class="form-control" placeholder="Search...">
@@ -56,5 +41,12 @@
         </div>
       </div>
     </div>
-  </body>
-</html>
+  `
+})
+@CanActivate(() => activationHelper('loggedIn'))
+export class LoggedInCmp {
+  logOut ($event) {
+    $event.preventDefault()
+    getCoAuther().logoutWrap()
+  }
+}
