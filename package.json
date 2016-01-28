@@ -5,15 +5,14 @@
   "main": "src/co-auther/co-auther.js",
   "scripts": {
     "start": "node server",
-    "build": "npm run tsc",
+    "build": "npm run gulp-ts",
     "prepublish": "npm run build",
-    "tsc": "tsc -p src",
-    "watch": "tsc -p src -w",
-    "afterinstall": "jspm install && npm run webdriver",
+    "afterinstall": "npm run webdriver",
     "webdriver": "node_modules/protractor/bin/webdriver-manager update",
-    "tsc-e2e": "tsc -p test/e2e",
-    "watch-tsc-e2e": "tsc -p test/e2e -w",
-    "test-e2e": "npm run tsc-e2e && gulp test-e2e"
+    "test-e2e": "npm run build && npm run tsc-e2e && gulp test-e2e",
+    "gulp-ts": "gulp typescript",
+    "gulp-ts:watch": "gulp typescript:watch",
+    "tsc-e2e": "tsc -p test/e2e"
   },
   "config": {
     "ghooks": {
@@ -23,27 +22,20 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "devDependencies": {
-    "angular2": "^2.0.0-beta.0",
+    "angular2": "^2.0.0-beta.1",
     "es6-promise": "^3.0.2",
     "es6-shim": "^0.33.13",
     "express": "^4.13.3",
     "ghooks": "^1.0.1",
     "gulp": "^3.9.0",
-    "jspm": "^0.16.15",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-typescript": "^2.10.0",
     "protractor": "^3.0.0",
     "reflect-metadata": "^0.1.2",
     "rxjs": "^5.0.0-beta.0",
+    "systemjs": "^0.19.17",
     "typescript": "^1.7.3",
     "zone.js": "^0.5.10"
   },
-  "jspm": {
-    "configFile": "jspm.config.js",
-    "dependencies": {
-      "angular2": "npm:angular2@^2.0.0-beta.0",
-      "reflect-metadata": "npm:reflect-metadata@^0.1.2"
-    },
-    "devDependencies": {
-      "typescript": "npm:typescript@^1.6.2"
-    }
-  }
+  "dependencies": {}
 }

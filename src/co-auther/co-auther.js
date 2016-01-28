@@ -142,4 +142,5 @@ function setAuthData(res) {
         localStorage.setItem(config.AUTH_DATA, JSON.stringify(res.json()));
     }
 }
+
 //# sourceMappingURL=co-auther.js.map

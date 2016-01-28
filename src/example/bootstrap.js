@@ -8,4 +8,5 @@ browser_1.bootstrap(app_cmp_1.AppCmp, [
     http_1.HTTP_PROVIDERS,
     core_1.bind(router_1.LocationStrategy).toClass(router_1.HashLocationStrategy)
 ]);
+
 //# sourceMappingURL=bootstrap.js.map
