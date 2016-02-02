@@ -1,11 +1,11 @@
 // Angular
-import { Component } from 'angular2/core'
-import { ROUTER_DIRECTIVES, RouteConfig, Router } from 'angular2/router'
+import {Component} from 'angular2/core'
+import {ROUTER_DIRECTIVES, RouteConfig, Router} from 'angular2/router'
 
 // Pages
-import { AuthenticateCmp } from './authenticate-cmp'
-import { InitialRequestCmp } from './initial-request-cmp'
-import { LoggedInCmp } from './logged-in-cmp'
+import {AuthenticateCmp} from './authenticate-cmp'
+import {InitialRequestCmp} from './initial-request-cmp'
+import {LoggedInCmp} from './logged-in-cmp'
 
 // API and authentication services
 import apiService from '../../example-common/api-service'
@@ -17,9 +17,9 @@ import * as CoAuther from '../../co-auther/co-auther'
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/authenticate', as: 'Authenticate', component: AuthenticateCmp, useAsDefault: true },
-  { path: '/loggedIn', as: 'LoggedIn', component: LoggedInCmp },
-  { path: '/initialRequest', as: 'InitialRequest', component: InitialRequestCmp }
+  {path: '/authenticate',    as: 'Authenticate',     component: AuthenticateCmp,   useAsDefault: true},
+  {path: '/loggedIn',        as: 'LoggedIn',         component: LoggedInCmp},
+  {path: '/initialRequest',  as: 'InitialRequest',   component: InitialRequestCmp}
 ])
 export class AppCmp {
   constructor (private router: Router) {

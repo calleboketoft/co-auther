@@ -26,10 +26,10 @@ There are 3 base routes of you application
 - Initialize: loading screen for first request
 - Logged in: all pages that require authentication are children of this route
 
-You have an "API service" with 3 methods that return promises
-- login: should resolve with authentication token
+You have an "API service" with 3 methods (called login/logout/initialRequest) that return promises
+- login: should resolve with authentication token string
 - logout: makes logout request, nothing else
-- initialRequest
+- initialRequest: the initial request for the app
 
 In your root component, load your API service and the CoAuther module. Then configure routes and initialize the CoAuther in the constructor of the component. Also expose the logout function from the CoAuther where you will use that:
 
@@ -37,14 +37,23 @@ In your root component, load your API service and the CoAuther module. Then conf
 import apiService from './apiService'
 import * as CoAuther from 'co-auther'
 ...
+// The 3 basic routes
+@RouteConfig([
+  {path: '/authenticate',    as: 'Authenticate',     component: AuthenticateCmp,   useAsDefault: true},
+  {path: '/loggedIn',        as: 'LoggedIn',         component: LoggedInCmp},
+  {path: '/initialRequest',  as: 'InitialRequest',   component: InitialRequestCmp}
+])
+...
 constructor () {
   CoAuther.initialize(apiService, {
     routes: {
-      loggedIn: 'loggedIn',
-      authenticate: 'authenticate',
-      initialRequest: 'initialRequest'
+      loggedIn: 'LoggedIn',
+      authenticate: 'Authenticate',
+      initialRequest: 'InitialRequest'
     },
     authData: 'authData'
+  }, (routePath) => { // Register a routing function
+    this.router.navigate(['/' + routePath])
   })
 }
 logout () {

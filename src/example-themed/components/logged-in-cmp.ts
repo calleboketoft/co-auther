@@ -1,6 +1,6 @@
-import { Component } from 'angular2/core'
-import { CanActivate } from 'angular2/router'
-import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
+import {Component} from 'angular2/core'
+import {CanActivate} from 'angular2/router'
+import {activationHelper, getCoAuther} from '../../co-auther/co-auther'
 
 @Component({
   selector: 'logged-in-cmp',
