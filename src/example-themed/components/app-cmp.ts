@@ -18,7 +18,7 @@ import * as CoAuther from '../../co-auther/co-auther'
 })
 @RouteConfig([
   {path: '/authenticate',    as: 'Authenticate',     component: AuthenticateCmp,   useAsDefault: true},
-  {path: '/loggedIn',        as: 'LoggedIn',         component: LoggedInCmp},
+  {path: '/loggedIn/...',    as: 'LoggedIn',         component: LoggedInCmp},
   {path: '/initialRequest',  as: 'InitialRequest',   component: InitialRequestCmp}
 ])
 export class AppCmp {

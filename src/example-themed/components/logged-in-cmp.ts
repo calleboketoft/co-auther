@@ -1,9 +1,17 @@
 import {Component} from 'angular2/core'
 import {CanActivate} from 'angular2/router'
+import {ROUTER_DIRECTIVES, RouteConfig} from 'angular2/router'
 import {activationHelper, getCoAuther} from '../../co-auther/co-auther'
+import {DashboardCmp} from './logged-in-pages/dashboard-cmp'
+import {SettingsCmp} from './logged-in-pages/settings-cmp'
 
+@RouteConfig([
+  {path: '/dashboard',  as: 'Dashboard',  component: DashboardCmp,   useAsDefault: true},
+  {path: '/settings',   as: 'Settings',   component: SettingsCmp}
+])
 @Component({
   selector: 'logged-in-cmp',
+  directives: [ROUTER_DIRECTIVES],
   template: `
     <nav class="navbar navbar-dark navbar-fixed-top bg-inverse">
       <button type="button" class="navbar-toggler hidden-sm-up" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -15,7 +23,6 @@ import {activationHelper, getCoAuther} from '../../co-auther/co-auther'
       <a class="navbar-brand" href="#">Project name</a>
       <div id="navbar">
         <nav class="nav navbar-nav pull-xs-left">
-          <a class="nav-item nav-link" href="#">Dashboard</a>
           <a class="nav-item nav-link" href="#" (click)="logOut($event)">Logout</a>
         </nav>
         <form class="pull-xs-right">
@@ -28,22 +35,25 @@ import {activationHelper, getCoAuther} from '../../co-auther/co-auther'
       <div class="row">
         <div class="col-sm-3 col-md-2 sidebar">
           <ul class="nav nav-sidebar">
-            <li class="active"><a href="#">Overview <span class="sr-only">(current)</span></a></li>
-            <li><a href="#">Reports</a></li>
+            <li class="active"><a [routerLink]="['/LoggedIn/Dashboard']">Dashboard<span class="sr-only">(current)</span></a></li>
+            <li><a [routerLink]="['/LoggedIn/Settings']">Settings</a></li>
           </ul>
           <ul class="nav nav-sidebar">
-            <li><a href="">Nav item again</a></li>
-            <li><a href="">One more nav</a></li>
+            <li><a href="">Dummy item 1</a></li>
+            <li><a href="">Dummy item 2</a></li>
           </ul>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-          <h1 class="page-header">Dashboard</h1>
+          <router-outlet></router-outlet>
         </div>
       </div>
     </div>
   `
 })
-@CanActivate(() => activationHelper('LoggedIn'))
+@CanActivate((next, previous) => {
+  console.log('next:', next ? '"' + next.urlPath + '"' : null, 'previous:', previous ? '"' + previous.urlPath + '"' : null)
+  return activationHelper('LoggedIn')
+})
 export class LoggedInCmp {
   logOut ($event) {
     $event.preventDefault()

@@ -44,7 +44,7 @@ var AppCmp = (function () {
         }),
         router_1.RouteConfig([
             { path: '/authenticate', as: 'Authenticate', component: authenticate_cmp_1.AuthenticateCmp, useAsDefault: true },
-            { path: '/loggedIn', as: 'LoggedIn', component: logged_in_cmp_1.LoggedInCmp },
+            { path: '/loggedIn/...', as: 'LoggedIn', component: logged_in_cmp_1.LoggedInCmp },
             { path: '/initialRequest', as: 'InitialRequest', component: initial_request_cmp_1.InitialRequestCmp }
         ]), 
         __metadata('design:paramtypes', [router_1.Router])
