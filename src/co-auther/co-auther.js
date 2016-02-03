@@ -1,8 +1,13 @@
 var dontTouchLocalStorage = false;
+var terminalRoute = null;
 var coAuther;
-var routeFunction = function (afterHash) {
+function basicRouting(afterHash) {
     var loc = window.location;
     window.location.href = loc.protocol + "//" + loc.host + loc.pathname + "#/" + afterHash;
+}
+// Basic default route function, should be overridden
+var routeFunction = function (afterHash) {
+    basicRouting(afterHash);
 };
 var getCoAuther = function () {
     if (!coAuther) {
@@ -43,6 +48,9 @@ function activationHelper(currentPage) {
             getCoAuther().makeInitialRequestWrap().then(function () {
                 initialRequestPending = false;
                 // initialRequest done, move on to logged in
+                if (terminalRoute) {
+                    return goToTerminal();
+                }
                 return routeFunction(config.LOGGED_IN);
             });
         }
@@ -53,6 +61,16 @@ function activationHelper(currentPage) {
     return canActivate;
 }
 exports.activationHelper = activationHelper;
+// terminal memory
+function setTerminal() {
+    terminalRoute = window.location.hash.substring(2);
+    return true;
+}
+exports.setTerminal = setTerminal;
+function goToTerminal() {
+    basicRouting(terminalRoute);
+}
+exports.goToTerminal = goToTerminal;
 function CoAuther(apiService) {
     var initialDataLoaded = false;
     function isInitialDataLoaded() {

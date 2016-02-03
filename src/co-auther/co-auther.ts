@@ -1,8 +1,13 @@
 let dontTouchLocalStorage = false
+let terminalRoute = null
 let coAuther
-let routeFunction = (afterHash) => {
+function basicRouting (afterHash) {
   let loc = window.location
   window.location.href = `${loc.protocol}//${loc.host}${loc.pathname}#/${afterHash}`
+}
+// Basic default route function, should be overridden
+let routeFunction = (afterHash) => {
+  basicRouting(afterHash)
 }
 let getCoAuther = function () {
   if (!coAuther) {
@@ -38,9 +43,12 @@ function activationHelper (currentPage): any {
     canActivate = currentPage === destinationRoute
     if (!initialRequestPending) {
       initialRequestPending = true
-        getCoAuther().makeInitialRequestWrap().then(() => {
-          initialRequestPending = false
+      getCoAuther().makeInitialRequestWrap().then(() => {
+        initialRequestPending = false
         // initialRequest done, move on to logged in
+        if (terminalRoute) {
+          return goToTerminal()
+        }
         return routeFunction(config.LOGGED_IN)
       })
     }
@@ -49,6 +57,15 @@ function activationHelper (currentPage): any {
     return routeFunction(destinationRoute)
   }
   return canActivate
+}
+
+// terminal memory
+function setTerminal () {
+  terminalRoute = window.location.hash.substring(2)
+  return true
+}
+function goToTerminal () {
+  basicRouting(terminalRoute)
 }
 
 function CoAuther (apiService) {
@@ -81,7 +98,7 @@ function CoAuther (apiService) {
   }
 
   function makeInitialRequestWrap () {
-    return new Promise ((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       apiService.makeInitialRequest()
         .then(() => {
           // Flag for intial data
@@ -150,5 +167,7 @@ function setAuthData (res) {
 export {
   initialize,
   getCoAuther,
-  activationHelper
+  activationHelper,
+  setTerminal,
+  goToTerminal
 }

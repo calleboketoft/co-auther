@@ -1,6 +1,6 @@
 {
   "name": "co-auther",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "",
   "main": "src/co-auther/co-auther.js",
   "scripts": {
@@ -23,7 +23,7 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "devDependencies": {
-    "angular2": "2.0.0-beta.1",
+    "angular2": "2.0.0-beta.2",
     "bootstrap": "git+https://git@github.com/twbs/bootstrap.git#v4-dev",
     "es6-promise": "3.0.2",
     "es6-shim": "0.33.13",

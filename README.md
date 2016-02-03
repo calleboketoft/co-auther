@@ -89,3 +89,12 @@ import { activationHelper } from 'co-auther'
 ...
 @CanActivate(() => activationHelper('loggedIn'))
 ```
+
+In order to remember which terminal route you were aiming for when accessing the GUI, you need this 'hack' in the terminal routes:
+
+```javascript
+import {setTerminal} from 'co-auther'
+...
+@CanActivate(setTerminal)
+...
+```

@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('angular2/core');
 var router_1 = require('angular2/router');
+var co_auther_1 = require('../../../co-auther/co-auther');
 var SettingsCmp = (function () {
     function SettingsCmp() {
     }
@@ -17,10 +18,7 @@ var SettingsCmp = (function () {
             selector: 'settings-cmp',
             template: "Settings"
         }),
-        router_1.CanActivate(function (next, previous) {
-            console.log('next:', next ? '"' + next.urlPath + '"' : null, 'previous:', previous ? '"' + previous.urlPath + '"' : null);
-            return true;
-        }), 
+        router_1.CanActivate(co_auther_1.setTerminal), 
         __metadata('design:paramtypes', [])
     ], SettingsCmp);
     return SettingsCmp;
