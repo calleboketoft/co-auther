@@ -1,5 +1,6 @@
 var dontTouchLocalStorage = false;
 var terminalRoute = null;
+var initialRequestFailed = false;
 var coAuther;
 function basicRouting(afterHash) {
     var loc = window.location;
@@ -43,7 +44,7 @@ function activationHelper(currentPage) {
     else {
         destinationRoute = config.INITIAL_REQUEST;
         canActivate = currentPage === destinationRoute;
-        if (!initialRequestPending) {
+        if (!initialRequestPending && !initialRequestFailed) {
             initialRequestPending = true;
             getCoAuther().makeInitialRequestWrap()
                 .then(function () {
@@ -55,11 +56,15 @@ function activationHelper(currentPage) {
                 return routeFunction(config.LOGGED_IN);
             })
                 .catch(function () {
-                initialRequestPending = false;
                 // initial request failed, clear auth data from login and go to authenticate
+                initialRequestPending = false;
+                initialRequestFailed = true;
                 clearAuthData();
                 return routeFunction(config.AUTHENTICATE);
             });
+        }
+        else if (initialRequestFailed && authData) {
+            console.error('You have manual authData management but haven\'t cleared it manually after failed initialRequest');
         }
     }
     if (!canActivate) {
@@ -88,6 +93,7 @@ function CoAuther(apiService) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
+        initialRequestFailed = false; // reset this one
         return apiService.login.apply(apiService, args)
             .then(function (res) {
             // authData has arrived, go make initial request
