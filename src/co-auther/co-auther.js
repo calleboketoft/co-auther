@@ -45,13 +45,20 @@ function activationHelper(currentPage) {
         canActivate = currentPage === destinationRoute;
         if (!initialRequestPending) {
             initialRequestPending = true;
-            getCoAuther().makeInitialRequestWrap().then(function () {
+            getCoAuther().makeInitialRequestWrap()
+                .then(function () {
                 initialRequestPending = false;
                 // initialRequest done, move on to logged in
                 if (terminalRoute) {
                     return goToTerminal();
                 }
                 return routeFunction(config.LOGGED_IN);
+            })
+                .catch(function () {
+                initialRequestPending = false;
+                // initial request failed, clear auth data from login and go to authenticate
+                clearAuthData();
+                return routeFunction(config.AUTHENTICATE);
             });
         }
     }
@@ -70,7 +77,6 @@ exports.setTerminal = setTerminal;
 function goToTerminal() {
     basicRouting(terminalRoute);
 }
-exports.goToTerminal = goToTerminal;
 function CoAuther(apiService) {
     var initialDataLoaded = false;
     function isInitialDataLoaded() {
@@ -82,15 +88,11 @@ function CoAuther(apiService) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
-        apiService.login.apply(apiService, args)
+        return apiService.login.apply(apiService, args)
             .then(function (res) {
             // authData has arrived, go make initial request
             setAuthData(res);
             routeFunction(config.INITIAL_REQUEST);
-        })
-            .catch(function (err) {
-            // Login failed, handle
-            console.log('login fail');
         });
     }
     function logoutWrap() {
@@ -98,33 +100,23 @@ function CoAuther(apiService) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
-        apiService.logout.apply(apiService, args)
+        return apiService.logout.apply(apiService, args)
             .then(function () {
             clearAuthData();
-            // Logged out, reload page
-            window.location.reload();
         });
     }
     function makeInitialRequestWrap() {
-        return new Promise(function (resolve, reject) {
-            apiService.makeInitialRequest()
-                .then(function () {
-                // Flag for intial data
-                initialDataLoaded = true;
-                resolve();
-            })
-                .catch(function (error) {
-                // TODO handle failed initial request
-                clearAuthData();
-                reject();
-            });
+        return apiService.makeInitialRequest()
+            .then(function (data) {
+            // Flag for intial data
+            initialDataLoaded = true;
         });
     }
     return {
-        makeInitialRequestWrap: makeInitialRequestWrap,
         loginWrap: loginWrap,
-        getAuthData: getAuthData,
         logoutWrap: logoutWrap,
+        makeInitialRequestWrap: makeInitialRequestWrap,
+        getAuthData: getAuthData,
         isInitialDataLoaded: isInitialDataLoaded
     };
 }

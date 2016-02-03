@@ -23,7 +23,7 @@ import {SettingsCmp} from './logged-in-pages/settings-cmp'
       <a class="navbar-brand" href="#">Project name</a>
       <div id="navbar">
         <nav class="nav navbar-nav pull-xs-left">
-          <a class="nav-item nav-link" href="#" (click)="logOut($event)">Logout</a>
+          <a class="nav-item nav-link" href="#" (click)="logout($event)">Logout</a>
         </nav>
         <form class="pull-xs-right">
           <input type="text" class="form-control" placeholder="Search...">
@@ -50,12 +50,11 @@ import {SettingsCmp} from './logged-in-pages/settings-cmp'
     </div>
   `
 })
-@CanActivate((next, previous) => {
-  console.log('next:', next ? '"' + next.urlPath + '"' : null, 'previous:', previous ? '"' + previous.urlPath + '"' : null)
+@CanActivate(() => {
   return activationHelper('LoggedIn')
 })
 export class LoggedInCmp {
-  logOut ($event) {
+  logout ($event) {
     $event.preventDefault()
     getCoAuther().logoutWrap()
   }

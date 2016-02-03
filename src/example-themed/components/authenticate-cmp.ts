@@ -26,5 +26,11 @@ import {activationHelper, getCoAuther} from '../../co-auther/co-auther'
 export class AuthenticateCmp {
   login (username, password) {
     getCoAuther().loginWrap(username, password)
+      .then((successMsg) => {
+        console.log(successMsg)
+      })
+      .catch((errMsg) => {
+        console.log(errMsg)
+      })
   }
 }

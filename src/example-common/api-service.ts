@@ -11,7 +11,7 @@ let apiService = {
 
   makeInitialRequest () {
     // Some timeout just to show the loading route.
-    return mockRequest('Initial request', 1000)
+    return mockRequest('Initial request', 500)
   }
 }
 

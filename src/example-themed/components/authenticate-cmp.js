@@ -14,7 +14,13 @@ var AuthenticateCmp = (function () {
     function AuthenticateCmp() {
     }
     AuthenticateCmp.prototype.login = function (username, password) {
-        co_auther_1.getCoAuther().loginWrap(username, password);
+        co_auther_1.getCoAuther().loginWrap(username, password)
+            .then(function (successMsg) {
+            console.log(successMsg);
+        })
+            .catch(function (errMsg) {
+            console.log(errMsg);
+        });
     };
     AuthenticateCmp = __decorate([
         core_1.Component({

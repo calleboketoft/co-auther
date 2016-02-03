@@ -16,7 +16,7 @@ var settings_cmp_1 = require('./logged-in-pages/settings-cmp');
 var LoggedInCmp = (function () {
     function LoggedInCmp() {
     }
-    LoggedInCmp.prototype.logOut = function ($event) {
+    LoggedInCmp.prototype.logout = function ($event) {
         $event.preventDefault();
         co_auther_1.getCoAuther().logoutWrap();
     };
@@ -28,10 +28,9 @@ var LoggedInCmp = (function () {
         core_1.Component({
             selector: 'logged-in-cmp',
             directives: [router_2.ROUTER_DIRECTIVES],
-            template: "\n    <nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\">\n      <button type=\"button\" class=\"navbar-toggler hidden-sm-up\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Project name</a>\n      <div id=\"navbar\">\n        <nav class=\"nav navbar-nav pull-xs-left\">\n          <a class=\"nav-item nav-link\" href=\"#\" (click)=\"logOut($event)\">Logout</a>\n        </nav>\n        <form class=\"pull-xs-right\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\n        </form>\n      </div>\n    </nav>\n\n    <div class=\"container-fluid\">\n      <div class=\"row\">\n        <div class=\"col-sm-3 col-md-2 sidebar\">\n          <ul class=\"nav nav-sidebar\">\n            <li class=\"active\"><a [routerLink]=\"['/LoggedIn/Dashboard']\">Dashboard<span class=\"sr-only\">(current)</span></a></li>\n            <li><a [routerLink]=\"['/LoggedIn/Settings']\">Settings</a></li>\n          </ul>\n          <ul class=\"nav nav-sidebar\">\n            <li><a href=\"\">Dummy item 1</a></li>\n            <li><a href=\"\">Dummy item 2</a></li>\n          </ul>\n        </div>\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\n          <router-outlet></router-outlet>\n        </div>\n      </div>\n    </div>\n  "
+            template: "\n    <nav class=\"navbar navbar-dark navbar-fixed-top bg-inverse\">\n      <button type=\"button\" class=\"navbar-toggler hidden-sm-up\" data-toggle=\"collapse\" data-target=\"#navbar\" aria-expanded=\"false\" aria-controls=\"navbar\">\n        <span class=\"sr-only\">Toggle navigation</span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n        <span class=\"icon-bar\"></span>\n      </button>\n      <a class=\"navbar-brand\" href=\"#\">Project name</a>\n      <div id=\"navbar\">\n        <nav class=\"nav navbar-nav pull-xs-left\">\n          <a class=\"nav-item nav-link\" href=\"#\" (click)=\"logout($event)\">Logout</a>\n        </nav>\n        <form class=\"pull-xs-right\">\n          <input type=\"text\" class=\"form-control\" placeholder=\"Search...\">\n        </form>\n      </div>\n    </nav>\n\n    <div class=\"container-fluid\">\n      <div class=\"row\">\n        <div class=\"col-sm-3 col-md-2 sidebar\">\n          <ul class=\"nav nav-sidebar\">\n            <li class=\"active\"><a [routerLink]=\"['/LoggedIn/Dashboard']\">Dashboard<span class=\"sr-only\">(current)</span></a></li>\n            <li><a [routerLink]=\"['/LoggedIn/Settings']\">Settings</a></li>\n          </ul>\n          <ul class=\"nav nav-sidebar\">\n            <li><a href=\"\">Dummy item 1</a></li>\n            <li><a href=\"\">Dummy item 2</a></li>\n          </ul>\n        </div>\n        <div class=\"col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main\">\n          <router-outlet></router-outlet>\n        </div>\n      </div>\n    </div>\n  "
         }),
-        router_1.CanActivate(function (next, previous) {
-            console.log('next:', next ? '"' + next.urlPath + '"' : null, 'previous:', previous ? '"' + previous.urlPath + '"' : null);
+        router_1.CanActivate(function () {
             return co_auther_1.activationHelper('LoggedIn');
         }), 
         __metadata('design:paramtypes', [])

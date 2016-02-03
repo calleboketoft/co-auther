@@ -8,7 +8,7 @@ var apiService = {
     },
     makeInitialRequest: function () {
         // Some timeout just to show the loading route.
-        return mockRequest('Initial request', 1000);
+        return mockRequest('Initial request', 500);
     }
 };
 function mockRequest(requestType, timeout) {

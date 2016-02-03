@@ -43,14 +43,21 @@ function activationHelper (currentPage): any {
     canActivate = currentPage === destinationRoute
     if (!initialRequestPending) {
       initialRequestPending = true
-      getCoAuther().makeInitialRequestWrap().then(() => {
-        initialRequestPending = false
-        // initialRequest done, move on to logged in
-        if (terminalRoute) {
-          return goToTerminal()
-        }
-        return routeFunction(config.LOGGED_IN)
-      })
+      getCoAuther().makeInitialRequestWrap()
+        .then(() => {
+          initialRequestPending = false
+          // initialRequest done, move on to logged in
+          if (terminalRoute) {
+            return goToTerminal()
+          }
+          return routeFunction(config.LOGGED_IN)
+        })
+        .catch(() => {
+          initialRequestPending = false
+          // initial request failed, clear auth data from login and go to authenticate
+          clearAuthData()
+          return routeFunction(config.AUTHENTICATE)
+        })
     }
   }
   if (!canActivate) {
@@ -76,48 +83,34 @@ function CoAuther (apiService) {
   let initialRequestRes
 
   function loginWrap (...args) {
-    apiService.login.apply(apiService, args)
+    return apiService.login.apply(apiService, args)
       .then((res) => {
         // authData has arrived, go make initial request
         setAuthData(res)
         routeFunction(config.INITIAL_REQUEST)
       })
-      .catch((err) => {
-        // Login failed, handle
-        console.log('login fail')
-      })
   }
 
   function logoutWrap (...args) {
-    apiService.logout.apply(apiService, args)
+    return apiService.logout.apply(apiService, args)
       .then(() => {
         clearAuthData()
-        // Logged out, reload page
-        window.location.reload()
       })
   }
 
   function makeInitialRequestWrap () {
-    return new Promise((resolve, reject) => {
-      apiService.makeInitialRequest()
-        .then(() => {
-          // Flag for intial data
-          initialDataLoaded = true
-          resolve()
-        })
-        .catch((error) => {
-          // TODO handle failed initial request
-          clearAuthData()
-          reject()
-        })
-    })
+    return apiService.makeInitialRequest()
+      .then((data) => {
+        // Flag for intial data
+        initialDataLoaded = true
+      })
   }
 
   return {
-    makeInitialRequestWrap,
     loginWrap,
-    getAuthData,
     logoutWrap,
+    makeInitialRequestWrap,
+    getAuthData,
     isInitialDataLoaded
   }
 }
@@ -168,6 +161,5 @@ export {
   initialize,
   getCoAuther,
   activationHelper,
-  setTerminal,
-  goToTerminal
+  setTerminal
 }
