@@ -10,8 +10,21 @@ let apiService = {
   },
 
   makeInitialRequest () {
-    // Some timeout just to show the loading route.
-    return mockRequest('Initial request', 500)
+    // Here's an example of how to handle errors in the apiService. Since coAuther
+    // needs to get the error in the .catch() it's necessary to create a new promise
+    // and "rethrow" the error again.
+    return new Promise((resolve, reject) => {
+      // Some timeout just to show the loading route.
+      return mockRequest('Initial request', 500)
+        .then((data) => {
+          resolve(data)
+        })
+        .catch((err) => {
+          customErrorHandler(err)
+          reject(err)
+        })
+    })
+
   }
 }
 
@@ -29,6 +42,10 @@ function mockRequest (requestType, timeout) {
       }
     }, timeout)
   })
+}
+
+function customErrorHandler (err) {
+  console.log('do amazing stuff with this error:', err)
 }
 
 export default apiService

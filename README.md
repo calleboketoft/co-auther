@@ -66,7 +66,7 @@ Use the authentication features in your authentication component:
 ```javascript
 import { activationHelper, getCoAuther } from 'co-auther'
 ...
-@CanActivate(() => activationHelper('authenticate'))
+@CanActivate(() => activationHelper('Authenticate'))
 export class AuthenticateCmp {
   login (username, login) {
     getCoAuther().loginWrap(username, login)
@@ -79,7 +79,7 @@ Use the activationHelper in the initialRequest route:
 ```javascript
 import { activationHelper } from 'co-auther'
 ...
-@CanActivate(() => activationHelper('initialRequest'))
+@CanActivate(() => activationHelper('InitialRequest'))
 ```
 
 And finally use activationHelper in loggedIn route:
@@ -87,7 +87,7 @@ And finally use activationHelper in loggedIn route:
 ```javascript
 import { activationHelper } from 'co-auther'
 ...
-@CanActivate(() => activationHelper('loggedIn'))
+@CanActivate(() => activationHelper('LoggedIn'))
 ```
 
 In order to remember which terminal route you were aiming for when accessing the GUI, you need this 'hack' in the terminal routes:
@@ -97,4 +97,25 @@ import {setTerminal} from 'co-auther'
 ...
 @CanActivate(setTerminal)
 ...
+```
+
+## NOTE: Error handling in apiService
+
+When writing the error handling in the apiService you will want to use the .catch() of the promises. The problem is that once you've caught a rejected promise, it will bubble up as a resolved promise, so the parent will get a .then(). You can fix it by creating a new promise in your apiService and "rethrow" the error. In the file "example-common/api-service.ts" there is an example of this for the "initialRequest" function.
+
+```javascript
+let apiService = {
+  login () {
+    return new Promise((resolve, reject) => {
+      return myRequest
+        .then((data) => {
+          resolve(data)
+        })
+        .catch((err) => {
+          myCustomErrorHandler(err)
+          reject(err)
+        })
+    })
+  }
+}
 ```
