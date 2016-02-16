@@ -1,3 +1,0 @@
-var CoAuther = require('./src/co-auther/co-auther');
-exports.CoAuther = CoAuther;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiY28tYXV0aGVyLmpzIiwic291cmNlUm9vdCI6IiIsInNvdXJjZXMiOlsiY28tYXV0aGVyLnRzIl0sIm5hbWVzIjpbXSwibWFwcGluZ3MiOiJBQUFBLElBQVksUUFBUSxXQUFNLDJCQUUxQixDQUFDLENBRm9EO0FBRTdDLGdCQUFRO0FBQUMifQ==
