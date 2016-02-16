@@ -32,7 +32,7 @@ gulp.task('typescript', function () {
     .pipe(ts(tsProject))
 
   return tsResult.js
-    .pipe(sourcemaps.write('.')) // no arg would make inline maps
+    .pipe(sourcemaps.write()) // no arg would make inline maps
     .pipe(gulp.dest('./src'))
 })
 gulp.task('typescript:watch', ['typescript'], function () {
