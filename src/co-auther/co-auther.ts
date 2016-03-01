@@ -61,7 +61,8 @@ function activationHelper (currentPage): any {
           return routeFunction(config.AUTHENTICATE)
         })
     } else if (initialRequestFailed && authData) {
-      console.error('You have manual authData management but haven\'t cleared it manually after failed initialRequest')
+
+      console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.')
     }
   }
   if (!canActivate) {
