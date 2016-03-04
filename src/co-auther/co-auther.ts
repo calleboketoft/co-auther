@@ -159,7 +159,7 @@ function getAuthData () {
 
 function setAuthData (res) {
   if (!dontTouchLocalStorage) {
-    localStorage.setItem(config.AUTH_DATA, JSON.stringify(res.json()))
+    localStorage.setItem(config.AUTH_DATA, res)
   }
 }
 
