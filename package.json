@@ -1,6 +1,6 @@
 {
   "name": "co-auther",
-  "version": "0.0.12",
+  "version": "0.1.0",
   "description": "",
   "main": "src/co-auther/co-auther.js",
   "scripts": {
