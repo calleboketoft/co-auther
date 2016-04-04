@@ -1,4 +1,4 @@
-let dontTouchLocalStorage = false
+let dontTouchLocalStorage = true
 let terminalRoute = null
 let initialRequestFailed = false
 let coAuther
