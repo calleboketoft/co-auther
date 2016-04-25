@@ -76,6 +76,10 @@ function setTerminal () {
   terminalRoute = window.location.hash.substring(2)
   return true
 }
+function clearTerminal () {
+  terminalRoute = null
+  return true
+}
 function goToTerminal () {
   basicRouting(terminalRoute)
 }
@@ -165,5 +169,6 @@ export {
   initialize,
   getCoAuther,
   activationHelper,
-  setTerminal
+  setTerminal,
+  clearTerminal
 }
