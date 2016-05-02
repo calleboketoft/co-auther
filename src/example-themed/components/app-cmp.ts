@@ -30,7 +30,8 @@ export class AppCmp {
         authenticate: 'Authenticate',
         initialRequest: 'InitialRequest'
       },
-      authData: 'authData'
+      authData: 'authData',
+      dontTouchLocalStorage: false
     }, (routePath) => { // Register a new routing function
       this.router.navigate(['/' + routePath])
     })

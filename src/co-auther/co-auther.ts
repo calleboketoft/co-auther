@@ -126,8 +126,9 @@ function initialize (apiService, newConfig, newRouteFunction) {
   if (newConfig.authData) {
     config.AUTH_DATA = newConfig.authData
   }
-  if (newConfig.dontTouchLocalStorage) {
-    dontTouchLocalStorage = true
+  // If someone set the value specifically
+  if (newConfig.dontTouchLocalStorage === false || true) {
+    dontTouchLocalStorage = newConfig.dontTouchLocalStorage
   }
   if (newConfig.routes) {
     if (newConfig.routes.loggedIn) {
