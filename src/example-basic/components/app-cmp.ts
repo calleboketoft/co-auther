@@ -1,6 +1,6 @@
 // Angular
-import { Component } from 'angular2/core'
-import { ROUTER_DIRECTIVES, RouteConfig, Router } from 'angular2/router'
+import { Component } from '@angular/core'
+import { ROUTER_DIRECTIVES, RouteConfig, Router } from '@angular/router-deprecated'
 
 // Pages
 import { AuthenticateCmp } from './authenticate-cmp'
@@ -14,12 +14,12 @@ import * as CoAuther from '../../co-auther/co-auther'
 @Component({
   selector: 'app',
   template: `
-    <div style="margin: 30px;">
-      <p style="font-weight: bold;">co-auther demo</p>
-      <a [routerLink]="['/Authenticate']">Authenticate</a>&nbsp;|&nbsp;
-      <a [routerLink]="['/LoggedIn']">Logged In</a>&nbsp;|&nbsp;
-      <a [routerLink]="['/InitialRequest']">Initial Request</a>&nbsp;|&nbsp;
-      <a (click)="logOut()" style="cursor: pointer;">Log out</a>
+    <div style='margin: 30px;'>
+      <p style='font-weight: bold;'>co-auther demo</p>
+      <a [routerLink]='["/Authenticate"]'>Authenticate</a>&nbsp;|&nbsp;
+      <a [routerLink]='["/LoggedIn"]'>Logged In</a>&nbsp;|&nbsp;
+      <a [routerLink]='["/InitialRequest"]'>Initial Request</a>&nbsp;|&nbsp;
+      <a (click)='logOut()' style='cursor: pointer;'>Log out</a>
       <br><br>
       <router-outlet></router-outlet>
     </div>

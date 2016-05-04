@@ -9,8 +9,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 // Angular
-var core_1 = require('angular2/core');
-var router_1 = require('angular2/router');
+var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 // Pages
 var authenticate_cmp_1 = require('./authenticate-cmp');
 var initial_request_cmp_1 = require('./initial-request-cmp');
@@ -42,16 +42,16 @@ var AppCmp = (function () {
         core_1.Component({
             selector: 'app',
             template: "<router-outlet></router-outlet>",
-            directives: [router_1.ROUTER_DIRECTIVES]
+            directives: [router_deprecated_1.ROUTER_DIRECTIVES]
         }),
-        router_1.RouteConfig([
+        router_deprecated_1.RouteConfig([
             { path: '/authenticate', as: 'Authenticate', component: authenticate_cmp_1.AuthenticateCmp, useAsDefault: true },
             { path: '/loggedIn/...', as: 'LoggedIn', component: logged_in_cmp_1.LoggedInCmp },
             { path: '/initialRequest', as: 'InitialRequest', component: initial_request_cmp_1.InitialRequestCmp }
         ]), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], AppCmp);
     return AppCmp;
 }());
 exports.AppCmp = AppCmp;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXBwLWNtcC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImFwcC1jbXAudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUFBLFVBQVU7QUFDVixxQkFBd0IsZUFDeEIsQ0FBQyxDQURzQztBQUN2Qyx1QkFBcUQsaUJBR3JELENBQUMsQ0FIcUU7QUFFdEUsUUFBUTtBQUNSLGlDQUE4QixvQkFDOUIsQ0FBQyxDQURpRDtBQUNsRCxvQ0FBZ0MsdUJBQ2hDLENBQUMsQ0FEc0Q7QUFDdkQsOEJBQTBCLGlCQUcxQixDQUFDLENBSDBDO0FBRTNDLGtDQUFrQztBQUNsQyw0QkFBdUIsa0NBQ3ZCLENBQUMsQ0FEd0Q7QUFDekQsSUFBWSxRQUFRLFdBQU0sMkJBRTFCLENBQUMsQ0FGb0Q7QUFZckQ7SUFDRSxnQkFBcUIsTUFBYztRQURyQyxpQkFtQkM7UUFsQnNCLFdBQU0sR0FBTixNQUFNLENBQVE7UUFDakMseURBQXlEO1FBQ3pELFFBQVEsQ0FBQyxVQUFVLENBQUMscUJBQVUsRUFBRTtZQUM5QixNQUFNLEVBQUU7Z0JBQ04sUUFBUSxFQUFFLFVBQVU7Z0JBQ3BCLFlBQVksRUFBRSxjQUFjO2dCQUM1QixjQUFjLEVBQUUsZ0JBQWdCO2FBQ2pDO1lBQ0QsUUFBUSxFQUFFLFVBQVU7WUFDcEIscUJBQXFCLEVBQUUsS0FBSztTQUM3QixFQUFFLFVBQUMsU0FBUztZQUNYLEtBQUksQ0FBQyxNQUFNLENBQUMsUUFBUSxDQUFDLENBQUMsR0FBRyxHQUFHLFNBQVMsQ0FBQyxDQUFDLENBQUE7UUFDekMsQ0FBQyxDQUFDLENBQUE7SUFDSixDQUFDO0lBRUQsdUJBQU0sR0FBTjtRQUNFLFFBQVEsQ0FBQyxXQUFXLEVBQUUsQ0FBQyxVQUFVLEVBQUUsQ0FBQTtJQUNyQyxDQUFDO0lBNUJIO1FBQUMsZ0JBQVMsQ0FBQztZQUNULFFBQVEsRUFBRSxLQUFLO1lBQ2YsUUFBUSxFQUFFLGlDQUFpQztZQUMzQyxVQUFVLEVBQUUsQ0FBQywwQkFBaUIsQ0FBQztTQUNoQyxDQUFDO1FBQ0Qsb0JBQVcsQ0FBQztZQUNYLEVBQUMsSUFBSSxFQUFFLGVBQWUsRUFBSyxFQUFFLEVBQUUsY0FBYyxFQUFNLFNBQVMsRUFBRSxrQ0FBZSxFQUFJLFlBQVksRUFBRSxJQUFJLEVBQUM7WUFDcEcsRUFBQyxJQUFJLEVBQUUsZUFBZSxFQUFLLEVBQUUsRUFBRSxVQUFVLEVBQVUsU0FBUyxFQUFFLDJCQUFXLEVBQUM7WUFDMUUsRUFBQyxJQUFJLEVBQUUsaUJBQWlCLEVBQUcsRUFBRSxFQUFFLGdCQUFnQixFQUFJLFNBQVMsRUFBRSx1Q0FBaUIsRUFBQztTQUNqRixDQUFDOztjQUFBO0lBb0JGLGFBQUM7QUFBRCxDQUFDLEFBbkJELElBbUJDO0FBbkJZLGNBQU0sU0FtQmxCLENBQUEifQ==
+//# sourceMappingURL=app-cmp.js.map

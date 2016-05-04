@@ -1,5 +1,5 @@
-import { Component } from 'angular2/core'
-import { CanActivate } from 'angular2/router'
+import { Component } from '@angular/core'
+import { CanActivate } from '@angular/router-deprecated'
 import { activationHelper } from '../../co-auther/co-auther'
 
 @Component({

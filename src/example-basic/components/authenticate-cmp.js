@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('angular2/core');
-var router_1 = require('angular2/router');
+var core_1 = require('@angular/core');
+var router_deprecated_1 = require('@angular/router-deprecated');
 var co_auther_1 = require('../../co-auther/co-auther');
 var AuthenticateCmp = (function () {
     function AuthenticateCmp() {
@@ -20,12 +20,12 @@ var AuthenticateCmp = (function () {
     AuthenticateCmp = __decorate([
         core_1.Component({
             selector: 'authenticate-cmp',
-            template: "\n    <label>Username<input #username type=\"text\"></label><br>\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
+            template: "\n    <label>Username<input #username type='text'></label><br>\n    <label>Password<input #password type='password'></label><br>\n    <button (click)='login(username.value, password.value)'>Login</button>\n  "
         }),
-        router_1.CanActivate(function () { return co_auther_1.activationHelper('Authenticate'); }), 
+        router_deprecated_1.CanActivate(function () { return co_auther_1.activationHelper('Authenticate'); }), 
         __metadata('design:paramtypes', [])
     ], AuthenticateCmp);
     return AuthenticateCmp;
 }());
 exports.AuthenticateCmp = AuthenticateCmp;
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiYXV0aGVudGljYXRlLWNtcC5qcyIsInNvdXJjZVJvb3QiOiIiLCJzb3VyY2VzIjpbImF1dGhlbnRpY2F0ZS1jbXAudHMiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7OztBQUFBLHFCQUEwQixlQUMxQixDQUFDLENBRHdDO0FBQ3pDLHVCQUE0QixpQkFDNUIsQ0FBQyxDQUQ0QztBQUM3QywwQkFBOEMsMkJBRTlDLENBQUMsQ0FGd0U7QUFXekU7SUFBQTtJQUlBLENBQUM7SUFIQywrQkFBSyxHQUFMLFVBQU8sUUFBUSxFQUFFLFFBQVE7UUFDdkIsdUJBQVcsRUFBRSxDQUFDLFNBQVMsQ0FBQyxRQUFRLEVBQUUsUUFBUSxDQUFDLENBQUE7SUFDN0MsQ0FBQztJQVpIO1FBQUMsZ0JBQVMsQ0FBQztZQUNULFFBQVEsRUFBRSxrQkFBa0I7WUFDNUIsUUFBUSxFQUFFLHdOQUlUO1NBQ0YsQ0FBQztRQUNELG9CQUFXLENBQUMsY0FBTSxPQUFBLDRCQUFnQixDQUFDLGNBQWMsQ0FBQyxFQUFoQyxDQUFnQyxDQUFDOzt1QkFBQTtJQUtwRCxzQkFBQztBQUFELENBQUMsQUFKRCxJQUlDO0FBSlksdUJBQWUsa0JBSTNCLENBQUEifQ==
+//# sourceMappingURL=authenticate-cmp.js.map
