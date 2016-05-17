@@ -10,19 +10,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var co_auther_1 = require('../../co-auther/co-auther');
+var CoAuther = require('../../co-auther/co-auther');
 var AuthenticateCmp = (function () {
     function AuthenticateCmp() {
     }
     AuthenticateCmp.prototype.login = function (username, password) {
-        co_auther_1.getCoAuther().loginWrap(username, password);
+        CoAuther.getCoAuther().loginWrap(username, password);
     };
     AuthenticateCmp = __decorate([
         core_1.Component({
             selector: 'authenticate-cmp',
             template: "\n    <label>Username<input #username type='text'></label><br>\n    <label>Password<input #password type='password'></label><br>\n    <button (click)='login(username.value, password.value)'>Login</button>\n  "
         }),
-        router_deprecated_1.CanActivate(function () { return co_auther_1.activationHelper('Authenticate'); }), 
+        router_deprecated_1.CanActivate(function () { return CoAuther.activationHelper('Authenticate'); }), 
         __metadata('design:paramtypes', [])
     ], AuthenticateCmp);
     return AuthenticateCmp;

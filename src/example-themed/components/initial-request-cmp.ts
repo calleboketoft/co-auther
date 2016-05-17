@@ -1,10 +1,10 @@
 import {Component} from '@angular/core'
 import {CanActivate} from '@angular/router-deprecated'
-import {activationHelper} from '../../co-auther/co-auther'
+import * as CoAuther from '../../co-auther/co-auther'
 
 @Component({
   selector: 'initial-request-cmp',
   template: `Initial request...`
 })
-@CanActivate(() => activationHelper('InitialRequest'))
+@CanActivate(() => CoAuther.activationHelper('InitialRequest'))
 export class InitialRequestCmp {}

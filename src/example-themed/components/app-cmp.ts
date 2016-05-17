@@ -32,12 +32,9 @@ export class AppCmp {
       },
       authData: 'authData',
       dontTouchLocalStorage: false
-    }, (routePath) => { // Register a new routing function
+    // Register a new routing function
+    }, (routePath) => {
       this.router.navigate(['/' + routePath])
     })
-  }
-
-  logOut () {
-    CoAuther.getCoAuther().logoutWrap()
   }
 }

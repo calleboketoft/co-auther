@@ -1,6 +1,6 @@
 import { Component } from '@angular/core'
 import { CanActivate } from '@angular/router-deprecated'
-import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
+import * as CoAuther from '../../co-auther/co-auther'
 
 @Component({
   selector: 'authenticate-cmp',
@@ -10,9 +10,9 @@ import { activationHelper, getCoAuther } from '../../co-auther/co-auther'
     <button (click)='login(username.value, password.value)'>Login</button>
   `
 })
-@CanActivate(() => activationHelper('Authenticate'))
+@CanActivate(() => CoAuther.activationHelper('Authenticate'))
 export class AuthenticateCmp {
   login (username, password) {
-    getCoAuther().loginWrap(username, password)
+    CoAuther.getCoAuther().loginWrap(username, password)
   }
 }

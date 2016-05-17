@@ -35,9 +35,6 @@ var AppCmp = (function () {
             _this.router.navigate(['/' + routePath]);
         });
     }
-    AppCmp.prototype.logOut = function () {
-        CoAuther.getCoAuther().logoutWrap();
-    };
     AppCmp = __decorate([
         core_1.Component({
             selector: 'app',

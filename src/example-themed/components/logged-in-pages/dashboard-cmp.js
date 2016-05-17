@@ -15,7 +15,7 @@ var DashboardCmp = (function () {
     DashboardCmp = __decorate([
         core_1.Component({
             selector: 'dashboard-cmp',
-            template: "Dashboard"
+            template: "\n    <div class='row'>\n      <div class='col-xs-12'>\n        Dashboard\n      </div>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [])
     ], DashboardCmp);

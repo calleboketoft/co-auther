@@ -1,4 +1,4 @@
 "use strict";
-var CoAuther = require('./co-auther/co-auther');
+var CoAuther = require('./src/co-auther/co-auther');
 exports.CoAuther = CoAuther;
 //# sourceMappingURL=co-auther.js.map

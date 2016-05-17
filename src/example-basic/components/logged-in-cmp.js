@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var co_auther_1 = require('../../co-auther/co-auther');
+var CoAuther = require('../../co-auther/co-auther');
 var LoggedInCmp = (function () {
     function LoggedInCmp() {
     }
@@ -19,7 +19,7 @@ var LoggedInCmp = (function () {
             selector: 'logged-in-cmp',
             template: "Logged in!"
         }),
-        router_deprecated_1.CanActivate(function () { return co_auther_1.activationHelper('LoggedIn'); }), 
+        router_deprecated_1.CanActivate(function () { return CoAuther.activationHelper('LoggedIn'); }), 
         __metadata('design:paramtypes', [])
     ], LoggedInCmp);
     return LoggedInCmp;

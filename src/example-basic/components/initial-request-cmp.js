@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var co_auther_1 = require('../../co-auther/co-auther');
+var CoAuther = require('../../co-auther/co-auther');
 var InitialRequestCmp = (function () {
     function InitialRequestCmp() {
     }
@@ -19,7 +19,7 @@ var InitialRequestCmp = (function () {
             selector: 'initial-request-cmp',
             template: "Making initial request..."
         }),
-        router_deprecated_1.CanActivate(function () { return co_auther_1.activationHelper('InitialRequest'); }), 
+        router_deprecated_1.CanActivate(function () { return CoAuther.activationHelper('InitialRequest'); }), 
         __metadata('design:paramtypes', [])
     ], InitialRequestCmp);
     return InitialRequestCmp;

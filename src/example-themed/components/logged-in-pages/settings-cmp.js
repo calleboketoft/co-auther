@@ -10,16 +10,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_deprecated_1 = require('@angular/router-deprecated');
-var co_auther_1 = require('../../../co-auther/co-auther');
+var CoAuther = require('../../../co-auther/co-auther');
 var SettingsCmp = (function () {
     function SettingsCmp() {
     }
     SettingsCmp = __decorate([
         core_1.Component({
             selector: 'settings-cmp',
-            template: "Settings"
+            template: "\n    <div class='row'>\n      <div class='col-xs-12'>\n        Settings\n      </div>\n    </div>\n  "
         }),
-        router_deprecated_1.CanActivate(co_auther_1.setTerminal), 
+        router_deprecated_1.CanActivate(CoAuther.setTerminal), 
         __metadata('design:paramtypes', [])
     ], SettingsCmp);
     return SettingsCmp;
