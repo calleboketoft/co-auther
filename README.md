@@ -35,7 +35,7 @@ In your root component, load your API service and the CoAuther module. Then conf
 
 ```javascript
 import apiService from './apiService'
-import * as CoAuther from 'co-auther'
+import {CoAuther} from 'co-auther'
 ...
 // The 3 basic routes
 @RouteConfig([
@@ -64,12 +64,12 @@ logout () {
 Use the authentication features in your authentication component:
 
 ```javascript
-import { activationHelper, getCoAuther } from 'co-auther'
+import {CoAuther} from 'co-auther'
 ...
 @CanActivate(() => activationHelper('Authenticate'))
 export class AuthenticateCmp {
   login (username, login) {
-    getCoAuther().loginWrap(username, login)
+    CoAuther.getCoAuther().loginWrap(username, login)
   }
 }
 ```
@@ -77,25 +77,25 @@ export class AuthenticateCmp {
 Use the activationHelper in the initialRequest route:
 
 ```javascript
-import { activationHelper } from 'co-auther'
+import {CoAuther} from 'co-auther'
 ...
-@CanActivate(() => activationHelper('InitialRequest'))
+@CanActivate(() => CoAuther.activationHelper('InitialRequest'))
 ```
 
 And finally use activationHelper in loggedIn route:
 
 ```javascript
-import { activationHelper } from 'co-auther'
+import {CoAuther} from 'co-auther'
 ...
-@CanActivate(() => activationHelper('LoggedIn'))
+@CanActivate(() => CoAuther.activationHelper('LoggedIn'))
 ```
 
 In order to remember which terminal route you were aiming for when accessing the GUI, you need this 'hack' in the terminal routes:
 
 ```javascript
-import {setTerminal} from 'co-auther'
+import {CoAuther} from 'co-auther'
 ...
-@CanActivate(setTerminal)
+@CanActivate(CoAuther.setTerminal)
 ...
 ```
 
