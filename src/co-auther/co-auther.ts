@@ -27,21 +27,21 @@ let config = {
 
 // Determine if a route canActivate or not
 var initialRequestPending = false
-function activationHelper (currentPage): any {
+function activationHelper (destinationRequested): any {
   let canActivate = false
-  let destinationRoute = null
+  let destinationResult = null
   let authData = getCoAuther().getAuthData()
   let initialDataLoaded = getCoAuther().isInitialDataLoaded()
   if (authData && initialDataLoaded) {
     // authData and initialRequest done, you are logged in
-    destinationRoute = config.LOGGED_IN
-    canActivate = currentPage === destinationRoute
-  } else if (!authData) {
-    destinationRoute = config.AUTHENTICATE
-    canActivate = currentPage === destinationRoute
+    destinationResult = config.LOGGED_IN
+    canActivate = destinationRequested === destinationResult
+  } else if (!authData && !initialRequestPending) {
+    destinationResult = config.AUTHENTICATE
+    canActivate = destinationRequested === destinationResult
   } else {
-    destinationRoute = config.INITIAL_REQUEST
-    canActivate = currentPage === destinationRoute
+    destinationResult = config.INITIAL_REQUEST
+    canActivate = destinationRequested === destinationResult
     if (!initialRequestPending && !initialRequestFailed) {
       initialRequestPending = true
       getCoAuther().makeInitialRequestWrap()
@@ -53,7 +53,7 @@ function activationHelper (currentPage): any {
           }
           return routeFunction(config.LOGGED_IN)
         })
-        .catch(() => {
+        .catch((err) => {
           // initial request failed, clear auth data from login and go to authenticate
           initialRequestPending = false
           initialRequestFailed = true
@@ -66,7 +66,7 @@ function activationHelper (currentPage): any {
     }
   }
   if (!canActivate) {
-    return routeFunction(destinationRoute)
+    return routeFunction(destinationResult)
   }
   return canActivate
 }

@@ -28,23 +28,23 @@ var config = {
 };
 // Determine if a route canActivate or not
 var initialRequestPending = false;
-function activationHelper(currentPage) {
+function activationHelper(destinationRequested) {
     var canActivate = false;
-    var destinationRoute = null;
+    var destinationResult = null;
     var authData = getCoAuther().getAuthData();
     var initialDataLoaded = getCoAuther().isInitialDataLoaded();
     if (authData && initialDataLoaded) {
         // authData and initialRequest done, you are logged in
-        destinationRoute = config.LOGGED_IN;
-        canActivate = currentPage === destinationRoute;
+        destinationResult = config.LOGGED_IN;
+        canActivate = destinationRequested === destinationResult;
     }
-    else if (!authData) {
-        destinationRoute = config.AUTHENTICATE;
-        canActivate = currentPage === destinationRoute;
+    else if (!authData && !initialRequestPending) {
+        destinationResult = config.AUTHENTICATE;
+        canActivate = destinationRequested === destinationResult;
     }
     else {
-        destinationRoute = config.INITIAL_REQUEST;
-        canActivate = currentPage === destinationRoute;
+        destinationResult = config.INITIAL_REQUEST;
+        canActivate = destinationRequested === destinationResult;
         if (!initialRequestPending && !initialRequestFailed) {
             initialRequestPending = true;
             getCoAuther().makeInitialRequestWrap()
@@ -56,7 +56,7 @@ function activationHelper(currentPage) {
                 }
                 return routeFunction(config.LOGGED_IN);
             })
-                .catch(function () {
+                .catch(function (err) {
                 // initial request failed, clear auth data from login and go to authenticate
                 initialRequestPending = false;
                 initialRequestFailed = true;
@@ -69,7 +69,7 @@ function activationHelper(currentPage) {
         }
     }
     if (!canActivate) {
-        return routeFunction(destinationRoute);
+        return routeFunction(destinationResult);
     }
     return canActivate;
 }
