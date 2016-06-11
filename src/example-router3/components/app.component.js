@@ -31,7 +31,9 @@ var AppComponent = (function () {
         });
     }
     AppComponent.prototype.logOut = function () {
-        CoAuther.getCoAuther().logoutWrap();
+        CoAuther.getCoAuther().logoutWrap().then(function (res) {
+            window.location.reload();
+        });
     };
     AppComponent = __decorate([
         core_1.Component({

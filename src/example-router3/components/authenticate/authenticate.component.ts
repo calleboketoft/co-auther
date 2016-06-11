@@ -9,7 +9,6 @@ import * as CoAuther from '../../../co-auther/co-auther'
     <button (click)='login(username.value, password.value)'>Login</button>
   `
 })
-// @CanActivate(() => CoAuther.activationHelper('Authenticate'))
 export class AuthenticateComponent {
   login (username, password) {
     CoAuther.getCoAuther().loginWrap(username, password)

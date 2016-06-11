@@ -42,6 +42,8 @@ export class AppComponent {
   }
 
   logOut () {
-    CoAuther.getCoAuther().logoutWrap()
+    CoAuther.getCoAuther().logoutWrap().then(res => {
+      window.location.reload()
+    })
   }
 }
