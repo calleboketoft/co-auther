@@ -121,7 +121,7 @@ function CoAuther (apiService) {
   }
 }
 
-function initialize (apiService, newConfig, newRouteFunction) {
+function initialize (apiService, newConfig, newRouteFunction?) {
   coAuther = CoAuther(apiService)
   if (newConfig.authData) {
     config.AUTH_DATA = newConfig.authData
