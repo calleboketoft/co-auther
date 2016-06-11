@@ -1,6 +1,6 @@
 // Angular
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES} from '@angular/router'
+import {ROUTER_DIRECTIVES, Router} from '@angular/router'
 
 // Pages
 import {AuthenticateComponent} from './authenticate/authenticate.component'
@@ -27,20 +27,21 @@ import * as CoAuther from '../../co-auther/co-auther'
   `
 })
 export class AppComponent {
-  constructor () {
-    // Initialize auther here, now apiService will be wrapped
-    // CoAuther.initialize(apiService, {
-    //   routes: {
-    //     loggedIn: 'logged-in',
-    //     authenticate: 'authenticate',
-    //     initialRequest: 'initial-request'
-    //   },
-    //   dontTouchLocalStorage: false,
-    //   authData: 'authData'
-    // })
+  constructor (private router: Router) {
+    CoAuther.initialize(apiService, {
+      routes: {
+        loggedIn: 'logged-in',
+        authenticate: 'authenticate',
+        initialRequest: 'initial-request'
+      },
+      dontTouchLocalStorage: false,
+      authData: 'authData'
+    }, (route) => { // Register a new routing function
+      this.router.navigate(['/' + route])
+    })
   }
 
   logOut () {
-    // CoAuther.getCoAuther().logoutWrap()
+    CoAuther.getCoAuther().logoutWrap()
   }
 }

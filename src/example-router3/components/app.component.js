@@ -11,21 +11,27 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Angular
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+// API and authentication services
+var api_service_1 = require('../../example-common/api-service');
+var CoAuther = require('../../co-auther/co-auther');
 var AppComponent = (function () {
-    function AppComponent() {
-        // Initialize auther here, now apiService will be wrapped
-        // CoAuther.initialize(apiService, {
-        //   routes: {
-        //     loggedIn: 'logged-in',
-        //     authenticate: 'authenticate',
-        //     initialRequest: 'initial-request'
-        //   },
-        //   dontTouchLocalStorage: false,
-        //   authData: 'authData'
-        // })
+    function AppComponent(router) {
+        var _this = this;
+        this.router = router;
+        CoAuther.initialize(api_service_1.default, {
+            routes: {
+                loggedIn: 'logged-in',
+                authenticate: 'authenticate',
+                initialRequest: 'initial-request'
+            },
+            dontTouchLocalStorage: false,
+            authData: 'authData'
+        }, function (route) {
+            _this.router.navigate(['/' + route]);
+        });
     }
     AppComponent.prototype.logOut = function () {
-        // CoAuther.getCoAuther().logoutWrap()
+        CoAuther.getCoAuther().logoutWrap();
     };
     AppComponent = __decorate([
         core_1.Component({
@@ -33,7 +39,7 @@ var AppComponent = (function () {
             directives: [router_1.ROUTER_DIRECTIVES],
             template: "\n    <div style='margin: 30px;'>\n      <p style='font-weight: bold;'>co-auther demo</p>\n      <a [routerLink]='[\"/authenticate\"]'>Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/logged-in\"]'>Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/initial-request\"]'>Initial Request</a>&nbsp;|&nbsp;\n      <a (click)='logOut()' style='cursor: pointer;'>Log out</a>\n      <br><br>\n      <router-outlet></router-outlet>\n    </div>\n  "
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [router_1.Router])
     ], AppComponent);
     return AppComponent;
 }());
