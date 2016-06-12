@@ -39,7 +39,7 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'app',
             directives: [router_1.ROUTER_DIRECTIVES],
-            template: "\n    <div style='margin: 30px;'>\n      <p style='font-weight: bold;'>co-auther demo</p>\n      <a [routerLink]='[\"/authenticate\"]'>Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/logged-in\"]'>Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/initial-request\"]'>Initial Request</a>&nbsp;|&nbsp;\n      <a (click)='logOut()' style='cursor: pointer;'>Log out</a>\n      <br><br>\n      <router-outlet></router-outlet>\n    </div>\n  "
+            template: "\n    <div style='margin: 30px;'>\n      <p style='font-weight: bold;'>co-auther demo</p>\n      <a [routerLink]='[\"/authenticate\"]'>Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/logged-in\"]'>Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/logged-in/child\"]'>Logged in - Child</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/initial-request\"]'>Initial Request</a>&nbsp;|&nbsp;\n      <a (click)='logOut()' style='cursor: pointer;'>Log out</a>\n      <br><br>\n      <router-outlet></router-outlet>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [router_1.Router])
     ], AppComponent);

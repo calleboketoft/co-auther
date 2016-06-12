@@ -1,7 +1,14 @@
 import {Component} from '@angular/core'
+import {ROUTER_DIRECTIVES} from '@angular/router'
 
 @Component({
   selector: 'logged-in',
-  template: `Logged in!`
+  directives: [ROUTER_DIRECTIVES],
+  template: `
+    Logged in!<br>
+    <a [routerLink]='["/logged-in/child"]'>Go to child</a>
+    <br><br>
+    <router-outlet></router-outlet>
+  `
 })
 export class LoggedInComponent {}

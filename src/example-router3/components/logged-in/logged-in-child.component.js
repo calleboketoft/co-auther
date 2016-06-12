@@ -9,19 +9,17 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var LoggedInComponent = (function () {
-    function LoggedInComponent() {
+var LoggedInChildComponent = (function () {
+    function LoggedInChildComponent() {
     }
-    LoggedInComponent = __decorate([
+    LoggedInChildComponent = __decorate([
         core_1.Component({
-            selector: 'logged-in',
-            directives: [router_1.ROUTER_DIRECTIVES],
-            template: "\n    Logged in!<br>\n    <a [routerLink]='[\"/logged-in/child\"]'>Go to child</a>\n    <br><br>\n    <router-outlet></router-outlet>\n  "
+            selector: 'logged-in-child',
+            template: "Child"
         }), 
         __metadata('design:paramtypes', [])
-    ], LoggedInComponent);
-    return LoggedInComponent;
+    ], LoggedInChildComponent);
+    return LoggedInChildComponent;
 }());
-exports.LoggedInComponent = LoggedInComponent;
-//# sourceMappingURL=logged-in.component.js.map
+exports.LoggedInChildComponent = LoggedInChildComponent;
+//# sourceMappingURL=logged-in-child.component.js.map
