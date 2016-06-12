@@ -6,6 +6,11 @@ import {LoggedInRoutes} from './logged-in/logged-in.routes'
 import {CoAutherGuard} from './co-auther.guard'
 
 const routes: RouterConfig = [
+  {
+    // https://github.com/angular/vladivostok/issues/33
+    path: '/',
+    redirectTo: '/authenticate'
+  },
   ...AuthenticateRoutes,
   ...InitialRequestRoutes,
   ...LoggedInRoutes
