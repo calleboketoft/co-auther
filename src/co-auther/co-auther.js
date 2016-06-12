@@ -1,8 +1,16 @@
 "use strict";
-var dontTouchLocalStorage = true;
+// Config params
+var config = {
+    LOGGED_IN: 'loggedIn',
+    AUTHENTICATE: 'authenticate',
+    INITIAL_REQUEST: 'initialRequest',
+    AUTH_DATA: 'authData',
+    dontTouchLocalStorage: true
+};
 var terminalRoute = null;
 var initialRequestFailed = false;
 var coAuther;
+// Basic routing function
 function basicRouting(afterHash) {
     var loc = window.location;
     window.location.href = loc.protocol + "//" + loc.host + loc.pathname + "#/" + afterHash;
@@ -20,12 +28,6 @@ var getCoAuther = function () {
     }
 };
 exports.getCoAuther = getCoAuther;
-var config = {
-    LOGGED_IN: 'loggedIn',
-    AUTHENTICATE: 'authenticate',
-    INITIAL_REQUEST: 'initialRequest',
-    AUTH_DATA: 'authData'
-};
 // Determine if a route canActivate or not
 var initialRequestPending = false;
 function activationHelper(destinationRequested) {
@@ -33,8 +35,8 @@ function activationHelper(destinationRequested) {
     var destinationResult = null;
     var authData = getCoAuther().getAuthData();
     var initialDataLoaded = getCoAuther().isInitialDataLoaded();
+    // authData and initialRequest done, you are logged in
     if (authData && initialDataLoaded) {
-        // authData and initialRequest done, you are logged in
         destinationResult = config.LOGGED_IN;
         canActivate = destinationRequested === destinationResult;
     }
@@ -69,7 +71,8 @@ function activationHelper(destinationRequested) {
         }
     }
     if (!canActivate) {
-        return routeFunction(destinationResult);
+        routeFunction(destinationResult);
+        return canActivate;
     }
     return canActivate;
 }
@@ -134,7 +137,7 @@ function initialize(apiService, newConfig, newRouteFunction) {
     }
     // If someone set the value specifically
     if (newConfig.dontTouchLocalStorage === false || true) {
-        dontTouchLocalStorage = newConfig.dontTouchLocalStorage;
+        config.dontTouchLocalStorage = newConfig.dontTouchLocalStorage;
     }
     if (newConfig.routes) {
         if (newConfig.routes.loggedIn) {
@@ -153,7 +156,7 @@ function initialize(apiService, newConfig, newRouteFunction) {
 }
 exports.initialize = initialize;
 function clearAuthData() {
-    if (!dontTouchLocalStorage) {
+    if (!config.dontTouchLocalStorage) {
         localStorage.removeItem(config.AUTH_DATA);
     }
 }
@@ -161,7 +164,7 @@ function getAuthData() {
     return localStorage.getItem(config.AUTH_DATA);
 }
 function setAuthData(authData) {
-    if (!dontTouchLocalStorage) {
+    if (!config.dontTouchLocalStorage) {
         localStorage.setItem(config.AUTH_DATA, authData);
     }
 }

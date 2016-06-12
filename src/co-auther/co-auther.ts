@@ -1,7 +1,17 @@
-let dontTouchLocalStorage = true
+// Config params
+let config = {
+  LOGGED_IN: 'loggedIn',
+  AUTHENTICATE: 'authenticate',
+  INITIAL_REQUEST: 'initialRequest',
+  AUTH_DATA: 'authData',
+  dontTouchLocalStorage: true
+}
+
 let terminalRoute = null
 let initialRequestFailed = false
 let coAuther
+
+// Basic routing function
 function basicRouting (afterHash) {
   let loc = window.location
   window.location.href = `${loc.protocol}//${loc.host}${loc.pathname}#/${afterHash}`
@@ -18,27 +28,25 @@ let getCoAuther = function () {
   }
 }
 
-let config = {
-  LOGGED_IN: 'loggedIn',
-  AUTHENTICATE: 'authenticate',
-  INITIAL_REQUEST: 'initialRequest',
-  AUTH_DATA: 'authData'
-}
-
 // Determine if a route canActivate or not
 var initialRequestPending = false
-function activationHelper (destinationRequested): any {
+function activationHelper (destinationRequested): boolean {
   let canActivate = false
   let destinationResult = null
   let authData = getCoAuther().getAuthData()
   let initialDataLoaded = getCoAuther().isInitialDataLoaded()
+
+  // authData and initialRequest done, you are logged in
   if (authData && initialDataLoaded) {
-    // authData and initialRequest done, you are logged in
     destinationResult = config.LOGGED_IN
     canActivate = destinationRequested === destinationResult
+
+  // no authData and no initialRequest pending, go to authentication page
   } else if (!authData && !initialRequestPending) {
     destinationResult = config.AUTHENTICATE
     canActivate = destinationRequested === destinationResult
+
+  // there is authData, go make initial request
   } else {
     destinationResult = config.INITIAL_REQUEST
     canActivate = destinationRequested === destinationResult
@@ -47,6 +55,7 @@ function activationHelper (destinationRequested): any {
       getCoAuther().makeInitialRequestWrap()
         .then(() => {
           initialRequestPending = false
+
           // initialRequest done, move on to logged in
           if (terminalRoute) {
             return goToTerminal()
@@ -61,12 +70,12 @@ function activationHelper (destinationRequested): any {
           return routeFunction(config.AUTHENTICATE)
         })
     } else if (initialRequestFailed && authData) {
-
       console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.')
     }
   }
   if (!canActivate) {
-    return routeFunction(destinationResult)
+    routeFunction(destinationResult)
+    return canActivate
   }
   return canActivate
 }
@@ -128,7 +137,7 @@ function initialize (apiService, newConfig, newRouteFunction?) {
   }
   // If someone set the value specifically
   if (newConfig.dontTouchLocalStorage === false || true) {
-    dontTouchLocalStorage = newConfig.dontTouchLocalStorage
+    config.dontTouchLocalStorage = newConfig.dontTouchLocalStorage
   }
   if (newConfig.routes) {
     if (newConfig.routes.loggedIn) {
@@ -147,7 +156,7 @@ function initialize (apiService, newConfig, newRouteFunction?) {
 }
 
 function clearAuthData () {
-  if (!dontTouchLocalStorage) {
+  if (!config.dontTouchLocalStorage) {
     localStorage.removeItem(config.AUTH_DATA)
   }
 }
@@ -157,7 +166,7 @@ function getAuthData () {
 }
 
 function setAuthData (authData) {
-  if (!dontTouchLocalStorage) {
+  if (!config.dontTouchLocalStorage) {
     localStorage.setItem(config.AUTH_DATA, authData);
   }
 }
