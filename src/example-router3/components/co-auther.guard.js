@@ -15,6 +15,8 @@ var CoAutherGuard = (function () {
     function CoAutherGuard() {
     }
     CoAutherGuard.prototype.canActivate = function (route) {
+        // We need to verify routes authenticate/initial-request/logged-in
+        // and those are available in the beginning of the route
         return Observable_1.Observable.from([co_auther_1.activationHelper(route.urlSegments[0].path)]);
     };
     CoAutherGuard = __decorate([

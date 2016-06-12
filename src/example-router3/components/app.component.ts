@@ -21,7 +21,7 @@ import * as CoAuther from '../../co-auther/co-auther'
       <a [routerLink]='["/logged-in"]'>Logged In</a>&nbsp;|&nbsp;
       <a [routerLink]='["/logged-in/child"]'>Logged in - Child</a>&nbsp;|&nbsp;
       <a [routerLink]='["/initial-request"]'>Initial Request</a>&nbsp;|&nbsp;
-      <a (click)='logOut()' style='cursor: pointer;'>Log out</a>
+      <a (click)='logout()' style='cursor: pointer;'>Log out</a>
       <br><br>
       <router-outlet></router-outlet>
     </div>
@@ -37,12 +37,13 @@ export class AppComponent {
       },
       dontTouchLocalStorage: false,
       authData: 'authData'
-    }, (route) => { // Register a new routing function
+    // Register a new routing function
+    }, (route) => {
       this.router.navigate(['/' + route])
     })
   }
 
-  logOut () {
+  logout () {
     CoAuther.getCoAuther().logoutWrap().then(res => {
       window.location.reload()
     })
