@@ -5,14 +5,13 @@
   "main": "src/co-auther/co-auther.js",
   "scripts": {
     "start": "node server",
-    "build": "npm run typescript",
+    "build": "typings install && npm run typescript",
     "webdriver": "node_modules/protractor/bin/webdriver-manager update",
     "test-e2e": "npm run build && gulp test-e2e",
     "typescript": "tsc",
     "watch": "tsc  -w",
     "sass": "gulp sass",
-    "typings": "typings",
-    "postinstall": "typings install"
+    "typings": "typings"
   },
   "config": {
     "ghooks": {
@@ -22,28 +21,26 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "devDependencies": {
+    "@angular/common": "2.0.0-rc.1",
+    "@angular/compiler": "2.0.0-rc.1",
+    "@angular/core": "2.0.0-rc.1",
+    "@angular/http": "2.0.0-rc.1",
+    "@angular/platform-browser": "2.0.0-rc.1",
+    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
+    "@angular/router": "3.0.0-alpha.3",
+    "@angular/router-deprecated": "2.0.0-rc.1",
     "bootstrap": "git+https://git@github.com/twbs/bootstrap.git#v4-dev",
+    "es6-shim": "0.35.0",
     "express": "4.13.4",
     "ghooks": "1.2.1",
     "gulp": "3.9.1",
     "gulp-sass": "2.2.0",
     "protractor": "3.1.1",
-    "typescript": "1.9.0-dev.20160409",
-    "typings": "1.0.5"
-  },
-  "dependencies": {
-    "@angular/common": "2.0.0-rc.1",
-    "@angular/compiler": "2.0.0-rc.1",
-    "@angular/core": "2.0.0-rc.1",
-    "@angular/http": "^2.0.0-rc.1",
-    "@angular/platform-browser": "2.0.0-rc.1",
-    "@angular/platform-browser-dynamic": "2.0.0-rc.1",
-    "@angular/router": "^3.0.0-alpha.3",
-    "@angular/router-deprecated": "^2.0.0-rc.1",
-    "es6-shim": "0.35.0",
     "reflect-metadata": "0.1.2",
     "rxjs": "5.0.0-beta.6",
     "systemjs": "0.19.27",
+    "typescript": "1.9.0-dev.20160409",
+    "typings": "1.1.0",
     "zone.js": "0.6.12"
   }
 }
