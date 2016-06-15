@@ -1,6 +1,7 @@
 import {LoggedInComponent} from './logged-in.component'
 import {CoAutherGuard} from '../co-auther.guard'
 import {LoggedInChildComponent} from './logged-in-child.component'
+import {LoggedInChild2Component} from './logged-in-child2.component'
 
 export const LoggedInRoutes = [
   {
@@ -10,8 +11,12 @@ export const LoggedInRoutes = [
     // Children are also guarded by canActivate
     children: [
       {
-        path: '/child',
+        path: '',
         component: LoggedInChildComponent
+      },
+      {
+        path: '/child2',
+        component: LoggedInChild2Component
       }
     ]
   }

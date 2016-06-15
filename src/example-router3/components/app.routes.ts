@@ -5,11 +5,12 @@ import {InitialRequestRoutes} from './initial-request/initial-request.routes'
 import {LoggedInRoutes} from './logged-in/logged-in.routes'
 import {CoAutherGuard} from './co-auther.guard'
 
+import {DummyComponent} from './dummy.component'
+
 const routes: RouterConfig = [
   {
-    // https://github.com/angular/vladivostok/issues/33
-    path: '/',
-    redirectTo: '/authenticate'
+    path: '',
+    component: DummyComponent
   },
   ...AuthenticateRoutes,
   ...InitialRequestRoutes,

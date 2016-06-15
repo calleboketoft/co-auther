@@ -6,7 +6,6 @@ import {ROUTER_DIRECTIVES} from '@angular/router'
   directives: [ROUTER_DIRECTIVES],
   template: `
     Logged in!<br>
-    <a [routerLink]='["/logged-in/child"]'>Go to child</a>
     <br><br>
     <router-outlet></router-outlet>
   `

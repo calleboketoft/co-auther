@@ -10,18 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var LoggedInComponent = (function () {
-    function LoggedInComponent() {
+var DummyComponent = (function () {
+    function DummyComponent(router) {
+        this.router = router;
     }
-    LoggedInComponent = __decorate([
+    DummyComponent.prototype.ngOnInit = function () {
+        this.router.navigate(['/authenticate']);
+    };
+    DummyComponent = __decorate([
         core_1.Component({
-            selector: 'logged-in',
-            directives: [router_1.ROUTER_DIRECTIVES],
-            template: "\n    Logged in!<br>\n    <br><br>\n    <router-outlet></router-outlet>\n  "
+            selector: 'dummy',
+            template: "\n    Dummy component\n  "
         }), 
-        __metadata('design:paramtypes', [])
-    ], LoggedInComponent);
-    return LoggedInComponent;
+        __metadata('design:paramtypes', [router_1.Router])
+    ], DummyComponent);
+    return DummyComponent;
 }());
-exports.LoggedInComponent = LoggedInComponent;
-//# sourceMappingURL=logged-in.component.js.map
+exports.DummyComponent = DummyComponent;
+//# sourceMappingURL=dummy.component.js.map
