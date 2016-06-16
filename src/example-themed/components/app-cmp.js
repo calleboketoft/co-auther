@@ -42,9 +42,9 @@ var AppCmp = (function () {
             directives: [router_deprecated_1.ROUTER_DIRECTIVES]
         }),
         router_deprecated_1.RouteConfig([
-            { path: '/authenticate', as: 'Authenticate', component: authenticate_cmp_1.AuthenticateCmp, useAsDefault: true },
-            { path: '/loggedIn/...', as: 'LoggedIn', component: logged_in_cmp_1.LoggedInCmp },
-            { path: '/initialRequest', as: 'InitialRequest', component: initial_request_cmp_1.InitialRequestCmp }
+            { path: '/authenticate', name: 'Authenticate', component: authenticate_cmp_1.AuthenticateCmp, useAsDefault: true },
+            { path: '/loggedIn/...', name: 'LoggedIn', component: logged_in_cmp_1.LoggedInCmp },
+            { path: '/initialRequest', name: 'InitialRequest', component: initial_request_cmp_1.InitialRequestCmp }
         ]), 
         __metadata('design:paramtypes', [router_deprecated_1.Router])
     ], AppCmp);

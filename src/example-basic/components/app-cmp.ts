@@ -27,9 +27,9 @@ import * as CoAuther from '../../co-auther/co-auther'
   directives: [ROUTER_DIRECTIVES]
 })
 @RouteConfig([
-  { path: '/authenticate', as: 'Authenticate', component: AuthenticateCmp, useAsDefault: true },
-  { path: '/loggedIn', as: 'LoggedIn', component: LoggedInCmp },
-  { path: '/initialRequest', as: 'InitialRequest', component: InitialRequestCmp }
+  { path: '/authenticate', name: 'Authenticate', component: AuthenticateCmp, useAsDefault: true },
+  { path: '/loggedIn', name: 'LoggedIn', component: LoggedInCmp },
+  { path: '/initialRequest', name: 'InitialRequest', component: InitialRequestCmp }
 ])
 export class AppCmp {
   constructor (private router: Router) {

@@ -6,8 +6,8 @@ import {DashboardCmp} from './logged-in-pages/dashboard-cmp'
 import {SettingsCmp} from './logged-in-pages/settings-cmp'
 
 @RouteConfig([
-  {path: '/dashboard',  as: 'Dashboard',  component: DashboardCmp,   useAsDefault: true},
-  {path: '/settings',   as: 'Settings',   component: SettingsCmp}
+  {path: '/dashboard',  name: 'Dashboard',  component: DashboardCmp,   useAsDefault: true},
+  {path: '/settings',   name: 'Settings',   component: SettingsCmp}
 ])
 @Component({
   selector: 'logged-in-cmp',

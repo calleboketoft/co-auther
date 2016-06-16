@@ -24,8 +24,8 @@ var LoggedInCmp = (function () {
     };
     LoggedInCmp = __decorate([
         router_deprecated_2.RouteConfig([
-            { path: '/dashboard', as: 'Dashboard', component: dashboard_cmp_1.DashboardCmp, useAsDefault: true },
-            { path: '/settings', as: 'Settings', component: settings_cmp_1.SettingsCmp }
+            { path: '/dashboard', name: 'Dashboard', component: dashboard_cmp_1.DashboardCmp, useAsDefault: true },
+            { path: '/settings', name: 'Settings', component: settings_cmp_1.SettingsCmp }
         ]),
         core_1.Component({
             selector: 'logged-in-cmp',
