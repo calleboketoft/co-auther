@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base href="/src/example-angular2/">
+    <title>Angular 2 ES6 App</title>
+  </head>
+  <body style="margin-top: 50px;">
+    <app>Loading...</app>
+    <!-- Polyfill(s) for older browsers -->
+    <script src="../../node_modules/es6-shim/es6-shim.min.js"></script>
+
+    <script src="../../node_modules/zone.js/dist/zone.js"></script>
+    <script src="../../node_modules/reflect-metadata/Reflect.js"></script>
+    <script src="../../node_modules/systemjs/dist/system.src.js"></script>
+    <script src="../systemjs.config.js"></script>
+    <script>
+      System.import('./main')
+    </script>
+  </body>
+</html>

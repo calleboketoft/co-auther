@@ -14,11 +14,6 @@ This module helps managing the routing based on if the authentication token is a
 - `npm start`
 - open browser and navigate to page
 
-
-## Running tests
-
-`npm test`
-
 ## Using module
 
 There are 3 base routes of you application
@@ -38,26 +33,28 @@ import apiService from './apiService'
 import {CoAuther} from 'co-auther'
 ...
 // The 3 basic routes
-@RouteConfig([
-  {path: '/authenticate',    as: 'Authenticate',     component: AuthenticateCmp,   useAsDefault: true},
-  {path: '/loggedIn',        as: 'LoggedIn',         component: LoggedInCmp},
-  {path: '/initialRequest',  as: 'InitialRequest',   component: InitialRequestCmp}
-])
+[
+  {path: '/authenticate', component: AuthenticateComponent},
+  {path: '/logged-in', component: LoggedInComponent},
+  {path: '/initialRequest', component: InitialRequestComponent}
+]
 ...
 constructor () {
   CoAuther.initialize(apiService, {
     routes: {
-      loggedIn: 'LoggedIn',
-      authenticate: 'Authenticate',
-      initialRequest: 'InitialRequest'
+      loggedIn: 'logged-in',
+      authenticate: 'authenticate',
+      initialRequest: 'initial-request'
     },
-    authData: 'authData'
-  }, (routePath) => { // Register a routing function
-    this.router.navigate(['/' + routePath])
+    authDataKey: 'authData'
   })
 }
+
 logout () {
   CoAuther.getCoAuther().logoutWrap()
+    .then((res) => {
+      window.location.reload()
+    })
 }
 ```
 
@@ -66,37 +63,14 @@ Use the authentication features in your authentication component:
 ```javascript
 import {CoAuther} from 'co-auther'
 ...
-@CanActivate(() => activationHelper('Authenticate'))
-export class AuthenticateCmp {
+export class AuthenticateComponent {
   login (username, login) {
     CoAuther.getCoAuther().loginWrap(username, login)
+      .then(() => {
+        this.router.navigate(['logged-in'])
+      })
   }
 }
-```
-
-Use the activationHelper in the initialRequest route:
-
-```javascript
-import {CoAuther} from 'co-auther'
-...
-@CanActivate(() => CoAuther.activationHelper('InitialRequest'))
-```
-
-And finally use activationHelper in loggedIn route:
-
-```javascript
-import {CoAuther} from 'co-auther'
-...
-@CanActivate(() => CoAuther.activationHelper('LoggedIn'))
-```
-
-In order to remember which terminal route you were aiming for when accessing the GUI, you need this 'hack' in the terminal routes:
-
-```javascript
-import {CoAuther} from 'co-auther'
-...
-@CanActivate(CoAuther.setTerminal)
-...
 ```
 
 ## NOTE: Error handling in apiService
