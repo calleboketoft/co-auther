@@ -15,7 +15,7 @@ exports.LoggedInRoutes = [
                 component: logged_in_child_component_1.LoggedInChildComponent
             },
             {
-                path: '/child2',
+                path: '/child2/:id',
                 component: logged_in_child2_component_1.LoggedInChild2Component
             }
         ]

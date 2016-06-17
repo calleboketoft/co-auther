@@ -15,7 +15,7 @@ export const LoggedInRoutes = [
         component: LoggedInChildComponent
       },
       {
-        path: '/child2',
+        path: '/child2/:id',
         component: LoggedInChild2Component
       }
     ]
