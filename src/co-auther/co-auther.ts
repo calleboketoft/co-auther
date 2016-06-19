@@ -37,26 +37,25 @@ export class CoAuther {
   public makeInitialRequestWrap () {
     return this.apiService.makeInitialRequest()
       .then(() => {
-        // flag for initial data
         this.initialDataLoaded = true
       })
   }
 
-  public activationHelper (destinationRequested) {
-    let destinationResult = null
+  public activationHelper (routeRequest) {
+    let routeResult = null
     let authData = localStorage.getItem(this.authDataKey)
 
     // authData and initialRequest done, suggest LOGGED_IN
     if (authData && this.initialDataLoaded) {
-      destinationResult = this.loggedInRoute
+      routeResult = this.loggedInRoute
 
     // no authData and no initialRequest pending, suggest AUTHENTICATE
     } else if (!authData && !this.initialRequestPending) {
-      destinationResult = this.authenticateRoute
+      routeResult = this.authenticateRoute
 
     // authData is available, suggest INITIAL_REQUEST
     } else {
-      destinationResult = this.initialRequestRoute
+      routeResult = this.initialRequestRoute
       if (!this.initialRequestPending && !this.initialRequestFailed) {
         this.initialRequestPending = true
         this.makeInitialRequestWrap()
@@ -64,26 +63,26 @@ export class CoAuther {
 
             // initial request successful, suggest LOGGED_IN
             this.initialRequestPending = false
-            destinationResult = this.loggedInRoute
+            routeResult = this.loggedInRoute
           })
           .catch((err) => {
 
             // initial request failed, suggest AUTHENTICATE
             this.initialRequestPending = false
             this.initialRequestFailed = true
-            destinationResult = this.authenticateRoute
+            routeResult = this.authenticateRoute
           })
       } else if (this.initialRequestFailed && authData) {
 
-        // initial request failed, you need to clear authData
-        console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.')
+        // error state, when initialRequest fails, you need to clear authData
+        console.error('Initial request promise was rejected. You need to clear authData from localStorage.')
       }
     }
 
     if (this.debugMode) {
-      console.log('[co-auther] destinationRequested: ' + destinationRequested)
-      console.log('[co-auther] destinationResult: ' + destinationResult)
+      console.log('[co-auther] routeRequest: ' + routeRequest)
+      console.log('[co-auther] routeResult: ' + routeResult)
     }
-    return destinationResult
+    return routeResult
   }
 }

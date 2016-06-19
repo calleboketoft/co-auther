@@ -44,48 +44,47 @@ var CoAuther = (function () {
         var _this = this;
         return this.apiService.makeInitialRequest()
             .then(function () {
-            // flag for initial data
             _this.initialDataLoaded = true;
         });
     };
-    CoAuther.prototype.activationHelper = function (destinationRequested) {
+    CoAuther.prototype.activationHelper = function (routeRequest) {
         var _this = this;
-        var destinationResult = null;
+        var routeResult = null;
         var authData = localStorage.getItem(this.authDataKey);
         // authData and initialRequest done, suggest LOGGED_IN
         if (authData && this.initialDataLoaded) {
-            destinationResult = this.loggedInRoute;
+            routeResult = this.loggedInRoute;
         }
         else if (!authData && !this.initialRequestPending) {
-            destinationResult = this.authenticateRoute;
+            routeResult = this.authenticateRoute;
         }
         else {
-            destinationResult = this.initialRequestRoute;
+            routeResult = this.initialRequestRoute;
             if (!this.initialRequestPending && !this.initialRequestFailed) {
                 this.initialRequestPending = true;
                 this.makeInitialRequestWrap()
                     .then(function () {
                     // initial request successful, suggest LOGGED_IN
                     _this.initialRequestPending = false;
-                    destinationResult = _this.loggedInRoute;
+                    routeResult = _this.loggedInRoute;
                 })
                     .catch(function (err) {
                     // initial request failed, suggest AUTHENTICATE
                     _this.initialRequestPending = false;
                     _this.initialRequestFailed = true;
-                    destinationResult = _this.authenticateRoute;
+                    routeResult = _this.authenticateRoute;
                 });
             }
             else if (this.initialRequestFailed && authData) {
-                // initial request failed, you need to clear authData
-                console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.');
+                // error state, when initialRequest fails, you need to clear authData
+                console.error('Initial request promise was rejected. You need to clear authData from localStorage.');
             }
         }
         if (this.debugMode) {
-            console.log('[co-auther] destinationRequested: ' + destinationRequested);
-            console.log('[co-auther] destinationResult: ' + destinationResult);
+            console.log('[co-auther] routeRequest: ' + routeRequest);
+            console.log('[co-auther] routeResult: ' + routeResult);
         }
-        return destinationResult;
+        return routeResult;
     };
     return CoAuther;
 }());
