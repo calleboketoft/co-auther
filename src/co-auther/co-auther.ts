@@ -1,10 +1,9 @@
-// Config params
+// config params
 let config = {
   LOGGED_IN: 'logged-in',
   AUTHENTICATE: 'authenticate',
   INITIAL_REQUEST: 'initial-request',
-  AUTH_DATA_KEY: 'authData',
-  dontTouchLocalStorage: true
+  AUTH_DATA_KEY: 'authData'
 }
 
 let initialRequestFailed = false
@@ -18,38 +17,43 @@ let getCoAuther = function () {
   }
 }
 
-// Determine where to route to based on authentication state
+// determine where to route to based on requested route and authentication state
 var initialRequestPending = false
-function activationHelper (destinationRequested): boolean {
+function activationHelper (destinationRequested) {
   let destinationResult = null
   let authData = localStorage.getItem(config.AUTH_DATA_KEY)
   let initialDataLoaded = getCoAuther().isInitialDataLoaded()
 
-  // authData and initialRequest done, you are logged in
+  // authData and initialRequest done, suggest LOGGED_IN
   if (authData && initialDataLoaded) {
     destinationResult = config.LOGGED_IN
 
-  // no authData and no initialRequest pending, go to authentication page
+  // no authData and no initialRequest pending, suggest AUTHENTICATE
   } else if (!authData && !initialRequestPending) {
     destinationResult = config.AUTHENTICATE
 
-  // there is authData, go make initial request
+  // authData is available, suggest INITIAL_REQUEST
   } else {
     destinationResult = config.INITIAL_REQUEST
     if (!initialRequestPending && !initialRequestFailed) {
       initialRequestPending = true
       getCoAuther().makeInitialRequestWrap()
         .then(() => {
+
+          // initial request successful, suggest LOGGED_IN
           initialRequestPending = false
           destinationResult = config.LOGGED_IN
         })
         .catch((err) => {
-          // initial request failed, clear auth data from login and go to authenticate
+
+          // initial request failed, suggest AUTHENTICATE
           initialRequestPending = false
           initialRequestFailed = true
           destinationResult = config.AUTHENTICATE
         })
     } else if (initialRequestFailed && authData) {
+
+      // initial request failed, you need to clear authData
       console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.')
     }
   }
@@ -59,12 +63,14 @@ function activationHelper (destinationRequested): boolean {
 
 function CoAuther (apiService) {
   let initialDataLoaded = false
+
   function isInitialDataLoaded () {
     return initialDataLoaded
   }
 
   function loginWrap (...args) {
-    initialRequestFailed = false // reset this one
+    // if initial request failed before, consider this a retry
+    initialRequestFailed = false
     return apiService.login.apply(apiService, args)
   }
 
@@ -75,7 +81,7 @@ function CoAuther (apiService) {
   function makeInitialRequestWrap () {
     return apiService.makeInitialRequest()
       .then(() => {
-        // Flag for initial data
+        // flag for initial data
         initialDataLoaded = true
       })
   }
@@ -90,12 +96,9 @@ function CoAuther (apiService) {
 
 function initialize (apiService, newConfig) {
   coAuther = CoAuther(apiService)
+
   if (newConfig.authDataKey) {
     config.AUTH_DATA_KEY = newConfig.authDataKey
-  }
-  // If someone set the value specifically
-  if (newConfig.dontTouchLocalStorage === false || true) {
-    config.dontTouchLocalStorage = newConfig.dontTouchLocalStorage
   }
   if (newConfig.routes) {
     if (newConfig.routes.loggedIn) {

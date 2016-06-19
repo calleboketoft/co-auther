@@ -1,11 +1,10 @@
 "use strict";
-// Config params
+// config params
 var config = {
     LOGGED_IN: 'logged-in',
     AUTHENTICATE: 'authenticate',
     INITIAL_REQUEST: 'initial-request',
-    AUTH_DATA_KEY: 'authData',
-    dontTouchLocalStorage: true
+    AUTH_DATA_KEY: 'authData'
 };
 var initialRequestFailed = false;
 var coAuther;
@@ -18,13 +17,13 @@ var getCoAuther = function () {
     }
 };
 exports.getCoAuther = getCoAuther;
-// Determine where to route to based on authentication state
+// determine where to route to based on requested route and authentication state
 var initialRequestPending = false;
 function activationHelper(destinationRequested) {
     var destinationResult = null;
     var authData = localStorage.getItem(config.AUTH_DATA_KEY);
     var initialDataLoaded = getCoAuther().isInitialDataLoaded();
-    // authData and initialRequest done, you are logged in
+    // authData and initialRequest done, suggest LOGGED_IN
     if (authData && initialDataLoaded) {
         destinationResult = config.LOGGED_IN;
     }
@@ -37,17 +36,19 @@ function activationHelper(destinationRequested) {
             initialRequestPending = true;
             getCoAuther().makeInitialRequestWrap()
                 .then(function () {
+                // initial request successful, suggest LOGGED_IN
                 initialRequestPending = false;
                 destinationResult = config.LOGGED_IN;
             })
                 .catch(function (err) {
-                // initial request failed, clear auth data from login and go to authenticate
+                // initial request failed, suggest AUTHENTICATE
                 initialRequestPending = false;
                 initialRequestFailed = true;
                 destinationResult = config.AUTHENTICATE;
             });
         }
         else if (initialRequestFailed && authData) {
+            // initial request failed, you need to clear authData
             console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.');
         }
     }
@@ -64,7 +65,8 @@ function CoAuther(apiService) {
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
-        initialRequestFailed = false; // reset this one
+        // if initial request failed before, consider this a retry
+        initialRequestFailed = false;
         return apiService.login.apply(apiService, args);
     }
     function logoutWrap() {
@@ -77,7 +79,7 @@ function CoAuther(apiService) {
     function makeInitialRequestWrap() {
         return apiService.makeInitialRequest()
             .then(function () {
-            // Flag for initial data
+            // flag for initial data
             initialDataLoaded = true;
         });
     }
@@ -92,10 +94,6 @@ function initialize(apiService, newConfig) {
     coAuther = CoAuther(apiService);
     if (newConfig.authDataKey) {
         config.AUTH_DATA_KEY = newConfig.authDataKey;
-    }
-    // If someone set the value specifically
-    if (newConfig.dontTouchLocalStorage === false || true) {
-        config.dontTouchLocalStorage = newConfig.dontTouchLocalStorage;
     }
     if (newConfig.routes) {
         if (newConfig.routes.loggedIn) {

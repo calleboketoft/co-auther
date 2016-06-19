@@ -30,10 +30,12 @@ var ApiService = (function () {
             // Some timeout just to show the loading route.
             return mockRequest('Initial request', 500)
                 .then(function (data) {
-                _this.router.navigate(['logged-in']);
+                console.log('Initial request ok, route to "logged-in"');
+                _this.router.navigateByUrl('logged-in');
                 resolve(data);
             })
                 .catch(function (err) {
+                console.log('Initial request failed, route to "authenticate"');
                 _this.router.navigate(['authenticate']);
                 customErrorHandler(err);
                 reject(err);

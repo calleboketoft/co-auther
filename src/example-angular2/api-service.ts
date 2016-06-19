@@ -22,10 +22,12 @@ export class ApiService {
       // Some timeout just to show the loading route.
       return mockRequest('Initial request', 500)
         .then((data) => {
-          this.router.navigate(['logged-in'])
+          console.log('Initial request ok, route to "logged-in"')
+          this.router.navigateByUrl('logged-in')
           resolve(data)
         })
         .catch((err) => {
+          console.log('Initial request failed, route to "authenticate"')
           this.router.navigate(['authenticate'])
           customErrorHandler(err)
           reject(err)
