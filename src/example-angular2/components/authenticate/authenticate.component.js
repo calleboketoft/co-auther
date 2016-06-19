@@ -19,9 +19,12 @@ var AuthenticateComponent = (function () {
         var _this = this;
         CoAuther.getCoAuther().loginWrap(username, password)
             .then(function (res) {
-            console.log('Authentication went fine, go to initial-request route');
             localStorage.setItem('authData', res);
             _this.router.navigate(['/initial-request']);
+        })
+            .catch(function (err) {
+            alert('authentication failed');
+            console.log(err);
         });
     };
     AuthenticateComponent = __decorate([

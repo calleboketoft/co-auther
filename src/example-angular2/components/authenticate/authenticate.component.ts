@@ -16,9 +16,12 @@ export class AuthenticateComponent {
   login (username, password) {
     CoAuther.getCoAuther().loginWrap(username, password)
       .then(res => {
-        console.log('Authentication went fine, go to initial-request route')
         localStorage.setItem('authData', res)
         this.router.navigate(['/initial-request'])
+      })
+      .catch(err => {
+        alert('authentication failed')
+        console.log(err)
       })
   }
 }
