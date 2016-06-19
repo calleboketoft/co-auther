@@ -80,8 +80,8 @@ export class CoAuther {
     }
 
     if (this.debugMode) {
-      console.log('[co-auther] routeRequest: ' + routeRequest)
-      console.log('[co-auther] routeResult: ' + routeResult)
+      console.log('[co-auther] routeReq: ' + routeRequest)
+      console.log('[co-auther] routeRes: ' + routeResult)
     }
     return routeResult
   }
