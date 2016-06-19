@@ -1,3 +1,7 @@
+// Adaptor for use with Angular 2 to enable dependency injection
+// TODO: should probably provide options with provider to make routes etc
+// available immediately
+
 import {Injectable} from '@angular/core'
 import {CoAuther} from './co-auther'
 
