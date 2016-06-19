@@ -43,9 +43,6 @@ export class AppComponent {
   }
 
   logout () {
-    CoAuther.getCoAuther().logoutWrap().then(res => {
-      localStorage.removeItem('authData')
-      window.location.reload()
-    })
+    CoAuther.getCoAuther().logoutWrap()
   }
 }

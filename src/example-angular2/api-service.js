@@ -16,10 +16,28 @@ var ApiService = (function () {
         this.router = router;
     }
     ApiService.prototype.login = function () {
-        return mockRequest('Authentication', 0);
+        var _this = this;
+        return new Promise(function (resolve, reject) {
+            return mockRequest('Authentication')
+                .then(function (data) {
+                localStorage.setItem('authData', data);
+                _this.router.navigate(['/initial-request']);
+                resolve(data);
+            })
+                .catch(function (err) {
+                alert('authentication failed');
+                reject(err);
+            });
+        });
     };
     ApiService.prototype.logout = function () {
-        return mockRequest('Logout', 0);
+        return new Promise(function (resolve, reject) {
+            return mockRequest('Logout')
+                .then(function () {
+                localStorage.removeItem('authData');
+                window.location.reload();
+            });
+        });
     };
     ApiService.prototype.makeInitialRequest = function () {
         var _this = this;
@@ -27,7 +45,6 @@ var ApiService = (function () {
         // needs to get the error in the .catch() it's necessary to create a new promise
         // and "rethrow" the error again.
         return new Promise(function (resolve, reject) {
-            // Some timeout just to show the loading route.
             return mockRequest('Initial request', 500)
                 .then(function (data) {
                 console.log('Initial request ok, route to "logged-in"');
@@ -36,8 +53,8 @@ var ApiService = (function () {
             })
                 .catch(function (err) {
                 console.log('Initial request failed, route to "authenticate"');
-                _this.router.navigate(['authenticate']);
-                customErrorHandler(err);
+                localStorage.removeItem('authData');
+                _this.router.navigateByUrl('authenticate');
                 reject(err);
             });
         });
@@ -50,6 +67,7 @@ var ApiService = (function () {
 }());
 exports.ApiService = ApiService;
 function mockRequest(requestType, timeout) {
+    if (timeout === void 0) { timeout = 0; }
     return new Promise(function (resolve, reject) {
         setTimeout(function () {
             if (confirm(requestType + ' success?')) {
@@ -60,9 +78,5 @@ function mockRequest(requestType, timeout) {
             }
         }, timeout);
     });
-}
-function customErrorHandler(err) {
-    localStorage.removeItem('authData');
-    console.log('do amazing stuff with this error:', err);
 }
 //# sourceMappingURL=api-service.js.map

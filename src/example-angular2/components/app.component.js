@@ -28,10 +28,7 @@ var AppComponent = (function () {
         });
     }
     AppComponent.prototype.logout = function () {
-        CoAuther.getCoAuther().logoutWrap().then(function (res) {
-            localStorage.removeItem('authData');
-            window.location.reload();
-        });
+        CoAuther.getCoAuther().logoutWrap();
     };
     AppComponent = __decorate([
         core_1.Component({

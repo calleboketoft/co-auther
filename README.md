@@ -52,11 +52,6 @@ constructor () {
 
 logout () {
   CoAuther.getCoAuther().logoutWrap()
-    .then((res) => {
-      // Logged out, clear authData and reload window
-      localStorage.removeItem('authData')
-      window.location.reload()
-    })
 }
 ```
 
@@ -68,15 +63,6 @@ import {CoAuther} from 'co-auther'
 export class AuthenticateComponent {
   login (username, login) {
     CoAuther.getCoAuther().loginWrap(username, login)
-      .then((res) => {
-        // Authentication success, save authData and route to "initial-request"
-        localStorage.setItem('authData', res)
-        this.router.navigate(['/initial-request'])
-      })
-      .catch((err) => {
-        // Authentication failed, let user know
-        alert('Authentication failed')
-      })
   }
 }
 ```

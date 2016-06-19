@@ -7,11 +7,28 @@ export class ApiService {
   constructor (private router: Router) {}
 
   public login () {
-    return mockRequest('Authentication', 0)
+    return new Promise((resolve, reject) => {
+      return mockRequest('Authentication')
+        .then((data:string) => {
+          localStorage.setItem('authData', data)
+          this.router.navigate(['/initial-request'])
+          resolve(data)
+        })
+        .catch((err) => {
+          alert('authentication failed')
+          reject(err)
+        })
+    })
   }
 
   public logout () {
-    return mockRequest('Logout', 0)
+    return new Promise((resolve, reject) => {
+      return mockRequest('Logout')
+        .then(() => {
+          localStorage.removeItem('authData')
+          window.location.reload()
+        })
+    })
   }
 
   public makeInitialRequest () {
@@ -19,7 +36,6 @@ export class ApiService {
     // needs to get the error in the .catch() it's necessary to create a new promise
     // and "rethrow" the error again.
     return new Promise((resolve, reject) => {
-      // Some timeout just to show the loading route.
       return mockRequest('Initial request', 500)
         .then((data) => {
           console.log('Initial request ok, route to "logged-in"')
@@ -28,8 +44,8 @@ export class ApiService {
         })
         .catch((err) => {
           console.log('Initial request failed, route to "authenticate"')
-          this.router.navigate(['authenticate'])
-          customErrorHandler(err)
+          localStorage.removeItem('authData')
+          this.router.navigateByUrl('authenticate')
           reject(err)
         })
     })
@@ -37,7 +53,7 @@ export class ApiService {
   }
 }
 
-function mockRequest (requestType, timeout) {
+function mockRequest (requestType, timeout = 0) {
   return new Promise((resolve, reject) => {
     setTimeout(() => {
       if (confirm(requestType + ' success?')) {
@@ -47,9 +63,4 @@ function mockRequest (requestType, timeout) {
       }
     }, timeout)
   })
-}
-
-function customErrorHandler (err) {
-  localStorage.removeItem('authData')
-  console.log('do amazing stuff with this error:', err)
 }

@@ -16,16 +16,7 @@ var AuthenticateComponent = (function () {
         this.router = router;
     }
     AuthenticateComponent.prototype.login = function (username, password) {
-        var _this = this;
-        CoAuther.getCoAuther().loginWrap(username, password)
-            .then(function (res) {
-            localStorage.setItem('authData', res);
-            _this.router.navigate(['/initial-request']);
-        })
-            .catch(function (err) {
-            alert('authentication failed');
-            console.log(err);
-        });
+        CoAuther.getCoAuther().loginWrap(username, password);
     };
     AuthenticateComponent = __decorate([
         core_1.Component({
