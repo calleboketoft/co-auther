@@ -1,111 +1,93 @@
 "use strict";
-// config params
-var config = {
-    LOGGED_IN: 'logged-in',
-    AUTHENTICATE: 'authenticate',
-    INITIAL_REQUEST: 'initial-request',
-    AUTH_DATA_KEY: 'authData'
-};
-var initialRequestFailed = false;
-var coAuther;
-var getCoAuther = function () {
-    if (!coAuther) {
-        throw 'CoAuther has not been initialized yet';
+var CoAuther = (function () {
+    function CoAuther(loggedInRoute, authenticateRoute, initialRequestRoute, authDataKey, debugMode) {
+        if (loggedInRoute === void 0) { loggedInRoute = 'logged-in'; }
+        if (authenticateRoute === void 0) { authenticateRoute = 'authenticate'; }
+        if (initialRequestRoute === void 0) { initialRequestRoute = 'initial-request'; }
+        if (authDataKey === void 0) { authDataKey = 'authData'; }
+        if (debugMode === void 0) { debugMode = false; }
+        this.loggedInRoute = loggedInRoute;
+        this.authenticateRoute = authenticateRoute;
+        this.initialRequestRoute = initialRequestRoute;
+        this.authDataKey = authDataKey;
+        this.debugMode = debugMode;
+        this.initialRequestFailed = false;
+        this.initialRequestPending = false;
+        this.initialDataLoaded = false;
     }
-    else {
-        return coAuther;
-    }
-};
-exports.getCoAuther = getCoAuther;
-// determine where to route to based on requested route and authentication state
-var initialRequestPending = false;
-function activationHelper(destinationRequested) {
-    var destinationResult = null;
-    var authData = localStorage.getItem(config.AUTH_DATA_KEY);
-    var initialDataLoaded = getCoAuther().isInitialDataLoaded();
-    // authData and initialRequest done, suggest LOGGED_IN
-    if (authData && initialDataLoaded) {
-        destinationResult = config.LOGGED_IN;
-    }
-    else if (!authData && !initialRequestPending) {
-        destinationResult = config.AUTHENTICATE;
-    }
-    else {
-        destinationResult = config.INITIAL_REQUEST;
-        if (!initialRequestPending && !initialRequestFailed) {
-            initialRequestPending = true;
-            getCoAuther().makeInitialRequestWrap()
-                .then(function () {
-                // initial request successful, suggest LOGGED_IN
-                initialRequestPending = false;
-                destinationResult = config.LOGGED_IN;
-            })
-                .catch(function (err) {
-                // initial request failed, suggest AUTHENTICATE
-                initialRequestPending = false;
-                initialRequestFailed = true;
-                destinationResult = config.AUTHENTICATE;
-            });
-        }
-        else if (initialRequestFailed && authData) {
-            // initial request failed, you need to clear authData
-            console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.');
-        }
-    }
-    return destinationResult;
-}
-exports.activationHelper = activationHelper;
-function CoAuther(apiService) {
-    var initialDataLoaded = false;
-    function isInitialDataLoaded() {
-        return initialDataLoaded;
-    }
-    function loginWrap() {
+    // set options after constructor (for angular 2 reasons)
+    CoAuther.prototype.init = function (options) {
+        this.apiService = options.apiService;
+        this.loggedInRoute = options.loggedInRoute || this.loggedInRoute;
+        this.authenticateRoute = options.authenticateRoute || this.authenticateRoute;
+        this.initialRequestRoute = options.initialRequestRoute || this.initialRequestRoute;
+        this.authDataKey = options.authDataKey || this.authDataKey;
+        this.debugMode = options.debugMode || this.debugMode;
+    };
+    CoAuther.prototype.loginWrap = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
         // if initial request failed before, consider this a retry
-        initialRequestFailed = false;
-        return apiService.login.apply(apiService, args);
-    }
-    function logoutWrap() {
+        this.initialRequestFailed = false;
+        return this.apiService.login.apply(this.apiService, args);
+    };
+    CoAuther.prototype.logoutWrap = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {
             args[_i - 0] = arguments[_i];
         }
-        return apiService.logout.apply(apiService, args);
-    }
-    function makeInitialRequestWrap() {
-        return apiService.makeInitialRequest()
+        return this.apiService.logout.apply(this.apiService, args);
+    };
+    CoAuther.prototype.makeInitialRequestWrap = function () {
+        var _this = this;
+        return this.apiService.makeInitialRequest()
             .then(function () {
             // flag for initial data
-            initialDataLoaded = true;
+            _this.initialDataLoaded = true;
         });
-    }
-    return {
-        loginWrap: loginWrap,
-        logoutWrap: logoutWrap,
-        makeInitialRequestWrap: makeInitialRequestWrap,
-        isInitialDataLoaded: isInitialDataLoaded
     };
-}
-function initialize(apiService, newConfig) {
-    coAuther = CoAuther(apiService);
-    if (newConfig.authDataKey) {
-        config.AUTH_DATA_KEY = newConfig.authDataKey;
-    }
-    if (newConfig.routes) {
-        if (newConfig.routes.loggedIn) {
-            config.LOGGED_IN = newConfig.routes.loggedIn;
+    CoAuther.prototype.activationHelper = function (destinationRequested) {
+        var _this = this;
+        var destinationResult = null;
+        var authData = localStorage.getItem(this.authDataKey);
+        // authData and initialRequest done, suggest LOGGED_IN
+        if (authData && this.initialDataLoaded) {
+            destinationResult = this.loggedInRoute;
         }
-        if (newConfig.routes.authenticate) {
-            config.AUTHENTICATE = newConfig.routes.authenticate;
+        else if (!authData && !this.initialRequestPending) {
+            destinationResult = this.authenticateRoute;
         }
-        if (newConfig.routes.initialRequest) {
-            config.INITIAL_REQUEST = newConfig.routes.initialRequest;
+        else {
+            destinationResult = this.initialRequestRoute;
+            if (!this.initialRequestPending && !this.initialRequestFailed) {
+                this.initialRequestPending = true;
+                this.makeInitialRequestWrap()
+                    .then(function () {
+                    // initial request successful, suggest LOGGED_IN
+                    _this.initialRequestPending = false;
+                    destinationResult = _this.loggedInRoute;
+                })
+                    .catch(function (err) {
+                    // initial request failed, suggest AUTHENTICATE
+                    _this.initialRequestPending = false;
+                    _this.initialRequestFailed = true;
+                    destinationResult = _this.authenticateRoute;
+                });
+            }
+            else if (this.initialRequestFailed && authData) {
+                // initial request failed, you need to clear authData
+                console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.');
+            }
         }
-    }
-}
-exports.initialize = initialize;
+        if (this.debugMode) {
+            console.log('[co-auther] destinationRequested: ' + destinationRequested);
+            console.log('[co-auther] destinationResult: ' + destinationResult);
+        }
+        return destinationResult;
+    };
+    return CoAuther;
+}());
+exports.CoAuther = CoAuther;
 //# sourceMappingURL=co-auther.js.map

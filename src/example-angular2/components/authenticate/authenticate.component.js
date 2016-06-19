@@ -10,20 +10,21 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var CoAuther = require('../../../co-auther/co-auther');
+var co_auther_1 = require('../../../../co-auther');
 var AuthenticateComponent = (function () {
-    function AuthenticateComponent(router) {
+    function AuthenticateComponent(router, coAutherNg2) {
         this.router = router;
+        this.coAutherNg2 = coAutherNg2;
     }
     AuthenticateComponent.prototype.login = function (username, password) {
-        CoAuther.getCoAuther().loginWrap(username, password);
+        this.coAutherNg2.coAuther.loginWrap(username, password);
     };
     AuthenticateComponent = __decorate([
         core_1.Component({
             selector: 'authenticate',
             template: "\n    <label>Username<input #username type='text'></label><br>\n    <label>Password<input #password type='password'></label><br>\n    <button (click)='login(username.value, password.value)'>Login</button>\n  "
         }), 
-        __metadata('design:paramtypes', [router_1.Router])
+        __metadata('design:paramtypes', [router_1.Router, co_auther_1.CoAutherNg2])
     ], AuthenticateComponent);
     return AuthenticateComponent;
 }());

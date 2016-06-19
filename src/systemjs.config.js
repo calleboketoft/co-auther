@@ -2,11 +2,11 @@ System.config({
     baseURL: '/',
     warnings: true,
     map: {
-        'src': 'src',
         '@angular': '/node_modules/@angular',
         'rxjs': 'node_modules/rxjs'
     },
     packages: {
+        '': { defaultExtension: 'js' },
         'src': { defaultExtension: 'js' },
         'rxjs': { defaultExtension: 'js' },
         '@angular/common': { defaultExtension: 'js', main: 'index.js' },

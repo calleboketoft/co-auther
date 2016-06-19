@@ -8,8 +8,8 @@ import {InitialRequestComponent} from './initial-request/initial-request.compone
 import {LoggedInComponent} from './logged-in/logged-in.component'
 
 // API and authentication services
-import {ApiService} from '../api-service'
-import * as CoAuther from '../../co-auther/co-auther'
+import {ApiService} from '../services/api-service'
+import {CoAutherNg2} from '../../../co-auther'
 
 @Component({
   selector: 'app',
@@ -30,19 +30,16 @@ import * as CoAuther from '../../co-auther/co-auther'
 export class AppComponent {
   constructor (
     private router: Router,
-    private apiService: ApiService
+    private apiService: ApiService,
+    private coAutherNg2: CoAutherNg2
   ) {
-    CoAuther.initialize(apiService, {
-      routes: {
-        loggedIn: 'logged-in',
-        authenticate: 'authenticate',
-        initialRequest: 'initial-request'
-      },
-      authDataKey: 'authData'
+    coAutherNg2.init({
+      apiService,
+      debugMode: true
     })
   }
 
   logout () {
-    CoAuther.getCoAuther().logoutWrap()
+    this.coAutherNg2.coAuther.logoutWrap()
   }
 }

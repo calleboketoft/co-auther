@@ -30,39 +30,38 @@ In your root component, load your API service and the CoAuther module. Then conf
 
 ```javascript
 import apiService from './apiService'
-import {CoAuther} from 'co-auther'
+import {CoAutherNg2} from 'co-auther'
 ...
 // The 3 basic routes
 [
-  {path: '/authenticate', component: AuthenticateComponent},
-  {path: '/logged-in', component: LoggedInComponent},
-  {path: '/initialRequest', component: InitialRequestComponent}
+  {path: 'authenticate', component: AuthenticateComponent},
+  {path: 'logged-in', component: LoggedInComponent},
+  {path: 'initialRequest', component: InitialRequestComponent}
 ]
 ...
 constructor () {
-  CoAuther.initialize(apiService, {
-    routes: {
-      loggedIn: 'logged-in',
-      authenticate: 'authenticate',
-      initialRequest: 'initial-request'
-    },
+  CoAutherNg2.coAuther.init({
+    apiService,
+    loggedInRoute: 'logged-in',
+    authenticateRoute: 'authenticate',
+    initialRequestRoute: 'initial-request',
     authDataKey: 'authData'
   })
 }
 
 logout () {
-  CoAuther.getCoAuther().logoutWrap()
+  CoAutherNg2.coAuther.logoutWrap()
 }
 ```
 
 Use the authentication features in your authentication component:
 
 ```javascript
-import {CoAuther} from 'co-auther'
+import {CoAutherNg2} from 'co-auther'
 ...
 export class AuthenticateComponent {
   login (username, login) {
-    CoAuther.getCoAuther().loginWrap(username, login)
+    CoAuther.coAuther.loginWrap(username, login)
   }
 }
 ```

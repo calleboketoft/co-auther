@@ -1,120 +1,89 @@
-// config params
-let config = {
-  LOGGED_IN: 'logged-in',
-  AUTHENTICATE: 'authenticate',
-  INITIAL_REQUEST: 'initial-request',
-  AUTH_DATA_KEY: 'authData'
-}
+export class CoAuther {
+  private initialRequestFailed = false;
+  private initialRequestPending = false;
+  private initialDataLoaded = false;
 
-let initialRequestFailed = false
-let coAuther
+  // config
+  private apiService;
+  constructor (
+    private loggedInRoute = 'logged-in',
+    private authenticateRoute = 'authenticate',
+    private initialRequestRoute = 'initial-request',
+    private authDataKey = 'authData',
+    private debugMode = false
+  ) {}
 
-let getCoAuther = function () {
-  if (!coAuther) {
-    throw 'CoAuther has not been initialized yet'
-  } else {
-    return coAuther
-  }
-}
+  // set options after constructor (for angular 2 reasons)
+  public init (options) {
+    this.apiService = options.apiService
 
-// determine where to route to based on requested route and authentication state
-var initialRequestPending = false
-function activationHelper (destinationRequested) {
-  let destinationResult = null
-  let authData = localStorage.getItem(config.AUTH_DATA_KEY)
-  let initialDataLoaded = getCoAuther().isInitialDataLoaded()
-
-  // authData and initialRequest done, suggest LOGGED_IN
-  if (authData && initialDataLoaded) {
-    destinationResult = config.LOGGED_IN
-
-  // no authData and no initialRequest pending, suggest AUTHENTICATE
-  } else if (!authData && !initialRequestPending) {
-    destinationResult = config.AUTHENTICATE
-
-  // authData is available, suggest INITIAL_REQUEST
-  } else {
-    destinationResult = config.INITIAL_REQUEST
-    if (!initialRequestPending && !initialRequestFailed) {
-      initialRequestPending = true
-      getCoAuther().makeInitialRequestWrap()
-        .then(() => {
-
-          // initial request successful, suggest LOGGED_IN
-          initialRequestPending = false
-          destinationResult = config.LOGGED_IN
-        })
-        .catch((err) => {
-
-          // initial request failed, suggest AUTHENTICATE
-          initialRequestPending = false
-          initialRequestFailed = true
-          destinationResult = config.AUTHENTICATE
-        })
-    } else if (initialRequestFailed && authData) {
-
-      // initial request failed, you need to clear authData
-      console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.')
-    }
+    this.loggedInRoute = options.loggedInRoute || this.loggedInRoute
+    this.authenticateRoute = options.authenticateRoute || this.authenticateRoute
+    this.initialRequestRoute = options.initialRequestRoute || this.initialRequestRoute
+    this.authDataKey = options.authDataKey || this.authDataKey
+    this.debugMode = options.debugMode || this.debugMode
   }
 
-  return destinationResult
-}
-
-function CoAuther (apiService) {
-  let initialDataLoaded = false
-
-  function isInitialDataLoaded () {
-    return initialDataLoaded
-  }
-
-  function loginWrap (...args) {
+  public loginWrap (...args) {
     // if initial request failed before, consider this a retry
-    initialRequestFailed = false
-    return apiService.login.apply(apiService, args)
+    this.initialRequestFailed = false
+    return this.apiService.login.apply(this.apiService, args)
   }
 
-  function logoutWrap (...args) {
-    return apiService.logout.apply(apiService, args)
+  public logoutWrap (...args) {
+    return this.apiService.logout.apply(this.apiService, args)
   }
 
-  function makeInitialRequestWrap () {
-    return apiService.makeInitialRequest()
+  public makeInitialRequestWrap () {
+    return this.apiService.makeInitialRequest()
       .then(() => {
         // flag for initial data
-        initialDataLoaded = true
+        this.initialDataLoaded = true
       })
   }
 
-  return {
-    loginWrap,
-    logoutWrap,
-    makeInitialRequestWrap,
-    isInitialDataLoaded
-  }
-}
+  public activationHelper (destinationRequested) {
+    let destinationResult = null
+    let authData = localStorage.getItem(this.authDataKey)
 
-function initialize (apiService, newConfig) {
-  coAuther = CoAuther(apiService)
+    // authData and initialRequest done, suggest LOGGED_IN
+    if (authData && this.initialDataLoaded) {
+      destinationResult = this.loggedInRoute
 
-  if (newConfig.authDataKey) {
-    config.AUTH_DATA_KEY = newConfig.authDataKey
-  }
-  if (newConfig.routes) {
-    if (newConfig.routes.loggedIn) {
-      config.LOGGED_IN = newConfig.routes.loggedIn
-    }
-    if (newConfig.routes.authenticate) {
-      config.AUTHENTICATE = newConfig.routes.authenticate
-    }
-    if (newConfig.routes.initialRequest) {
-      config.INITIAL_REQUEST = newConfig.routes.initialRequest
-    }
-  }
-}
+    // no authData and no initialRequest pending, suggest AUTHENTICATE
+    } else if (!authData && !this.initialRequestPending) {
+      destinationResult = this.authenticateRoute
 
-export {
-  initialize,
-  getCoAuther,
-  activationHelper
+    // authData is available, suggest INITIAL_REQUEST
+    } else {
+      destinationResult = this.initialRequestRoute
+      if (!this.initialRequestPending && !this.initialRequestFailed) {
+        this.initialRequestPending = true
+        this.makeInitialRequestWrap()
+          .then(() => {
+
+            // initial request successful, suggest LOGGED_IN
+            this.initialRequestPending = false
+            destinationResult = this.loggedInRoute
+          })
+          .catch((err) => {
+
+            // initial request failed, suggest AUTHENTICATE
+            this.initialRequestPending = false
+            this.initialRequestFailed = true
+            destinationResult = this.authenticateRoute
+          })
+      } else if (this.initialRequestFailed && authData) {
+
+        // initial request failed, you need to clear authData
+        console.error('Initial request promise was rejected. You have manual authData management and need to clear authData from localStorage manually.')
+      }
+    }
+
+    if (this.debugMode) {
+      console.log('[co-auther] destinationRequested: ' + destinationRequested)
+      console.log('[co-auther] destinationResult: ' + destinationResult)
+    }
+    return destinationResult
+  }
 }

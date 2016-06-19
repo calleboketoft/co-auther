@@ -1,6 +1,6 @@
 import {Component} from '@angular/core'
 import {Router} from '@angular/router'
-import * as CoAuther from '../../../co-auther/co-auther'
+import {CoAutherNg2} from '../../../../co-auther'
 
 @Component({
   selector: 'authenticate',
@@ -11,9 +11,12 @@ import * as CoAuther from '../../../co-auther/co-auther'
   `
 })
 export class AuthenticateComponent {
-  constructor (private router: Router) {}
+  constructor (
+    private router: Router,
+    private coAutherNg2: CoAutherNg2
+  ) {}
 
   login (username, password) {
-    CoAuther.getCoAuther().loginWrap(username, password)
+    this.coAutherNg2.coAuther.loginWrap(username, password)
   }
 }

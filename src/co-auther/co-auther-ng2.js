@@ -9,23 +9,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
-var co_auther_1 = require('../../../co-auther');
-var Observable_1 = require('rxjs/Observable');
-var CoAutherGuard = (function () {
-    function CoAutherGuard(coAutherNg2) {
-        this.coAutherNg2 = coAutherNg2;
+var co_auther_1 = require('./co-auther');
+var CoAutherNg2 = (function () {
+    function CoAutherNg2() {
+        this.coAuther = new co_auther_1.CoAuther();
     }
-    CoAutherGuard.prototype.canActivate = function (route) {
-        // figure out if the requested route can be routed to
-        var routeRequest = route.url[0].path;
-        var routeResponse = this.coAutherNg2.coAuther.activationHelper(routeRequest);
-        return Observable_1.Observable.from([routeRequest === routeResponse]);
+    CoAutherNg2.prototype.init = function (options) {
+        this.coAuther.init(options);
     };
-    CoAutherGuard = __decorate([
+    CoAutherNg2 = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [co_auther_1.CoAutherNg2])
-    ], CoAutherGuard);
-    return CoAutherGuard;
+        __metadata('design:paramtypes', [])
+    ], CoAutherNg2);
+    return CoAutherNg2;
 }());
-exports.CoAutherGuard = CoAutherGuard;
-//# sourceMappingURL=co-auther.guard.js.map
+exports.CoAutherNg2 = CoAutherNg2;
+//# sourceMappingURL=co-auther-ng2.js.map
