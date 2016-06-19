@@ -1,3 +1,6 @@
+// Adaptor for use with Angular 2 to enable dependency injection
+// TODO: should probably provide options with provider to make routes etc
+// available immediately
 "use strict";
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
