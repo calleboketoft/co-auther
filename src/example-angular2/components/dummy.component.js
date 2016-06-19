@@ -15,7 +15,7 @@ var DummyComponent = (function () {
         this.router = router;
     }
     DummyComponent.prototype.ngOnInit = function () {
-        this.router.navigate(['authenticate']);
+        this.router.navigateByUrl('authenticate');
     };
     DummyComponent = __decorate([
         core_1.Component({

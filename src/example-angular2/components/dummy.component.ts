@@ -10,6 +10,6 @@ import {Router} from '@angular/router'
 export class DummyComponent {
   constructor (private router: Router) {}
   ngOnInit () {
-    this.router.navigate(['authenticate'])
+    this.router.navigateByUrl('authenticate')
   }
 }
