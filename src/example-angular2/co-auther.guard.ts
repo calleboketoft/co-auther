@@ -17,7 +17,7 @@ export class CoAutherGuard implements CanActivate {
 
     // NOTE: Perhaps all redirects should be handled from in here?
     // Does routing from within the guard mess something up though?
-    if (!requestOk && routeResponse === 'authenticate') {
+    if (!requestOk && (routeResponse === 'authenticate')) {
       this.router.navigateByUrl('authenticate')
     }
     return Observable.from([routeRequest === routeResponse])

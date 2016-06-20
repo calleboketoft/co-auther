@@ -24,7 +24,7 @@ var CoAutherGuard = (function () {
         var requestOk = routeRequest === routeResponse;
         // NOTE: Perhaps all redirects should be handled from in here?
         // Does routing from within the guard mess something up though?
-        if (!requestOk && routeResponse === 'authenticate') {
+        if (!requestOk && (routeResponse === 'authenticate')) {
             this.router.navigateByUrl('authenticate');
         }
         return Observable_1.Observable.from([routeRequest === routeResponse]);
