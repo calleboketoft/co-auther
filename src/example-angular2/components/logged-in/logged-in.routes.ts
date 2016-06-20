@@ -1,5 +1,5 @@
 import {LoggedInComponent} from './logged-in.component'
-import {CoAutherGuard} from '../co-auther.guard'
+import {CoAutherGuard} from '../../co-auther.guard'
 import {LoggedInChildComponent} from './logged-in-child.component'
 import {LoggedInChild2Component} from './logged-in-child2.component'
 

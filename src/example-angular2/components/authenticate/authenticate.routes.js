@@ -1,6 +1,6 @@
 "use strict";
 var authenticate_component_1 = require('./authenticate.component');
-var co_auther_guard_1 = require('../co-auther.guard');
+var co_auther_guard_1 = require('../../co-auther.guard');
 exports.AuthenticateRoutes = [
     {
         path: 'authenticate',
