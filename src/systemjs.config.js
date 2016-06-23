@@ -16,7 +16,7 @@ System.config({
         '@angular/platform-browser': { defaultExtension: 'js', main: 'index.js' },
         '@angular/platform-browser-dynamic': { defaultExtension: 'js', main: 'index.js' },
         '@angular/router': { defaultExtension: 'js', main: 'index.js' },
-        '@angular/router-deprecated': { defaultExtension: 'js', main: 'index.js' },
+        '@angular/forms': { defaultExtension: 'js', main: 'index.js' },
         '@angular/testing': { defaultExtension: 'js', main: 'index.js' },
         '@angular/upgrade': { defaultExtension: 'js', main: 'index.js' }
     }
