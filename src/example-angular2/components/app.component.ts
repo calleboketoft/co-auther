@@ -1,11 +1,6 @@
 // Angular
 import {Component} from '@angular/core'
-import {ROUTER_DIRECTIVES, Router} from '@angular/router'
-
-// Pages
-import {AuthenticateComponent} from './authenticate/authenticate.component'
-import {InitialRequestComponent} from './initial-request/initial-request.component'
-import {LoggedInComponent} from './logged-in/logged-in.component'
+import {ROUTER_DIRECTIVES} from '@angular/router'
 
 // API and authentication services
 import {ApiService} from '../services/api-service'
@@ -29,7 +24,6 @@ import {CoAutherNg2} from '../../../co-auther'
 })
 export class AppComponent {
   constructor (
-    private router: Router,
     private apiService: ApiService,
     private coAutherNg2: CoAutherNg2
   ) {
