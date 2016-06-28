@@ -11,6 +11,7 @@ This module helps managing the routing based on if the authentication token is a
 ## Running example
 
 - `npm install`
+- `npm run build`
 - `npm start`
 - open browser and navigate to page
 
