@@ -1,6 +1,6 @@
 # co-auther
 
-Authentication related routing logics for an Angular 2 app like this:
+Authentication related routing logics for an app like this:
 
 - You are using JWT authentication
 - You have one route for authentication with username and password field
@@ -11,6 +11,7 @@ This module helps managing the routing based on if the authentication token is a
 ## Running example
 
 - `npm install`
+- `npm run build`
 - `npm start`
 - open browser and navigate to page
 
@@ -25,6 +26,8 @@ You have an "API service" with 3 methods (called login/logout/initialRequest) th
 - login: should resolve with authentication token string
 - logout: makes logout request, nothing else
 - initialRequest: the initial request for the app
+
+NOTE: The example is Angular 2 but co-auther can be used with any JS framework
 
 In your root component, load your API service and the CoAuther module. Then configure routes and initialize the CoAuther in the constructor of the component. Also expose the logout function from the CoAuther where you will use that:
 

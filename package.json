@@ -5,7 +5,7 @@
   "main": "src/co-auther/co-auther.js",
   "scripts": {
     "start": "node server",
-    "build": "npm run typescript",
+    "build": "typings install && npm run typescript",
     "webdriver": "node_modules/protractor/bin/webdriver-manager update",
     "test-e2e": "npm run build && gulp test-e2e",
     "typescript": "tsc",
