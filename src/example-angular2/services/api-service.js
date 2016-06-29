@@ -47,7 +47,7 @@ var ApiService = (function () {
         return new Promise(function (resolve, reject) {
             return mockRequest('Initial request', 500)
                 .then(function (data) {
-                console.log('Initial request ok, route to "logged-in"');
+                console.log('Initial request ok, route to intended route');
                 var finalDestination = co_auther_guard_1.memoryStateUrl || core_routes_config_1.ROUTE_LOGGED_IN;
                 _this.router.navigateByUrl(finalDestination);
                 resolve(data);
