@@ -42,7 +42,7 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       return mockRequest('Initial request', 500)
         .then((data) => {
-          console.log('Initial request ok, route to "logged-in"')
+          console.log('Initial request ok, route to intended route')
           let finalDestination = memoryStateUrl || ROUTE_LOGGED_IN
           this.router.navigateByUrl(finalDestination)
           resolve(data)
@@ -54,7 +54,6 @@ export class ApiService {
           reject(err)
         })
     })
-
   }
 }
 
