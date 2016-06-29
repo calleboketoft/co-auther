@@ -12,20 +12,30 @@ var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 var co_auther_1 = require('../../co-auther');
 var Observable_1 = require('rxjs/Observable');
+var core_routes_config_1 = require('./core-routes.config');
+// Memorize navigation attempt on loading page
+exports.memoryStateUrl = '';
 var CoAutherGuard = (function () {
     function CoAutherGuard(coAutherNg2, router) {
         this.coAutherNg2 = coAutherNg2;
         this.router = router;
     }
-    CoAutherGuard.prototype.canActivate = function (route) {
+    CoAutherGuard.prototype.canActivate = function (route, state) {
         // figure out if the requested route can be routed to
         var routeRequest = route.url[0].path;
         var routeResponse = this.coAutherNg2.coAuther.activationHelper(routeRequest);
         var requestOk = routeRequest === routeResponse;
+        // Memorize where attempting to navigate to when opening page
+        // the exported member "memoryStateUrl" will contain destination
+        var unauthedLoggedInAttempt = routeRequest === core_routes_config_1.ROUTE_LOGGED_IN && routeResponse === core_routes_config_1.ROUTE_AUTHENTICATE;
+        var authedLoggedInAttempt = routeRequest === core_routes_config_1.ROUTE_LOGGED_IN && routeResponse === core_routes_config_1.ROUTE_INITIAL_REQUEST;
+        if (unauthedLoggedInAttempt || authedLoggedInAttempt) {
+            exports.memoryStateUrl = state.url;
+        }
         // NOTE: Perhaps all redirects should be handled from in here?
         // Does routing from within the guard mess something up though?
-        if (!requestOk && (routeResponse === 'authenticate')) {
-            this.router.navigateByUrl('authenticate');
+        if (!requestOk && (routeResponse === core_routes_config_1.ROUTE_AUTHENTICATE)) {
+            this.router.navigateByUrl(core_routes_config_1.ROUTE_AUTHENTICATE);
         }
         return Observable_1.Observable.from([routeRequest === routeResponse]);
     };

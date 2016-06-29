@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 // Simple mock example of an authentication API service
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
+var core_routes_config_1 = require('../core-routes.config');
+var co_auther_guard_1 = require('../co-auther.guard');
 var ApiService = (function () {
     function ApiService(router) {
         this.router = router;
@@ -21,7 +23,7 @@ var ApiService = (function () {
             return mockRequest('Authentication')
                 .then(function (data) {
                 localStorage.setItem('authData', data);
-                _this.router.navigate(['/initial-request']);
+                _this.router.navigate([core_routes_config_1.ROUTE_INITIAL_REQUEST]);
                 resolve(data);
             })
                 .catch(function (err) {
@@ -31,12 +33,10 @@ var ApiService = (function () {
         });
     };
     ApiService.prototype.logout = function () {
-        return new Promise(function (resolve, reject) {
-            return mockRequest('Logout')
-                .then(function () {
-                localStorage.removeItem('authData');
-                window.location.reload();
-            });
+        return mockRequest('Logout')
+            .then(function () {
+            localStorage.removeItem('authData');
+            window.location.reload();
         });
     };
     ApiService.prototype.makeInitialRequest = function () {
@@ -48,13 +48,14 @@ var ApiService = (function () {
             return mockRequest('Initial request', 500)
                 .then(function (data) {
                 console.log('Initial request ok, route to "logged-in"');
-                _this.router.navigateByUrl('logged-in');
+                var finalDestination = co_auther_guard_1.memoryStateUrl || core_routes_config_1.ROUTE_LOGGED_IN;
+                _this.router.navigateByUrl(finalDestination);
                 resolve(data);
             })
                 .catch(function (err) {
                 console.log('Initial request failed, route to "authenticate"');
                 localStorage.removeItem('authData');
-                _this.router.navigateByUrl('authenticate');
+                _this.router.navigateByUrl(core_routes_config_1.ROUTE_AUTHENTICATE);
                 reject(err);
             });
         });

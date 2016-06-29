@@ -1,6 +1,12 @@
 // Simple mock example of an authentication API service
 import {Injectable} from '@angular/core'
 import {Router} from '@angular/router'
+import {
+  ROUTE_AUTHENTICATE,
+  ROUTE_INITIAL_REQUEST,
+  ROUTE_LOGGED_IN
+} from '../core-routes.config'
+import {memoryStateUrl} from '../co-auther.guard'
 
 @Injectable()
 export class ApiService {
@@ -11,7 +17,7 @@ export class ApiService {
       return mockRequest('Authentication')
         .then((data:string) => {
           localStorage.setItem('authData', data)
-          this.router.navigate(['/initial-request'])
+          this.router.navigate([ROUTE_INITIAL_REQUEST])
           resolve(data)
         })
         .catch((err) => {
@@ -22,13 +28,11 @@ export class ApiService {
   }
 
   public logout () {
-    return new Promise((resolve, reject) => {
-      return mockRequest('Logout')
-        .then(() => {
-          localStorage.removeItem('authData')
-          window.location.reload()
-        })
-    })
+    return mockRequest('Logout')
+      .then(() => {
+        localStorage.removeItem('authData')
+        window.location.reload()
+      })
   }
 
   public makeInitialRequest () {
@@ -39,13 +43,14 @@ export class ApiService {
       return mockRequest('Initial request', 500)
         .then((data) => {
           console.log('Initial request ok, route to "logged-in"')
-          this.router.navigateByUrl('logged-in')
+          let finalDestination = memoryStateUrl || ROUTE_LOGGED_IN
+          this.router.navigateByUrl(finalDestination)
           resolve(data)
         })
         .catch((err) => {
           console.log('Initial request failed, route to "authenticate"')
           localStorage.removeItem('authData')
-          this.router.navigateByUrl('authenticate')
+          this.router.navigateByUrl(ROUTE_AUTHENTICATE)
           reject(err)
         })
     })
