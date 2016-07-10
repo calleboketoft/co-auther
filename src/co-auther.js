@@ -1,28 +1,25 @@
 "use strict";
 var CoAuther = (function () {
-    function CoAuther(loggedInRoute, authenticateRoute, initialRequestRoute, authDataKey, debugMode) {
-        if (loggedInRoute === void 0) { loggedInRoute = 'logged-in'; }
-        if (authenticateRoute === void 0) { authenticateRoute = 'authenticate'; }
-        if (initialRequestRoute === void 0) { initialRequestRoute = 'initial-request'; }
-        if (authDataKey === void 0) { authDataKey = 'authData'; }
-        if (debugMode === void 0) { debugMode = false; }
-        this.loggedInRoute = loggedInRoute;
-        this.authenticateRoute = authenticateRoute;
-        this.initialRequestRoute = initialRequestRoute;
-        this.authDataKey = authDataKey;
-        this.debugMode = debugMode;
+    function CoAuther() {
+        // State flags
         this.initialRequestFailed = false;
         this.initialRequestPending = false;
         this.initialDataLoaded = false;
+        this.loggedInRoute = 'logged-in';
+        this.authenticateRoute = 'authenticate';
+        this.initialRequestRoute = 'initial-request';
+        this.authDataKey = 'authData';
+        this.debugMode = false;
     }
     // set options after constructor (for angular 2 reasons)
-    CoAuther.prototype.init = function (options) {
-        this.apiService = options.apiService;
-        this.loggedInRoute = options.loggedInRoute || this.loggedInRoute;
-        this.authenticateRoute = options.authenticateRoute || this.authenticateRoute;
-        this.initialRequestRoute = options.initialRequestRoute || this.initialRequestRoute;
-        this.authDataKey = options.authDataKey || this.authDataKey;
-        this.debugMode = options.debugMode || this.debugMode;
+    CoAuther.prototype.init = function (_a) {
+        var apiService = _a.apiService, loggedInRoute = _a.loggedInRoute, authenticateRoute = _a.authenticateRoute, initialRequestRoute = _a.initialRequestRoute, debugMode = _a.debugMode, authDataKey = _a.authDataKey;
+        this.apiService = apiService;
+        this.loggedInRoute = loggedInRoute || this.loggedInRoute;
+        this.authenticateRoute = authenticateRoute || this.authenticateRoute;
+        this.initialRequestRoute = initialRequestRoute || this.initialRequestRoute;
+        this.authDataKey = authDataKey || this.authDataKey;
+        this.debugMode = debugMode || this.debugMode;
     };
     CoAuther.prototype.loginWrap = function () {
         var args = [];

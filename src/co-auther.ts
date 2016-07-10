@@ -1,27 +1,46 @@
+export interface IInit {
+  apiService: {
+    login;
+    logout;
+    makeInitialRequest;
+  }
+  loggedInRoute?: string;
+  authenticateRoute?: string;
+  initialRequestRoute?: string;
+  authDataKey?: string;
+  debugMode?: boolean;
+}
+
 export class CoAuther {
+  // State flags
   private initialRequestFailed = false;
   private initialRequestPending = false;
   private initialDataLoaded = false;
 
   // config
   private apiService;
-  constructor (
-    private loggedInRoute = 'logged-in',
-    private authenticateRoute = 'authenticate',
-    private initialRequestRoute = 'initial-request',
-    private authDataKey = 'authData',
-    private debugMode = false
-  ) {}
+  private loggedInRoute = 'logged-in'
+  private authenticateRoute = 'authenticate'
+  private initialRequestRoute = 'initial-request'
+  private authDataKey = 'authData'
+  private debugMode = false
 
   // set options after constructor (for angular 2 reasons)
-  public init (options) {
-    this.apiService = options.apiService
+  public init ({
+    apiService,
+    loggedInRoute,
+    authenticateRoute,
+    initialRequestRoute,
+    debugMode,
+    authDataKey
+  }: IInit) {
+    this.apiService = apiService
 
-    this.loggedInRoute = options.loggedInRoute || this.loggedInRoute
-    this.authenticateRoute = options.authenticateRoute || this.authenticateRoute
-    this.initialRequestRoute = options.initialRequestRoute || this.initialRequestRoute
-    this.authDataKey = options.authDataKey || this.authDataKey
-    this.debugMode = options.debugMode || this.debugMode
+    this.loggedInRoute = loggedInRoute || this.loggedInRoute
+    this.authenticateRoute = authenticateRoute || this.authenticateRoute
+    this.initialRequestRoute = initialRequestRoute || this.initialRequestRoute
+    this.authDataKey = authDataKey || this.authDataKey
+    this.debugMode = debugMode || this.debugMode
   }
 
   public loginWrap (...args) {

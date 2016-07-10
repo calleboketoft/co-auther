@@ -6,12 +6,12 @@ import {ROUTER_DIRECTIVES, Router} from '@angular/router'
   directives: [ROUTER_DIRECTIVES],
   template: `
     Logged in!<br>
-    <a [routerLink]='["/logged-in/child2", 12]'>Child 2, inline link</a>
+    <a [routerLink]="['/logged-in/child2', 12]">Child 2, inline link</a>
     <br>
-    <button class='btn btn-primary' (click)='goToChild2()'>
+    <button class="btn btn-primary" (click)="goToChild2()">
       Child 2, code link
     </button>
-    <br><br>
+    <br ><br >
     <router-outlet></router-outlet>
   `
 })

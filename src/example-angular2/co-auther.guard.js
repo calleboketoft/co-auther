@@ -16,14 +16,14 @@ var core_routes_config_1 = require('./core-routes.config');
 // Memorize navigation attempt on loading page
 exports.memoryStateUrl = '';
 var CoAutherGuard = (function () {
-    function CoAutherGuard(coAutherNg2, router) {
-        this.coAutherNg2 = coAutherNg2;
+    function CoAutherGuard(coAuther, router) {
+        this.coAuther = coAuther;
         this.router = router;
     }
     CoAutherGuard.prototype.canActivate = function (route, state) {
         // figure out if the requested route can be routed to
         var routeRequest = route.url[0].path;
-        var routeResponse = this.coAutherNg2.coAuther.activationHelper(routeRequest);
+        var routeResponse = this.coAuther.activationHelper(routeRequest);
         var requestOk = routeRequest === routeResponse;
         // Memorize where attempting to navigate to when opening page
         // the exported member "memoryStateUrl" will contain destination
@@ -41,7 +41,7 @@ var CoAutherGuard = (function () {
     };
     CoAutherGuard = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [co_auther_1.CoAutherNg2, router_1.Router])
+        __metadata('design:paramtypes', [co_auther_1.CoAuther, router_1.Router])
     ], CoAutherGuard);
     return CoAutherGuard;
 }());

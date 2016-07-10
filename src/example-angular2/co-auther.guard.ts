@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core'
 import {CanActivate, Router} from '@angular/router'
-import {CoAutherNg2} from '../../co-auther'
+import {CoAuther} from '../../co-auther'
 import {Observable} from 'rxjs/Observable'
 import {
   ROUTE_AUTHENTICATE,
@@ -14,13 +14,13 @@ export let memoryStateUrl = ''
 @Injectable()
 export class CoAutherGuard implements CanActivate {
   constructor (
-    private coAutherNg2: CoAutherNg2,
+    private coAuther: CoAuther,
     private router: Router
   ) {}
   canActivate (route, state) {
     // figure out if the requested route can be routed to
     let routeRequest = route.url[0].path
-    let routeResponse = this.coAutherNg2.coAuther.activationHelper(routeRequest)
+    let routeResponse = this.coAuther.activationHelper(routeRequest)
     let requestOk = routeRequest === routeResponse
 
     // Memorize where attempting to navigate to when opening page

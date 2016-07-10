@@ -3,8 +3,8 @@ import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router'
 
 // API and authentication services
-import {ApiService} from '../services/api-service'
-import {CoAutherNg2} from '../../../co-auther'
+import {ApiService} from '../api-service'
+import {CoAuther} from '../../../co-auther'
 
 @Component({
   selector: 'app',
@@ -17,7 +17,7 @@ import {CoAutherNg2} from '../../../co-auther'
       <a [routerLink]='["/logged-in/child2/", 6]'>Logged in - Child2</a>&nbsp;|&nbsp;
       <a [routerLink]='["/initial-request"]'>Initial Request</a>&nbsp;|&nbsp;
       <a (click)='logout()' style='cursor: pointer;'>Log out</a>
-      <br><br>
+      <br ><br>
       <router-outlet></router-outlet>
     </div>
   `
@@ -25,15 +25,15 @@ import {CoAutherNg2} from '../../../co-auther'
 export class AppComponent {
   constructor (
     private apiService: ApiService,
-    private coAutherNg2: CoAutherNg2
+    private coAuther: CoAuther
   ) {
-    coAutherNg2.init({
+    coAuther.init({
       apiService,
       debugMode: true
     })
   }
 
   logout () {
-    this.coAutherNg2.coAuther.logoutWrap()
+    this.coAuther.logoutWrap()
   }
 }

@@ -5,8 +5,8 @@ import {
   ROUTE_AUTHENTICATE,
   ROUTE_INITIAL_REQUEST,
   ROUTE_LOGGED_IN
-} from '../core-routes.config'
-import {memoryStateUrl} from '../co-auther.guard'
+} from './core-routes.config'
+import {memoryStateUrl} from './co-auther.guard'
 
 @Injectable()
 export class ApiService {
