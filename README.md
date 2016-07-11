@@ -1,5 +1,7 @@
 # co-auther
 
+# NOTE: Angular 2 docs aren't up to date
+
 Authentication related routing logics for an app like this:
 
 - You are using JWT authentication
