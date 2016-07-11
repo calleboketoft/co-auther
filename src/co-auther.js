@@ -1,6 +1,7 @@
 "use strict";
 var CoAuther = (function () {
-    function CoAuther() {
+    function CoAuther(_a) {
+        var apiService = _a.apiService, loggedInRoute = _a.loggedInRoute, authenticateRoute = _a.authenticateRoute, initialRequestRoute = _a.initialRequestRoute, debugMode = _a.debugMode, authDataKey = _a.authDataKey;
         // State flags
         this.initialRequestFailed = false;
         this.initialRequestPending = false;
@@ -10,17 +11,13 @@ var CoAuther = (function () {
         this.initialRequestRoute = 'initial-request';
         this.authDataKey = 'authData';
         this.debugMode = false;
-    }
-    // set options after constructor (for angular 2 reasons)
-    CoAuther.prototype.init = function (_a) {
-        var apiService = _a.apiService, loggedInRoute = _a.loggedInRoute, authenticateRoute = _a.authenticateRoute, initialRequestRoute = _a.initialRequestRoute, debugMode = _a.debugMode, authDataKey = _a.authDataKey;
         this.apiService = apiService;
         this.loggedInRoute = loggedInRoute || this.loggedInRoute;
         this.authenticateRoute = authenticateRoute || this.authenticateRoute;
         this.initialRequestRoute = initialRequestRoute || this.initialRequestRoute;
         this.authDataKey = authDataKey || this.authDataKey;
         this.debugMode = debugMode || this.debugMode;
-    };
+    }
     CoAuther.prototype.loginWrap = function () {
         var args = [];
         for (var _i = 0; _i < arguments.length; _i++) {

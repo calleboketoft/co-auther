@@ -1,9 +1,9 @@
-export interface IInit {
+export interface CoAutherOptions {
   apiService: {
-    login;
-    logout;
-    makeInitialRequest;
-  }
+    login: any;
+    logout: any;
+    makeInitialRequest: any;
+  },
   loggedInRoute?: string;
   authenticateRoute?: string;
   initialRequestRoute?: string;
@@ -25,17 +25,15 @@ export class CoAuther {
   private authDataKey = 'authData'
   private debugMode = false
 
-  // set options after constructor (for angular 2 reasons)
-  public init ({
+  constructor ({
     apiService,
     loggedInRoute,
     authenticateRoute,
     initialRequestRoute,
     debugMode,
     authDataKey
-  }: IInit) {
+  }: CoAutherOptions) {
     this.apiService = apiService
-
     this.loggedInRoute = loggedInRoute || this.loggedInRoute
     this.authenticateRoute = authenticateRoute || this.authenticateRoute
     this.initialRequestRoute = initialRequestRoute || this.initialRequestRoute

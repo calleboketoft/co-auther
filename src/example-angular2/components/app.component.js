@@ -12,16 +12,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
 // API and authentication services
-var api_service_1 = require('../api-service');
 var co_auther_1 = require('../../../co-auther');
 var AppComponent = (function () {
-    function AppComponent(apiService, coAuther) {
-        this.apiService = apiService;
+    function AppComponent(coAuther) {
         this.coAuther = coAuther;
-        coAuther.init({
-            apiService: apiService,
-            debugMode: true
-        });
     }
     AppComponent.prototype.logout = function () {
         this.coAuther.logoutWrap();
@@ -30,9 +24,9 @@ var AppComponent = (function () {
         core_1.Component({
             selector: 'app',
             directives: [router_1.ROUTER_DIRECTIVES],
-            template: "\n    <div style='margin: 30px;'>\n      <p style='font-weight: bold;'>co-auther demo</p>\n      <a [routerLink]='[\"/authenticate\"]'>Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/logged-in\"]'>Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/logged-in/child2/\", 6]'>Logged in - Child2</a>&nbsp;|&nbsp;\n      <a [routerLink]='[\"/initial-request\"]'>Initial Request</a>&nbsp;|&nbsp;\n      <a (click)='logout()' style='cursor: pointer;'>Log out</a>\n      <br ><br>\n      <router-outlet></router-outlet>\n    </div>\n  "
+            template: "\n    <div style=\"margin: 30px;\">\n      <p style=\"font-weight: bold;\">co-auther demo</p>\n      <a [routerLink]=\"['/authenticate']\">Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/logged-in']\">Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/logged-in/child2/', 6]\">Logged in - Child2</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/initial-request']\">Initial Request</a>&nbsp;|&nbsp;\n      <a (click)=\"logout()\" style=\"cursor: pointer;\">Log out</a>\n      <br ><br>\n      <router-outlet></router-outlet>\n    </div>\n  "
         }), 
-        __metadata('design:paramtypes', [api_service_1.ApiService, co_auther_1.CoAuther])
+        __metadata('design:paramtypes', [co_auther_1.CoAuther])
     ], AppComponent);
     return AppComponent;
 }());

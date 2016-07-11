@@ -4,11 +4,12 @@ var authenticate_routes_1 = require('./authenticate/authenticate.routes');
 var initial_request_routes_1 = require('./initial-request/initial-request.routes');
 var logged_in_routes_1 = require('./logged-in/logged-in.routes');
 var co_auther_guard_1 = require('../co-auther.guard');
-var dummy_component_1 = require('./dummy.component');
+var core_routes_config_1 = require('../core-routes.config');
 var routes = [
     {
         path: '',
-        component: dummy_component_1.DummyComponent
+        pathMatch: 'full',
+        redirectTo: core_routes_config_1.ROUTE_AUTHENTICATE
     }
 ].concat(authenticate_routes_1.AuthenticateRoutes, initial_request_routes_1.InitialRequestRoutes, logged_in_routes_1.LoggedInRoutes);
 exports.APP_ROUTER_PROVIDERS = [

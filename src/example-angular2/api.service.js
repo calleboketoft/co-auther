@@ -80,4 +80,4 @@ function mockRequest(requestType, timeout) {
         }, timeout);
     });
 }
-//# sourceMappingURL=api-service.js.map
+//# sourceMappingURL=api.service.js.map
