@@ -17,7 +17,6 @@ export class ApiService {
       return mockRequest('Authentication')
         .then((data:string) => {
           localStorage.setItem('authData', data)
-          this.router.navigate([ROUTE_INITIAL_REQUEST])
           resolve(data)
         })
         .catch((err) => {
@@ -36,6 +35,7 @@ export class ApiService {
   }
 
   public makeInitialRequest () {
+    this.router.navigate([ROUTE_INITIAL_REQUEST])
     // Here's an example of how to handle errors in the apiService. Since coAuther
     // needs to get the error in the .catch() it's necessary to create a new promise
     // and "rethrow" the error again.

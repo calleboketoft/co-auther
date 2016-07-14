@@ -18,12 +18,10 @@ var ApiService = (function () {
         this.router = router;
     }
     ApiService.prototype.login = function () {
-        var _this = this;
         return new Promise(function (resolve, reject) {
             return mockRequest('Authentication')
                 .then(function (data) {
                 localStorage.setItem('authData', data);
-                _this.router.navigate([core_routes_config_1.ROUTE_INITIAL_REQUEST]);
                 resolve(data);
             })
                 .catch(function (err) {
@@ -41,6 +39,7 @@ var ApiService = (function () {
     };
     ApiService.prototype.makeInitialRequest = function () {
         var _this = this;
+        this.router.navigate([core_routes_config_1.ROUTE_INITIAL_REQUEST]);
         // Here's an example of how to handle errors in the apiService. Since coAuther
         // needs to get the error in the .catch() it's necessary to create a new promise
         // and "rethrow" the error again.
