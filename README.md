@@ -1,7 +1,5 @@
 # co-auther
 
-# NOTE: Angular 2 docs aren't up to date
-
 Authentication related routing logics for an app like this:
 
 - You are using JWT authentication
@@ -21,7 +19,7 @@ This module helps managing the routing based on if the authentication token is a
 
 There are 3 base routes of you application
 - Authenticate: login screen
-- Initialize: loading screen for first request
+- Initialize: loading screen for first request (optional)
 - Logged in: all pages that require authentication are children of this route
 
 You have an "API service" with 3 methods (called login/logout/initialRequest) that return promises
@@ -29,45 +27,17 @@ You have an "API service" with 3 methods (called login/logout/initialRequest) th
 - logout: makes logout request, nothing else
 - initialRequest: the initial request for the app
 
-NOTE: The example is Angular 2 but co-auther can be used with any JS framework
+Example of using module
+- See `example` code for a complete example of how to use this module.
+- The steps of integration are roughly:
 
-In your root component, load your API service and the CoAuther module. Then configure routes and initialize the CoAuther in the constructor of the component. Also expose the logout function from the CoAuther where you will use that:
+1. Have an `apiService` with the three functions `login`, `logout`, and `makeInitialRequest`, which all return a promise. The function `makeInitialRequest` handles routing to `authenticate` route or `logged-in` route based on if initial request succeeds or not.
+1. Implement `co-auther.provider.ts` which registers `apiService`, the three routes, and initializes `coAuther` itself.
+1. Provide CoAuther with your custom `coAutherProvider` in your `main.ts` file.
+1. Implement a custom `co-auther.guard.ts` that makes use of `coAuther` to decide which routes are accepted based on the current state of authentication and initial request(s). CoAutherGuard handles routing to `authenticate` route if you're not currently authenticated.
 
-```javascript
-import apiService from './apiService'
-import {CoAuther} from 'co-auther'
-...
-// The 3 basic routes
-[
-  {path: 'authenticate', component: AuthenticateComponent},
-  {path: 'logged-in', component: LoggedInComponent},
-  {path: 'initialRequest', component: InitialRequestComponent}
-]
-...
-constructor (public coAuther: CoAuther) {
-  coAuther.init({
-    apiService,
-    loggedInRoute: 'logged-in',
-    authenticateRoute: 'authenticate',
-    initialRequestRoute: 'initial-request',
-    authDataKey: 'authData'
-  })
-}
 
-logout () {
-  this.coAuther.logoutWrap()
-}
-```
 
-Use the authentication features in your authentication component:
-
-```javascript
-export class AuthenticateComponent {
-  login (username, login) {
-    coAuther.loginWrap(username, login)
-  }
-}
-```
 
 ## NOTE: Error handling in apiService
 
