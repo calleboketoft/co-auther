@@ -8,6 +8,7 @@ export interface CoAutherOptions {
   authenticateRoute?: string;
   initialRequestRoute?: string;
   authDataKey?: string;
+  browserStorageType?: string;
   debugMode?: boolean;
 }
 
@@ -24,6 +25,7 @@ export class CoAuther {
   private initialRequestRoute = 'initial-request'
   private authDataKey = 'authData'
   private debugMode = false
+  private browserStorageType = 'localStorage'
 
   constructor ({
     apiService,
@@ -31,7 +33,8 @@ export class CoAuther {
     authenticateRoute,
     initialRequestRoute,
     debugMode,
-    authDataKey
+    authDataKey,
+    browserStorageType
   }: CoAutherOptions) {
     this.apiService = apiService
     this.loggedInRoute = loggedInRoute || this.loggedInRoute
@@ -39,6 +42,7 @@ export class CoAuther {
     this.initialRequestRoute = initialRequestRoute || this.initialRequestRoute
     this.authDataKey = authDataKey || this.authDataKey
     this.debugMode = debugMode || this.debugMode
+    this.browserStorageType = browserStorageType || this.browserStorageType
   }
 
   public loginWrap (...args) {
@@ -60,7 +64,7 @@ export class CoAuther {
 
   public activationHelper (routeRequest) {
     let routeResult = null
-    let authData = localStorage.getItem(this.authDataKey)
+    let authData = window[this.browserStorageType].getItem(this.authDataKey)
 
     // authData and initialRequest done, suggest LOGGED_IN
     if (authData && this.initialDataLoaded) {
@@ -92,7 +96,7 @@ export class CoAuther {
       } else if (this.initialRequestFailed && authData) {
 
         // error state, when initialRequest fails, you need to clear authData
-        console.error('Initial request promise was rejected. You need to clear authData from localStorage.')
+        console.error('Initial request promise was rejected. You need to clear authData from browser storage.')
       }
     }
 
