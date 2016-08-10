@@ -11,20 +11,36 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var platform_browser_1 = require('@angular/platform-browser');
 var common_1 = require('@angular/common');
-var app_component_1 = require('./routes/app.component');
-var app_routes_1 = require('./routes/app.routes');
 var co_auther_provider_1 = require('./co-auther.provider');
+var co_auther_guard_1 = require('./co-auther.guard');
 var api_service_1 = require('./api.service');
+var app_routes_1 = require('./routes/app.routes');
+var app_component_1 = require('./routes/app.component');
+var authenticate_component_1 = require('./routes/authenticate/authenticate.component');
+var initial_request_component_1 = require('./routes/initial-request/initial-request.component');
+var logged_in_component_1 = require('./routes/logged-in/logged-in.component');
+var logged_in_child_component_1 = require('./routes/logged-in/logged-in-child.component');
+var logged_in_child2_component_1 = require('./routes/logged-in/logged-in-child2.component');
 var AppModule = (function () {
     function AppModule() {
     }
     AppModule = __decorate([
         core_1.NgModule({
-            declarations: [app_component_1.AppComponent],
-            imports: [platform_browser_1.BrowserModule],
             bootstrap: [app_component_1.AppComponent],
+            declarations: [
+                app_component_1.AppComponent,
+                authenticate_component_1.AuthenticateComponent,
+                initial_request_component_1.InitialRequestComponent,
+                logged_in_component_1.LoggedInComponent,
+                logged_in_child_component_1.LoggedInChildComponent,
+                logged_in_child2_component_1.LoggedInChild2Component
+            ],
+            imports: [
+                platform_browser_1.BrowserModule,
+                app_routes_1.routing
+            ],
             providers: [
-                app_routes_1.APP_ROUTER_PROVIDERS,
+                co_auther_guard_1.CoAutherGuard,
                 {
                     provide: common_1.LocationStrategy,
                     useClass: common_1.HashLocationStrategy

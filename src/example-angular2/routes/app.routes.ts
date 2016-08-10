@@ -1,12 +1,10 @@
-import {provideRouter, RouterConfig} from '@angular/router'
+import { Routes, RouterModule } from '@angular/router'
+import { AuthenticateRoutes } from './authenticate/authenticate.routes'
+import { InitialRequestRoutes } from './initial-request/initial-request.routes'
+import { LoggedInRoutes } from './logged-in/logged-in.routes'
+import { ROUTE_AUTHENTICATE } from '../core-routes.config'
 
-import {AuthenticateRoutes} from './authenticate/authenticate.routes'
-import {InitialRequestRoutes} from './initial-request/initial-request.routes'
-import {LoggedInRoutes} from './logged-in/logged-in.routes'
-import {CoAutherGuard} from '../co-auther.guard'
-import {ROUTE_AUTHENTICATE} from '../core-routes.config'
-
-const routes: RouterConfig = [
+const routes: Routes = [
   {
     path: '',
     pathMatch: 'full',
@@ -17,7 +15,4 @@ const routes: RouterConfig = [
   ...LoggedInRoutes
 ]
 
-export const APP_ROUTER_PROVIDERS = [
-  provideRouter(routes),
-  CoAutherGuard
-]
+export const routing = RouterModule.forRoot(routes)
