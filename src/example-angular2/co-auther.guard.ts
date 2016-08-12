@@ -1,7 +1,7 @@
-import {Injectable} from '@angular/core'
-import {CanActivate, Router} from '@angular/router'
-import {CoAuther} from '../../'
-import {Observable} from 'rxjs/Rx'
+import { Injectable } from '@angular/core'
+import { CanActivate, Router } from '@angular/router'
+import { CoAuther } from '../../'
+import { Observable } from 'rxjs/Rx'
 import {
   ROUTE_AUTHENTICATE,
   ROUTE_INITIAL_REQUEST,

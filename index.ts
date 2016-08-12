@@ -1,1 +1,1 @@
-export {CoAuther} from './src/co-auther'
+export { CoAuther } from './src/co-auther'

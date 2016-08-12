@@ -1,12 +1,12 @@
 // Simple mock example of an authentication API service
-import {Injectable} from '@angular/core'
-import {Router} from '@angular/router'
+import { Injectable } from '@angular/core'
+import { Router } from '@angular/router'
 import {
   ROUTE_AUTHENTICATE,
   ROUTE_INITIAL_REQUEST,
   ROUTE_LOGGED_IN
 } from './core-routes.config'
-import {memoryStateUrl} from './co-auther.guard'
+import { memoryStateUrl } from './co-auther.guard'
 
 @Injectable()
 export class ApiService {

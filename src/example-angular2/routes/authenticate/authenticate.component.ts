@@ -1,6 +1,6 @@
-import {Component} from '@angular/core'
-import {Router} from '@angular/router'
-import {CoAuther} from '../../../../'
+import { Component } from '@angular/core'
+import { Router } from '@angular/router'
+import { CoAuther } from '../../../../'
 
 @Component({
   selector: 'authenticate',

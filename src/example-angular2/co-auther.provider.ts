@@ -2,10 +2,10 @@
  * Example provider for using CoAuther with Angular 2
  **/
 
-import {CoAuther} from '../../'
+import { CoAuther } from '../../'
 
 // Project specific api service and route values etc.
-import {ApiService} from './api.service'
+import { ApiService } from './api.service'
 import {
   ROUTE_AUTHENTICATE,
   ROUTE_INITIAL_REQUEST,
