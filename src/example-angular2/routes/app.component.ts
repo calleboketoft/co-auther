@@ -3,7 +3,7 @@ import {Component} from '@angular/core'
 import {ROUTER_DIRECTIVES} from '@angular/router'
 
 // API and authentication services
-import {CoAuther} from '../../../co-auther'
+import {CoAuther} from '../../../'
 
 @Component({
   selector: 'app',

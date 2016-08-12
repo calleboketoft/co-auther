@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var co_auther_1 = require('../../../../co-auther');
+var _1 = require('../../../../');
 var AuthenticateComponent = (function () {
     function AuthenticateComponent(router, coAuther) {
         this.router = router;
@@ -24,7 +24,7 @@ var AuthenticateComponent = (function () {
             selector: 'authenticate',
             template: "\n    <label>Username<input #username type=\"text\"></label><br >\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
         }), 
-        __metadata('design:paramtypes', [router_1.Router, co_auther_1.CoAuther])
+        __metadata('design:paramtypes', [router_1.Router, _1.CoAuther])
     ], AuthenticateComponent);
     return AuthenticateComponent;
 }());

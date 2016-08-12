@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var router_1 = require('@angular/router');
-var co_auther_1 = require('../../co-auther');
+var _1 = require('../../');
 var Rx_1 = require('rxjs/Rx');
 var core_routes_config_1 = require('./core-routes.config');
 // Memorize navigation attempt on loading page
@@ -41,7 +41,7 @@ var CoAutherGuard = (function () {
     };
     CoAutherGuard = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [co_auther_1.CoAuther, router_1.Router])
+        __metadata('design:paramtypes', [_1.CoAuther, router_1.Router])
     ], CoAutherGuard);
     return CoAutherGuard;
 }());
