@@ -1,9 +1,8 @@
 import { Component } from '@angular/core'
-import { ROUTER_DIRECTIVES, Router } from '@angular/router'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'logged-in',
-  directives: [ROUTER_DIRECTIVES],
   template: `
     Logged in!<br>
     <a [routerLink]="['/logged-in/child2', 12]">Child 2, inline link</a>

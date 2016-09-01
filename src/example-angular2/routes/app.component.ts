@@ -1,13 +1,11 @@
 // Angular
 import { Component } from '@angular/core'
-import { ROUTER_DIRECTIVES } from '@angular/router'
 
 // API and authentication services
 import { CoAuther } from '../../../'
 
 @Component({
   selector: 'app',
-  directives: [ROUTER_DIRECTIVES],
   template: `
     <div style="margin: 30px;">
       <p style="font-weight: bold;">co-auther demo</p>

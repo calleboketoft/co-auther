@@ -10,7 +10,6 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 // Angular
 var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
 // API and authentication services
 var _1 = require('../../../');
 var AppComponent = (function () {
@@ -23,7 +22,6 @@ var AppComponent = (function () {
     AppComponent = __decorate([
         core_1.Component({
             selector: 'app',
-            directives: [router_1.ROUTER_DIRECTIVES],
             template: "\n    <div style=\"margin: 30px;\">\n      <p style=\"font-weight: bold;\">co-auther demo</p>\n      <a [routerLink]=\"['/authenticate']\">Authenticate</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/logged-in']\">Logged In</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/logged-in/child2/', 6]\">Logged in - Child2</a>&nbsp;|&nbsp;\n      <a [routerLink]=\"['/initial-request']\">Initial Request</a>&nbsp;|&nbsp;\n      <a (click)=\"logout()\" style=\"cursor: pointer;\">Log out</a>\n      <br ><br>\n      <router-outlet></router-outlet>\n    </div>\n  "
         }), 
         __metadata('design:paramtypes', [_1.CoAuther])

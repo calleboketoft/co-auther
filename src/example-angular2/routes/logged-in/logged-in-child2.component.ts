@@ -27,8 +27,7 @@ export class LoggedInChild2Component {
 
     // Query params
     // ------------
-    this.routeQuery$ = this.router
-      .routerState
+    this.routeQuery$ = this.activatedRoute
       .queryParams
       .subscribe(params => {
         console.log('Query: ' + params['name'] + ', ' + params['food'])

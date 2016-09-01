@@ -27,8 +27,7 @@ var LoggedInChild2Component = (function () {
         console.log('Static: ' + param);
         // Query params
         // ------------
-        this.routeQuery$ = this.router
-            .routerState
+        this.routeQuery$ = this.activatedRoute
             .queryParams
             .subscribe(function (params) {
             console.log('Query: ' + params['name'] + ', ' + params['food']);
