@@ -63,6 +63,9 @@ export class CoAuther {
   }
 
   public activationHelper (routeRequest) {
+    if (this.debugMode) {
+      console.log('[co-auther] routeReq: ' + routeRequest)
+    }
     let routeResult = null
     let authData = window[this.browserStorageType].getItem(this.authDataKey)
 
@@ -101,7 +104,6 @@ export class CoAuther {
     }
 
     if (this.debugMode) {
-      console.log('[co-auther] routeReq: ' + routeRequest)
       console.log('[co-auther] routeRes: ' + routeResult)
     }
     return routeResult

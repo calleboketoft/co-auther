@@ -45,6 +45,9 @@ var CoAuther = (function () {
     };
     CoAuther.prototype.activationHelper = function (routeRequest) {
         var _this = this;
+        if (this.debugMode) {
+            console.log('[co-auther] routeReq: ' + routeRequest);
+        }
         var routeResult = null;
         var authData = window[this.browserStorageType].getItem(this.authDataKey);
         // authData and initialRequest done, suggest LOGGED_IN
@@ -77,7 +80,6 @@ var CoAuther = (function () {
             }
         }
         if (this.debugMode) {
-            console.log('[co-auther] routeReq: ' + routeRequest);
             console.log('[co-auther] routeRes: ' + routeResult);
         }
         return routeResult;
