@@ -42,16 +42,16 @@ export class ApiService {
     return new Promise((resolve, reject) => {
       return mockRequest('Initial request', 500)
         .then((data) => {
+          resolve(data)
           console.log('Initial request ok, route to intended route')
           let finalDestination = memoryStateUrl || ROUTE_LOGGED_IN
           this.router.navigateByUrl(finalDestination)
-          resolve(data)
         })
         .catch((err) => {
-          console.log('Initial request failed, route to "authenticate"')
+          reject(err)
+          console.log('Initial request failed, remove authData and route to "authenticate"')
           localStorage.removeItem('authData')
           this.router.navigateByUrl(ROUTE_AUTHENTICATE)
-          reject(err)
         })
     })
   }

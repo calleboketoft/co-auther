@@ -46,16 +46,16 @@ var ApiService = (function () {
         return new Promise(function (resolve, reject) {
             return mockRequest('Initial request', 500)
                 .then(function (data) {
+                resolve(data);
                 console.log('Initial request ok, route to intended route');
                 var finalDestination = co_auther_guard_1.memoryStateUrl || core_routes_config_1.ROUTE_LOGGED_IN;
                 _this.router.navigateByUrl(finalDestination);
-                resolve(data);
             })
                 .catch(function (err) {
-                console.log('Initial request failed, route to "authenticate"');
+                reject(err);
+                console.log('Initial request failed, remove authData and route to "authenticate"');
                 localStorage.removeItem('authData');
                 _this.router.navigateByUrl(core_routes_config_1.ROUTE_AUTHENTICATE);
-                reject(err);
             });
         });
     };
