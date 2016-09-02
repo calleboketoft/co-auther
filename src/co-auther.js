@@ -40,10 +40,10 @@ var CoAuther = (function () {
         var _this = this;
         return this.apiService.makeInitialRequest()
             .then(function () {
+            _this.initialDataLoaded = true;
             if (_this.debugMode) {
                 console.log('[co-auther] initial data marked as loaded');
             }
-            _this.initialDataLoaded = true;
         });
     };
     CoAuther.prototype.activationHelper = function (routeRequest) {

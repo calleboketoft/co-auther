@@ -58,10 +58,10 @@ export class CoAuther {
   public makeInitialRequestWrap () {
     return this.apiService.makeInitialRequest()
       .then(() => {
+        this.initialDataLoaded = true
         if (this.debugMode) {
           console.log('[co-auther] initial data marked as loaded')
         }
-        this.initialDataLoaded = true
       })
   }
 
