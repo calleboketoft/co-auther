@@ -40,6 +40,9 @@ var CoAuther = (function () {
         var _this = this;
         return this.apiService.makeInitialRequest()
             .then(function () {
+            if (_this.debugMode) {
+                console.log('[co-auther] initial data marked as loaded');
+            }
             _this.initialDataLoaded = true;
         });
     };
