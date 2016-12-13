@@ -1,6 +1,6 @@
 "use strict";
-var initial_request_component_1 = require('./initial-request.component');
-var co_auther_guard_1 = require('../../co-auther.guard');
+var initial_request_component_1 = require("./initial-request.component");
+var co_auther_guard_1 = require("../../co-auther.guard");
 exports.InitialRequestRoutes = [
     {
         path: 'initial-request',

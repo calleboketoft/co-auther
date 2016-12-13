@@ -1,6 +1,6 @@
 {
   "name": "@calle/co-auther",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Angular 2 routing helper",
   "keywords": [
     "angular2"
@@ -10,9 +10,7 @@
     "start": "node server",
     "build": "npm run typescript",
     "typescript": "tsc",
-    "watch": "tsc -w",
-    "sass": "gulp sass",
-    "typings": "typings"
+    "watch": "tsc -w"
   },
   "config": {
     "ghooks": {
@@ -22,26 +20,26 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "peerDependencies": {
-    "@angular/router": "^3.1.0",
-    "@angular/core": "^2.1.0"
+    "@angular/router": "^3.3.0",
+    "@angular/core": "^2.3.0"
   },
   "devDependencies": {
-    "@angular/common": "2.1.0",
-    "@angular/compiler": "2.1.0",
-    "@angular/core": "2.1.0",
-    "@angular/http": "2.1.0",
-    "@angular/platform-browser": "2.1.0",
-    "@angular/platform-browser-dynamic": "2.1.0",
-    "@angular/router": "3.1.0",
-    "es6-shim": "0.35.1",
+    "@angular/common": "2.3.0",
+    "@angular/compiler": "2.3.0",
+    "@angular/core": "2.3.0",
+    "@angular/http": "2.3.0",
+    "@angular/platform-browser": "2.3.0",
+    "@angular/platform-browser-dynamic": "2.3.0",
+    "@angular/router": "3.3.0",
+    "@types/core-js": "0.9.35",
+    "es6-shim": "0.35.2",
     "express": "4.14.0",
     "ghooks": "1.3.2",
     "reflect-metadata": "0.1.8",
-    "rxjs": "5.0.0-beta.12",
-    "systemjs": "0.19.39",
-    "typescript": "2.0.3",
-    "typings": "1.4.0",
-    "zone.js": "0.6.25"
+    "rxjs": "5.0.0-rc.4",
+    "systemjs": "0.19.41",
+    "typescript": "2.1.4",
+    "zone.js": "0.7.2"
   },
   "repository": {
     "type": "git",

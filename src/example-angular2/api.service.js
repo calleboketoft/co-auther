@@ -9,10 +9,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 // Simple mock example of an authentication API service
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var core_routes_config_1 = require('./core-routes.config');
-var co_auther_guard_1 = require('./co-auther.guard');
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var core_routes_config_1 = require("./core-routes.config");
+var co_auther_guard_1 = require("./co-auther.guard");
 var ApiService = (function () {
     function ApiService(router) {
         this.router = router;
@@ -59,12 +59,12 @@ var ApiService = (function () {
             });
         });
     };
-    ApiService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [router_1.Router])
-    ], ApiService);
     return ApiService;
 }());
+ApiService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [router_1.Router])
+], ApiService);
 exports.ApiService = ApiService;
 function mockRequest(requestType, timeout) {
     if (timeout === void 0) { timeout = 0; }

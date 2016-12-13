@@ -8,11 +8,11 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var router_1 = require('@angular/router');
-var _1 = require('../../');
-var Rx_1 = require('rxjs/Rx');
-var core_routes_config_1 = require('./core-routes.config');
+var core_1 = require("@angular/core");
+var router_1 = require("@angular/router");
+var _1 = require("../../");
+var Rx_1 = require("rxjs/Rx");
+var core_routes_config_1 = require("./core-routes.config");
 // Memorize navigation attempt on loading page
 exports.memoryStateUrl = '';
 var CoAutherGuard = (function () {
@@ -39,11 +39,12 @@ var CoAutherGuard = (function () {
         }
         return Rx_1.Observable.from([routeRequest === routeResponse]);
     };
-    CoAutherGuard = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [_1.CoAuther, router_1.Router])
-    ], CoAutherGuard);
     return CoAutherGuard;
 }());
+CoAutherGuard = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [_1.CoAuther,
+        router_1.Router])
+], CoAutherGuard);
 exports.CoAutherGuard = CoAutherGuard;
 //# sourceMappingURL=co-auther.guard.js.map

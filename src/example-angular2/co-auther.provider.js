@@ -2,10 +2,10 @@
  * Example provider for using CoAuther with Angular 2
  **/
 "use strict";
-var _1 = require('../../');
+var _1 = require("../../");
 // Project specific api service and route values etc.
-var api_service_1 = require('./api.service');
-var core_routes_config_1 = require('./core-routes.config');
+var api_service_1 = require("./api.service");
+var core_routes_config_1 = require("./core-routes.config");
 exports.coAutherProvider = {
     provide: _1.CoAuther,
     useFactory: coAutherFactory,
