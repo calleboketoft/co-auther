@@ -17,6 +17,7 @@ export class ApiService {
       return mockRequest('Authentication')
         .then((data:string) => {
           localStorage.setItem('authData', data)
+          this.router.navigate([ROUTE_LOGGED_IN])
           resolve(data)
         })
         .catch((err) => {
