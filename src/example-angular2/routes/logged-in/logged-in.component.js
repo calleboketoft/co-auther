@@ -13,14 +13,17 @@ var router_1 = require("@angular/router");
 var LoggedInComponent = (function () {
     function LoggedInComponent(router) {
         this.router = router;
+        this.count = 1;
     }
     LoggedInComponent.prototype.goToChild2 = function () {
         this.router.navigate(['/logged-in/child2', 13], {
             queryParams: {
                 name: 'calle',
-                food: 'banana'
+                food: 'banana',
+                counter: this.count
             }
         });
+        this.count++;
     };
     return LoggedInComponent;
 }());

@@ -15,14 +15,18 @@ import { Router } from '@angular/router'
   `
 })
 export class LoggedInComponent {
+  public count = 1
   constructor (private router: Router) {}
+
 
   public goToChild2 () {
     this.router.navigate(['/logged-in/child2', 13], {
       queryParams: {
         name: 'calle',
-        food: 'banana'
+        food: 'banana',
+        counter: this.count
       }
     })
+    this.count ++
   }
 }

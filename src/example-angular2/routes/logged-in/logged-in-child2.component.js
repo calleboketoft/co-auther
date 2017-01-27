@@ -30,7 +30,7 @@ var LoggedInChild2Component = (function () {
         this.routeQuery$ = this.activatedRoute
             .queryParams
             .subscribe(function (params) {
-            console.log('Query: ' + params['name'] + ', ' + params['food']);
+            console.log("Query: " + params['name'] + ", " + params['food'] + ", " + params['counter']);
         });
     };
     LoggedInChild2Component.prototype.ngOnDestroy = function () {

@@ -30,7 +30,7 @@ export class LoggedInChild2Component {
     this.routeQuery$ = this.activatedRoute
       .queryParams
       .subscribe(params => {
-        console.log('Query: ' + params['name'] + ', ' + params['food'])
+        console.log(`Query: ${params['name']}, ${params['food']}, ${params['counter']}`)
       })
   }
 
