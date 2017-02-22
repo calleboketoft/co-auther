@@ -10,7 +10,7 @@ import { Router } from '@angular/router'
     <button class="btn btn-primary" (click)="goToChild2()">
       Child 2, code link
     </button>
-    <br ><br >
+    <br><br>
     <router-outlet></router-outlet>
   `
 })
@@ -24,7 +24,10 @@ export class LoggedInComponent {
       queryParams: {
         name: 'calle',
         food: 'banana',
-        counter: this.count
+        counter: this.count,
+        nested: JSON.stringify({
+          myparam: 'works'
+        })
       }
     })
     this.count ++

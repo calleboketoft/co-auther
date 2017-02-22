@@ -20,7 +20,10 @@ var LoggedInComponent = (function () {
             queryParams: {
                 name: 'calle',
                 food: 'banana',
-                counter: this.count
+                counter: this.count,
+                nested: JSON.stringify({
+                    myparam: 'works'
+                })
             }
         });
         this.count++;
@@ -30,7 +33,7 @@ var LoggedInComponent = (function () {
 LoggedInComponent = __decorate([
     core_1.Component({
         selector: 'logged-in',
-        template: "\n    Logged in!<br>\n    <a [routerLink]=\"['/logged-in/child2', 12]\">Child 2, inline link</a>\n    <br>\n    <button class=\"btn btn-primary\" (click)=\"goToChild2()\">\n      Child 2, code link\n    </button>\n    <br ><br >\n    <router-outlet></router-outlet>\n  "
+        template: "\n    Logged in!<br>\n    <a [routerLink]=\"['/logged-in/child2', 12]\">Child 2, inline link</a>\n    <br>\n    <button class=\"btn btn-primary\" (click)=\"goToChild2()\">\n      Child 2, code link\n    </button>\n    <br><br>\n    <router-outlet></router-outlet>\n  "
     }),
     __metadata("design:paramtypes", [router_1.Router])
 ], LoggedInComponent);

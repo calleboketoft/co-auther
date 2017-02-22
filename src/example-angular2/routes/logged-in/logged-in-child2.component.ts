@@ -31,6 +31,7 @@ export class LoggedInChild2Component {
       .queryParams
       .subscribe(params => {
         console.log(`Query: ${params['name']}, ${params['food']}, ${params['counter']}`)
+        console.log(JSON.parse(params['nested'] || '{}'))
       })
   }
 

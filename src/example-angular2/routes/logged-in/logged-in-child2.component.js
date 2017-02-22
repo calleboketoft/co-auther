@@ -31,6 +31,7 @@ var LoggedInChild2Component = (function () {
             .queryParams
             .subscribe(function (params) {
             console.log("Query: " + params['name'] + ", " + params['food'] + ", " + params['counter']);
+            console.log(JSON.parse(params['nested'] || '{}'));
         });
     };
     LoggedInChild2Component.prototype.ngOnDestroy = function () {
