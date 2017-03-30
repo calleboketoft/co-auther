@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var router_1 = require("@angular/router");
 var authenticate_routes_1 = require("./authenticate/authenticate.routes");
 var initial_request_routes_1 = require("./initial-request/initial-request.routes");

@@ -1,6 +1,6 @@
 {
   "name": "@calle/co-auther",
-  "version": "1.4.8",
+  "version": "4.0.0",
   "description": "Angular 2 routing helper",
   "keywords": [
     "angular2"
@@ -16,25 +16,25 @@
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "peerDependencies": {
-    "@angular/core": "^2.4.3",
-    "@angular/router": "^3.4.3"
+    "@angular/core": "^4.0.1",
+    "@angular/router": "^4.0.1"
   },
   "devDependencies": {
-    "@angular/common": "2.4.3",
-    "@angular/compiler": "2.4.3",
-    "@angular/core": "2.4.3",
-    "@angular/http": "2.4.3",
-    "@angular/platform-browser": "2.4.3",
-    "@angular/platform-browser-dynamic": "2.4.3",
-    "@angular/router": "3.4.3",
-    "express": "4.14.0",
-    "husky": "0.12.0",
-    "reflect-metadata": "0.1.9",
-    "rxjs": "5.0.3",
-    "systemjs": "0.19.42",
-    "typescript": "2.1.5",
-    "zone.js": "0.7.6",
-    "tslint-config-standard": "2.0.0"
+    "@angular/common": "4.0.1",
+    "@angular/compiler": "4.0.1",
+    "@angular/core": "4.0.1",
+    "@angular/http": "4.0.1",
+    "@angular/platform-browser": "4.0.1",
+    "@angular/platform-browser-dynamic": "4.0.1",
+    "@angular/router": "4.0.1",
+    "express": "4.15.2",
+    "husky": "0.13.3",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "5.2.0",
+    "systemjs": "0.20.10",
+    "typescript": "2.2.2",
+    "zone.js": "0.8.5",
+    "tslint-config-standard": "4.0.0"
   },
   "repository": {
     "type": "git",

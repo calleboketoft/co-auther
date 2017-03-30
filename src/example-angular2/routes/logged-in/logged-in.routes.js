@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var logged_in_component_1 = require("./logged-in.component");
 var core_routes_config_1 = require("../../core-routes.config");
 var co_auther_guard_1 = require("../../co-auther.guard");

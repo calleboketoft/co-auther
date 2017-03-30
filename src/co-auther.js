@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var CoAuther = (function () {
     function CoAuther(_a) {
         var apiService = _a.apiService, loggedInRoute = _a.loggedInRoute, authenticateRoute = _a.authenticateRoute, initialRequestRoute = _a.initialRequestRoute, debugMode = _a.debugMode, authDataKey = _a.authDataKey, browserStorageType = _a.browserStorageType;
@@ -56,9 +57,11 @@ var CoAuther = (function () {
         // authData and initialRequest done, suggest LOGGED_IN
         if (authData && this.initialDataLoaded) {
             routeResult = this.loggedInRoute;
+            // no authData and no initialRequest pending, suggest AUTHENTICATE
         }
         else if (!authData && !this.initialRequestPending) {
             routeResult = this.authenticateRoute;
+            // authData is available, suggest INITIAL_REQUEST
         }
         else {
             routeResult = this.initialRequestRoute;
