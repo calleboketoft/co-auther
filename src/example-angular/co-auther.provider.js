@@ -1,7 +1,7 @@
+"use strict";
 /**
  * Example provider for using CoAuther with Angular 2
  **/
-"use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var _1 = require("../../");
 // Project specific api service and route values etc.

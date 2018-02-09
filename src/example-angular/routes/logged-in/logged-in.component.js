@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var LoggedInComponent = (function () {
+var LoggedInComponent = /** @class */ (function () {
     function LoggedInComponent(router) {
         this.router = router;
         this.count = 1;
@@ -29,14 +29,14 @@ var LoggedInComponent = (function () {
         });
         this.count++;
     };
+    LoggedInComponent = __decorate([
+        core_1.Component({
+            selector: 'logged-in',
+            template: "\n    Logged in!<br>\n    <a [routerLink]=\"['/logged-in/child2', 12]\">Child 2, inline link</a>\n    <br>\n    <button class=\"btn btn-primary\" (click)=\"goToChild2()\">\n      Child 2, code link\n    </button>\n    <br><br>\n    <router-outlet></router-outlet>\n  "
+        }),
+        __metadata("design:paramtypes", [router_1.Router])
+    ], LoggedInComponent);
     return LoggedInComponent;
 }());
-LoggedInComponent = __decorate([
-    core_1.Component({
-        selector: 'logged-in',
-        template: "\n    Logged in!<br>\n    <a [routerLink]=\"['/logged-in/child2', 12]\">Child 2, inline link</a>\n    <br>\n    <button class=\"btn btn-primary\" (click)=\"goToChild2()\">\n      Child 2, code link\n    </button>\n    <br><br>\n    <router-outlet></router-outlet>\n  "
-    }),
-    __metadata("design:paramtypes", [router_1.Router])
-], LoggedInComponent);
 exports.LoggedInComponent = LoggedInComponent;
 //# sourceMappingURL=logged-in.component.js.map

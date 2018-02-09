@@ -16,7 +16,7 @@ var Rx_1 = require("rxjs/Rx");
 var core_routes_config_1 = require("./core-routes.config");
 // Memorize navigation attempt on loading page
 exports.memoryStateUrl = '';
-var CoAutherGuard = (function () {
+var CoAutherGuard = /** @class */ (function () {
     function CoAutherGuard(coAuther, router) {
         this.coAuther = coAuther;
         this.router = router;
@@ -40,12 +40,12 @@ var CoAutherGuard = (function () {
         }
         return Rx_1.Observable.from([routeRequest === routeResponse]);
     };
+    CoAutherGuard = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [_1.CoAuther,
+            router_1.Router])
+    ], CoAutherGuard);
     return CoAutherGuard;
 }());
-CoAutherGuard = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [_1.CoAuther,
-        router_1.Router])
-], CoAutherGuard);
 exports.CoAutherGuard = CoAutherGuard;
 //# sourceMappingURL=co-auther.guard.js.map

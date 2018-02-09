@@ -7,16 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var LoggedInChildComponent = (function () {
+var LoggedInChildComponent = /** @class */ (function () {
     function LoggedInChildComponent() {
     }
+    LoggedInChildComponent = __decorate([
+        core_1.Component({
+            selector: 'logged-in-child',
+            template: "Child"
+        })
+    ], LoggedInChildComponent);
     return LoggedInChildComponent;
 }());
-LoggedInChildComponent = __decorate([
-    core_1.Component({
-        selector: 'logged-in-child',
-        template: "Child"
-    })
-], LoggedInChildComponent);
 exports.LoggedInChildComponent = LoggedInChildComponent;
 //# sourceMappingURL=logged-in-child.component.js.map

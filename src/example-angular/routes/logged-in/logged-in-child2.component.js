@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
-var LoggedInChild2Component = (function () {
+var LoggedInChild2Component = /** @class */ (function () {
     function LoggedInChild2Component(router, activatedRoute) {
         this.router = router;
         this.activatedRoute = activatedRoute;
@@ -38,15 +38,15 @@ var LoggedInChild2Component = (function () {
     LoggedInChild2Component.prototype.ngOnDestroy = function () {
         this.route$.unsubscribe();
     };
+    LoggedInChild2Component = __decorate([
+        core_1.Component({
+            selector: 'logged-in-child2',
+            template: "Child2"
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            router_1.ActivatedRoute])
+    ], LoggedInChild2Component);
     return LoggedInChild2Component;
 }());
-LoggedInChild2Component = __decorate([
-    core_1.Component({
-        selector: 'logged-in-child2',
-        template: "Child2"
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        router_1.ActivatedRoute])
-], LoggedInChild2Component);
 exports.LoggedInChild2Component = LoggedInChild2Component;
 //# sourceMappingURL=logged-in-child2.component.js.map

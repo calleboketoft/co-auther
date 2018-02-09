@@ -12,7 +12,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var _1 = require("../../../../");
-var AuthenticateComponent = (function () {
+var AuthenticateComponent = /** @class */ (function () {
     function AuthenticateComponent(router, coAuther) {
         this.router = router;
         this.coAuther = coAuther;
@@ -20,15 +20,15 @@ var AuthenticateComponent = (function () {
     AuthenticateComponent.prototype.login = function (username, password) {
         this.coAuther.loginWrap(username, password);
     };
+    AuthenticateComponent = __decorate([
+        core_1.Component({
+            selector: 'authenticate',
+            template: "\n    <label>Username<input #username type=\"text\"></label><br >\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
+        }),
+        __metadata("design:paramtypes", [router_1.Router,
+            _1.CoAuther])
+    ], AuthenticateComponent);
     return AuthenticateComponent;
 }());
-AuthenticateComponent = __decorate([
-    core_1.Component({
-        selector: 'authenticate',
-        template: "\n    <label>Username<input #username type=\"text\"></label><br >\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
-    }),
-    __metadata("design:paramtypes", [router_1.Router,
-        _1.CoAuther])
-], AuthenticateComponent);
 exports.AuthenticateComponent = AuthenticateComponent;
 //# sourceMappingURL=authenticate.component.js.map

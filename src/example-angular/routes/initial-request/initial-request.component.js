@@ -7,16 +7,16 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
-var InitialRequestComponent = (function () {
+var InitialRequestComponent = /** @class */ (function () {
     function InitialRequestComponent() {
     }
+    InitialRequestComponent = __decorate([
+        core_1.Component({
+            selector: 'initial-request',
+            template: "Making initial request..."
+        })
+    ], InitialRequestComponent);
     return InitialRequestComponent;
 }());
-InitialRequestComponent = __decorate([
-    core_1.Component({
-        selector: 'initial-request',
-        template: "Making initial request..."
-    })
-], InitialRequestComponent);
 exports.InitialRequestComponent = InitialRequestComponent;
 //# sourceMappingURL=initial-request.component.js.map

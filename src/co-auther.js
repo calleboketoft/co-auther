@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-var CoAuther = (function () {
+var CoAuther = /** @class */ (function () {
     function CoAuther(_a) {
         var apiService = _a.apiService, loggedInRoute = _a.loggedInRoute, authenticateRoute = _a.authenticateRoute, initialRequestRoute = _a.initialRequestRoute, debugMode = _a.debugMode, authDataKey = _a.authDataKey, browserStorageType = _a.browserStorageType;
         // State flags
