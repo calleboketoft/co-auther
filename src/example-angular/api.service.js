@@ -34,8 +34,7 @@ var ApiService = /** @class */ (function () {
         });
     };
     ApiService.prototype.logout = function () {
-        return mockRequest('Logout')
-            .then(function () {
+        return mockRequest('Logout').then(function () {
             localStorage.removeItem('authData');
             window.location.reload();
         });

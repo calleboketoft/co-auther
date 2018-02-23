@@ -33,10 +33,7 @@ var AppModule = /** @class */ (function () {
                 logged_in_child_component_1.LoggedInChildComponent,
                 logged_in_child2_component_1.LoggedInChild2Component
             ],
-            imports: [
-                platform_browser_1.BrowserModule,
-                app_routes_1.routing
-            ],
+            imports: [platform_browser_1.BrowserModule, app_routes_1.routing],
             providers: [
                 co_auther_guard_1.CoAutherGuard,
                 {

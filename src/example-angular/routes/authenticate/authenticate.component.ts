@@ -11,12 +11,9 @@ import { CoAuther } from '../../../../'
   `
 })
 export class AuthenticateComponent {
-  constructor (
-    private router: Router,
-    private coAuther: CoAuther
-  ) {}
+  constructor(private router: Router, private coAuther: CoAuther) {}
 
-  login (username, password) {
+  login(username, password) {
     this.coAuther.loginWrap(username, password)
   }
 }

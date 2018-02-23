@@ -28,9 +28,7 @@ var LoggedInChild2Component = /** @class */ (function () {
         console.log('Static: ' + param);
         // Query params
         // ------------
-        this.routeQuery$ = this.activatedRoute
-            .queryParams
-            .subscribe(function (params) {
+        this.routeQuery$ = this.activatedRoute.queryParams.subscribe(function (params) {
             console.log("Query: " + params['name'] + ", " + params['food'] + ", " + params['counter']);
             console.log(JSON.parse(params['nested'] || '{}'));
         });
@@ -43,8 +41,7 @@ var LoggedInChild2Component = /** @class */ (function () {
             selector: 'logged-in-child2',
             template: "Child2"
         }),
-        __metadata("design:paramtypes", [router_1.Router,
-            router_1.ActivatedRoute])
+        __metadata("design:paramtypes", [router_1.Router, router_1.ActivatedRoute])
     ], LoggedInChild2Component);
     return LoggedInChild2Component;
 }());

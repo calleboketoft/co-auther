@@ -25,8 +25,7 @@ var AuthenticateComponent = /** @class */ (function () {
             selector: 'authenticate',
             template: "\n    <label>Username<input #username type=\"text\"></label><br >\n    <label>Password<input #password type=\"password\"></label><br>\n    <button (click)=\"login(username.value, password.value)\">Login</button>\n  "
         }),
-        __metadata("design:paramtypes", [router_1.Router,
-            _1.CoAuther])
+        __metadata("design:paramtypes", [router_1.Router, _1.CoAuther])
     ], AuthenticateComponent);
     return AuthenticateComponent;
 }());

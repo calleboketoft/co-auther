@@ -39,8 +39,7 @@ var CoAuther = /** @class */ (function () {
     };
     CoAuther.prototype.makeInitialRequestWrap = function () {
         var _this = this;
-        return this.apiService.makeInitialRequest()
-            .then(function () {
+        return this.apiService.makeInitialRequest().then(function () {
             _this.initialDataLoaded = true;
             if (_this.debugMode) {
                 console.log('[co-auther] initial data marked as loaded');

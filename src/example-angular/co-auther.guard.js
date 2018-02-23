@@ -29,21 +29,21 @@ var CoAutherGuard = /** @class */ (function () {
         // Memorize where attempting to navigate to when opening page
         // the exported member "memoryStateUrl" will contain destination
         var unauthedLoggedInAttempt = routeRequest === core_routes_config_1.ROUTE_LOGGED_IN && routeResponse === core_routes_config_1.ROUTE_AUTHENTICATE;
-        var authedLoggedInAttempt = routeRequest === core_routes_config_1.ROUTE_LOGGED_IN && routeResponse === core_routes_config_1.ROUTE_INITIAL_REQUEST;
+        var authedLoggedInAttempt = routeRequest === core_routes_config_1.ROUTE_LOGGED_IN &&
+            routeResponse === core_routes_config_1.ROUTE_INITIAL_REQUEST;
         if (unauthedLoggedInAttempt || authedLoggedInAttempt) {
             exports.memoryStateUrl = state.url;
         }
         // NOTE: Perhaps all redirects should be handled from in here?
         // Does routing from within the guard mess something up though?
-        if (!requestOk && (routeResponse === core_routes_config_1.ROUTE_AUTHENTICATE)) {
+        if (!requestOk && routeResponse === core_routes_config_1.ROUTE_AUTHENTICATE) {
             this.router.navigateByUrl(core_routes_config_1.ROUTE_AUTHENTICATE);
         }
         return Rx_1.Observable.from([routeRequest === routeResponse]);
     };
     CoAutherGuard = __decorate([
         core_1.Injectable(),
-        __metadata("design:paramtypes", [_1.CoAuther,
-            router_1.Router])
+        __metadata("design:paramtypes", [_1.CoAuther, router_1.Router])
     ], CoAutherGuard);
     return CoAutherGuard;
 }());

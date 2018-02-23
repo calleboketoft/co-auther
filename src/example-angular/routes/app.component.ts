@@ -20,9 +20,9 @@ import { CoAuther } from '../../../'
   `
 })
 export class AppComponent {
-  constructor (private coAuther: CoAuther) {}
+  constructor(private coAuther: CoAuther) {}
 
-  logout () {
+  logout() {
     this.coAuther.logoutWrap()
   }
 }

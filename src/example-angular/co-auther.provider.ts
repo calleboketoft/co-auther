@@ -20,8 +20,8 @@ export let coAutherProvider = {
 }
 
 // Factory function for CoAuther, specifying how to instantiate it
-function coAutherFactory (apiService: ApiService) {
-  return new CoAuther ({
+function coAutherFactory(apiService: ApiService) {
+  return new CoAuther({
     apiService,
     initialRequestRoute: ROUTE_INITIAL_REQUEST,
     authenticateRoute: ROUTE_AUTHENTICATE,

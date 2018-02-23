@@ -4,4 +4,4 @@ import { Component } from '@angular/core'
   selector: 'initial-request',
   template: `Making initial request...`
 })
-export class InitialRequestComponent { }
+export class InitialRequestComponent {}

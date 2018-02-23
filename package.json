@@ -10,29 +10,31 @@
     "start": "node server",
     "build": "npm run typescript",
     "typescript": "tsc",
-    "watch": "tsc -w"
+    "watch": "tsc -w",
+    "format": "prettier --write \"src/**/*.ts\""
   },
   "author": "Carl-Ola Boketoft",
   "license": "ISC",
   "peerDependencies": {
-    "@angular/core": "^5.2.4",
-    "@angular/router": "^5.2.4"
+    "@angular/core": "^6.0.0-beta.5",
+    "@angular/router": "^6.0.0-beta.5"
   },
   "devDependencies": {
-    "@angular/common": "5.2.4",
-    "@angular/compiler": "5.2.4",
-    "@angular/core": "5.2.4",
-    "@angular/http": "5.2.4",
-    "@angular/platform-browser": "5.2.4",
-    "@angular/platform-browser-dynamic": "5.2.4",
-    "@angular/router": "5.2.4",
+    "@angular/common": "6.0.0-beta.5",
+    "@angular/compiler": "6.0.0-beta.5",
+    "@angular/core": "6.0.0-beta.5",
+    "@angular/http": "6.0.0-beta.5",
+    "@angular/platform-browser": "6.0.0-beta.5",
+    "@angular/platform-browser-dynamic": "6.0.0-beta.5",
+    "@angular/router": "6.0.0-beta.5",
     "express": "4.16.2",
+    "prettier": "^1.10.2",
     "reflect-metadata": "0.1.12",
     "rxjs": "5.5.6",
     "systemjs": "0.21.0",
-    "typescript": "2.7.1",
-    "zone.js": "0.8.20",
-    "tslint-config-standard": "7.0.0"
+    "tslint-config-prettier": "^1.8.0",
+    "typescript": "2.7.2",
+    "zone.js": "0.8.20"
   },
   "repository": {
     "type": "git",

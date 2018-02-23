@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core'
-import { BrowserModule  } from '@angular/platform-browser'
+import { BrowserModule } from '@angular/platform-browser'
 import { LocationStrategy, HashLocationStrategy } from '@angular/common'
 import { coAutherProvider } from './co-auther.provider'
 import { CoAutherGuard } from './co-auther.guard'
@@ -23,10 +23,7 @@ import { LoggedInChild2Component } from './routes/logged-in/logged-in-child2.com
     LoggedInChildComponent,
     LoggedInChild2Component
   ],
-  imports: [
-    BrowserModule,
-    routing
-  ],
+  imports: [BrowserModule, routing],
   providers: [
     CoAutherGuard,
     {
@@ -37,4 +34,4 @@ import { LoggedInChild2Component } from './routes/logged-in/logged-in-child2.com
     coAutherProvider // CoAutherGuard needs this
   ]
 })
-export class AppModule { }
+export class AppModule {}

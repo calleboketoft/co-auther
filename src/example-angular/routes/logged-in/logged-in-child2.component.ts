@@ -6,14 +6,11 @@ import { ActivatedRoute, Router } from '@angular/router'
   template: `Child2`
 })
 export class LoggedInChild2Component {
-  private route$;
-  private routeQuery$;
-  constructor (
-    private router: Router,
-    private activatedRoute: ActivatedRoute
-  ) {}
+  private route$
+  private routeQuery$
+  constructor(private router: Router, private activatedRoute: ActivatedRoute) {}
 
-  ngOnInit () {
+  ngOnInit() {
     // Path params
     // -----------
     // Reactive way of getting params
@@ -27,15 +24,15 @@ export class LoggedInChild2Component {
 
     // Query params
     // ------------
-    this.routeQuery$ = this.activatedRoute
-      .queryParams
-      .subscribe(params => {
-        console.log(`Query: ${params['name']}, ${params['food']}, ${params['counter']}`)
-        console.log(JSON.parse(params['nested'] || '{}'))
-      })
+    this.routeQuery$ = this.activatedRoute.queryParams.subscribe(params => {
+      console.log(
+        `Query: ${params['name']}, ${params['food']}, ${params['counter']}`
+      )
+      console.log(JSON.parse(params['nested'] || '{}'))
+    })
   }
 
-  ngOnDestroy () {
+  ngOnDestroy() {
     this.route$.unsubscribe()
   }
 }

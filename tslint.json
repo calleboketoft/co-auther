@@ -1,6 +1,6 @@
 {
-  "extends": "tslint-config-standard",
-  "rules": {
-    "align": [true, "parameters", "statements"]
-  }
+  "extends": [
+    "tslint:latest",
+    "tslint-config-prettier"
+  ]
 }
